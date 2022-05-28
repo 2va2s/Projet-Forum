@@ -23,13 +23,20 @@ func main() {
 		fmt.Println(err)
 	}
 
+	logsign, err := template.ParseFiles("login-signin.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// pckg.DeletePostById(db, "5")
 		http.ServeFile(w, r, "./accueil.html")
 	})
 
-	http.HandleFunc("/inscription-connexion", func(w http.ResponseWriter, r *http.Request) {
-		home.Execute(w, "")
+	http.HandleFunc("/inscription-connexion", pckg.HandleLogin)
+
+	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		logsign.Execute(w, "")
 	})
 
 	http.HandleFunc("/profil", func(w http.ResponseWriter, r *http.Request) {
