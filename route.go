@@ -16,7 +16,6 @@ type StructTest struct {
 
 func main() {
 	db := pckg.InitDatabase("forum.db")
-	pckg.DeletePostById(db, "3")
 	defer db.Close()
 
 	home, err := template.ParseFiles("accueil.html")
