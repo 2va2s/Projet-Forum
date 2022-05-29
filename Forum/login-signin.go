@@ -2,6 +2,7 @@ package Forum
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"text/template"
 
@@ -19,14 +20,23 @@ type UserData struct {
 }
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
-	// var data User = User{}
+	var data User = User{}
 
-	if r.URL.Path != "/home" {
+	if r.URL.Path != "/testaccueil" {
 		http.NotFound(w, r)
 		return
 	}
 
-	// tmpl.Execute(w, data)
+	session, _ := store.Get(r, "authenticated")
+	auth := session.Values["authenticated"]
+
+	fmt.Println([]byte(auth.(string)))
+	fmt.Println(string([]byte(auth.(string))))
+	json.Unmarshal([]byte(auth.(string)), &data)
+	fmt.Println(data)
+
+	tmpl, _ := template.ParseFiles("./accueil.html")
+	tmpl.Execute(w, data)
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
@@ -45,9 +55,9 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 
 	if _, ok := r.PostForm["Submit"]; ok {
 		res, _ := json.Marshal(r.PostForm)
-		session.Values["authenticated"] = res
+		session.Values["authenticated"] = string(res)
 		session.Save(r, w)
-		http.Redirect(w, r, "/", http.StatusFound)
+		http.Redirect(w, r, "/testaccueil", http.StatusFound)
 		return
 	}
 

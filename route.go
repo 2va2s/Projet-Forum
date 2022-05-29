@@ -39,6 +39,8 @@ func main() {
 		logsign.Execute(w, "")
 	})
 
+	http.HandleFunc("/testaccueil", pckg.HandleHome)
+
 	http.HandleFunc("/profil", func(w http.ResponseWriter, r *http.Request) {
 		home.Execute(w, "")
 	})
