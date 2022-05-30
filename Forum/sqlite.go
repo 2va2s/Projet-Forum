@@ -127,21 +127,3 @@ func DeletePostById(db *sql.DB, id string) (int64, error) {
 }
 
 // reriter à
-
-func main() {
-	db := InitDatabase("forum.db")
-	defer db.Close()
-
-	// createUser(db, "PatPat", "mdpCryptéTMTC", "", 676208131, "")
-	// CreateTopic(db, "Bonjour mon petit fils me traite de 'grosse ker' constamment, quelqu'un saurait ce que cela signifie", 3, 1, "Que veut dire 'grosse ker' ????", "ragots")
-	// createPost(db, "Un bon coups de fusil reglera l'affaire", 3, 0, 1)
-
-	// userList := GetTable(db, "user")
-	// postList := GetTable(db, "post")
-	// topicList := GetTopic(db, "post")
-	// GetUserRows(userList)
-	// GetPostRows(postList)
-	// GetPostRows(topicList)
-
-	// fmt.Println(db)
-}
