@@ -17,6 +17,9 @@ type StructTest struct {
 func main() {
 	db := pckg.InitDatabase("forum.db")
 	defer db.Close()
+	// pckg.CreateUser(db, "kanye", "mdpdezinzin", "", 603504132, "")
+	// pckg.CreateUser(db, "booba", "mdpdezinzin", "", 6035041384, "")
+	// pckg.CreatePost(db, "Ceci est le topic 1", 1, 1, "")
 
 	home, err := template.ParseFiles("./pages/accueil.html")
 	if err != nil {
@@ -45,10 +48,6 @@ func main() {
 	})
 
 	http.HandleFunc("/a-propos", func(w http.ResponseWriter, r *http.Request) {
-		home.Execute(w, "")
-	})
-
-	http.HandleFunc("/get-posts", func(w http.ResponseWriter, r *http.Request) {
 		home.Execute(w, "")
 	})
 

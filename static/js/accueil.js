@@ -3,7 +3,7 @@ fetch("/posts").then(function (response) {
 }).then(function (response) {
     let list = document.getElementById("topicList")
     for (let i in response) {
-        list.appendChild(document.createTextNode(response[i].Content))
+        list.appendChild(document.createTextNode(response[i].Content) + "[" + response[i].Date + "]")
         list.appendChild(document.createElement("br"))
     }
 }).catch(function (err) {
