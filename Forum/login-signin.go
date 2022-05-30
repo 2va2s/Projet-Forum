@@ -37,7 +37,7 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	}
 	// fmt.Println(data)
 
-	tmpl, _ := template.ParseFiles("./accueil.html")
+	tmpl, _ := template.ParseFiles("./pages/accueil.html")
 	tmpl.Execute(w, data)
 }
 
@@ -47,7 +47,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl, _ := template.ParseFiles("./accueil.html")
+	tmpl, _ := template.ParseFiles("./pages/accueil.html")
 
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Error parsing form", 500)

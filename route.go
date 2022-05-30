@@ -18,12 +18,12 @@ func main() {
 	db := pckg.InitDatabase("forum.db")
 	defer db.Close()
 
-	home, err := template.ParseFiles("accueil.html")
+	home, err := template.ParseFiles("./pages/accueil.html")
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	logsign, err := template.ParseFiles("login-signin.html")
+	logsign, err := template.ParseFiles("./pages/login-signin.html")
 	if err != nil {
 		fmt.Println(err)
 	}
