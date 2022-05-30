@@ -20,27 +20,29 @@ type UserData struct {
 }
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
-	var data User = User{}
+	var data UserData = UserData{}
 
-	if r.URL.Path != "/testaccueil" {
+	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
 	}
 
-	session, _ := store.Get(r, "authenticated")
+	session, _ := store.Get(r, "cookie-forum")
 	auth := session.Values["authenticated"]
 
-	fmt.Println([]byte(auth.(string)))
-	fmt.Println(string([]byte(auth.(string))))
-	json.Unmarshal([]byte(auth.(string)), &data)
-	fmt.Println(data)
+	// fmt.Println([]byte(auth.(string)))
+	// fmt.Println(string([]byte(auth.(string))))
+	if auth != nil {
+		json.Unmarshal([]byte(auth.(string)), &data)
+	}
+	// fmt.Println(data)
 
 	tmpl, _ := template.ParseFiles("./accueil.html")
 	tmpl.Execute(w, data)
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/inscription-connexion" {
+	if r.URL.Path != "/login-signin" {
 		http.NotFound(w, r)
 		return
 	}
@@ -51,13 +53,14 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error parsing form", 500)
 	}
 
-	session, _ := store.Get(r, "authenticated")
+	session, _ := store.Get(r, "cookie-forum")
 
 	if _, ok := r.PostForm["Submit"]; ok {
+		fmt.Println("in")
 		res, _ := json.Marshal(r.PostForm)
 		session.Values["authenticated"] = string(res)
 		session.Save(r, w)
-		http.Redirect(w, r, "/testaccueil", http.StatusFound)
+		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
 
@@ -65,5 +68,13 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleLogout(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/logout" {
+		http.NotFound(w, r)
+		return
+	}
 
+	session, _ := store.Get(r, "cookie-forum")
+	session.Values["authenticated"] = nil
+	session.Save(r, w)
+	http.Redirect(w, r, "/", http.StatusFound)
 }

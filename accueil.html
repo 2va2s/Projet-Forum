@@ -10,7 +10,10 @@
 
 <body>
     <h1>CECI EST LACCUEIL</h1>
+    <h2 id="connected"> Connecté en tant que {{.Email}} </h2>
     <p id="topicList"> liste des topics :<br></p>
+    <a href="/logout" id="logout">Déconnexion</a>
+    <a href="/inscription-connexion" id="login" style="display:none;">Se connecter</a>
 </body>
 
 <!-- <script type="text/javascript" src="/static/API.js"></script> -->
@@ -26,6 +29,15 @@
     }).catch(function (err) {
         console.log(err)
     })
+
+    let conn = document.getElementById("connected")
+    conn = conn
+    console.log(conn)
+    if (conn.innerHTML == " Connecté en tant que [] ") {
+        conn.innerHTML = "Non connecté"
+        document.getElementById("logout").style.display = 'none';
+        document.getElementById("login").style.display = 'block';
+    }
 </script>
 
 </html>

@@ -28,18 +28,13 @@ func main() {
 		fmt.Println(err)
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		// pckg.DeletePostById(db, "5")
-		http.ServeFile(w, r, "./accueil.html")
-	})
+	http.HandleFunc("/", pckg.HandleHome)
 
-	http.HandleFunc("/inscription-connexion", pckg.HandleLogin)
-
-	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/inscription-connexion", func(w http.ResponseWriter, r *http.Request) {
 		logsign.Execute(w, "")
 	})
-
-	http.HandleFunc("/testaccueil", pckg.HandleHome)
+	http.HandleFunc("/login-signin", pckg.HandleLogin)
+	http.HandleFunc("/logout", pckg.HandleLogout)
 
 	http.HandleFunc("/profil", func(w http.ResponseWriter, r *http.Request) {
 		home.Execute(w, "")
