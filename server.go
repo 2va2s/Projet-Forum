@@ -31,7 +31,16 @@ func main() {
 		fmt.Println(err)
 	}
 
+	test, err := template.ParseFiles("./pages/layout.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	http.HandleFunc("/", pckg.HandleHome)
+
+	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		test.Execute(w, r)
+	})
 
 	http.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {
 		logsign.Execute(w, "")
