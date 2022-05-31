@@ -31,6 +31,12 @@ func main() {
 		fmt.Println(err)
 	}
 
+	// A SUPPRIMER
+	http.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./pages/components/postCard.html")
+	})
+	// A SUPPRIMER
+
 	http.HandleFunc("/", pckg.HandleHome)
 
 	http.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {

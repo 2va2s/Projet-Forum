@@ -59,6 +59,10 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Error parsing form", 500)
+	}
+	// users = db.GetU
 	// r.Form pour recup valeurs de form
 	// db.USer == r.Form
 	if r.URL.Path != "/login" {

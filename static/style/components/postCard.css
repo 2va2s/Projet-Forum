@@ -1,0 +1,59 @@
+.postCard {
+    display: flex;
+    background-color: rgb(216, 167, 93);
+    border-radius: 15px;
+    width: 40%;
+    height: 20%;
+}
+
+.pp {
+    height: 60%;
+    margin: 1.5%
+}
+
+.middleCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: red;
+    height: 100%;
+    width: 65%
+}
+
+.pastilles {
+    display: flex;
+}
+
+.pastille-santé {
+    background-color: rgb(255, 79, 108);
+    height: 50%;
+    width: 20%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2%;
+}
+
+.rightCard {
+    display: flex;
+    flex-direction: column;
+    width: 14%;
+    font-size: 82%;
+    color: rgb(77, 77, 77)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
