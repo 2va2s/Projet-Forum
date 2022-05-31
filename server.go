@@ -33,10 +33,18 @@ func main() {
 
 	http.HandleFunc("/", pckg.HandleHome)
 
-	http.HandleFunc("/inscription-connexion", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {
 		logsign.Execute(w, "")
 	})
-	http.HandleFunc("/login-signin", pckg.HandleLogin)
+
+	http.HandleFunc("/signin", func(w http.ResponseWriter, r *http.Request) {
+		pckg.HandleSignin(w, r, db)
+	})
+
+	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
+		pckg.HandleLogin(w, r, db)
+	})
+
 	http.HandleFunc("/logout", pckg.HandleLogout)
 
 	http.HandleFunc("/profil", func(w http.ResponseWriter, r *http.Request) {
