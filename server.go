@@ -34,6 +34,11 @@ func main() {
 		fmt.Println(err)
 	}
 
+	// fs := http.FileServer(http.Dir("static/"))
+	// http.Handle("/static/", http.StripPrefix("/static/", fs))
+	fileServer := http.FileServer(http.Dir("./static"))
+	rr.PathPrefix("/static").Handler(http.StripPrefix("/static", fileServer))
+
 	// A SUPPRIMER
 	rr.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./pages/components/postCard.html")
@@ -93,9 +98,6 @@ func main() {
 		json, _ := json.Marshal(a)
 		w.Write(json)
 	})
-
-	fs := http.FileServer(http.Dir("static/"))
-	rr.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.ListenAndServe(":8080", rr)
 }
