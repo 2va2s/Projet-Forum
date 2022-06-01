@@ -10,44 +10,64 @@
 </head>
 
 <body>
-    <div id="left">
-        <h1>Connexion</h1>
+    
+    <div class="connexion" id="card">
         <form id="subscribe" method="POST" action="/login">
-            <div>
+            <div id="element">
                 <label for="email">Email</label>
                 <input type="email" name="Email" />
             </div>
-            <div>
+            <div id="element">
                 <label for="Password">Mot de pass</label>
                 <input type="password" name="Password" />
             </div>
             <input type="hidden" name="Submit" value="Se connecter" />
+            <input type="checkbox"><span>Se rappeler de moi</span>
+            <button id="seConnecter" type="submit" name="Submit" form="subscribe">Se connecter</button>
         </form>
-        <button type="submit" name="Submit" form="subscribe">Se connecter</button>
+        <button type="button" class="btn" onclick="openRegister()">Je suis nouveau</button>
     </div>
 
-    <div id="right">
-        <h2>Inscription</h2>
+    <div class="inscription">
+        <h1>Inscription</h1>
         <form id="subscribe2" method="POST" action="/signin">
-            <div>
+            <div id="element">
                 <label for="surnom">Surnom</label>
                 <input type="surnom" name="Surnom" />
             </div>
-            <div>
+            <div id="element">
                 <label for="password">Mot de passe</label>
                 <input type="password" name="Password" />
             </div>
-            <div>
+            <div id="element">
                 <label for="email">Email</label>
                 <input type="email" name="Email" />
             </div>
-            <div>
+            <div id="element">
                 <label for="telephone">Téléphone</label>
                 <input type="telephone" name="Telephone" />
             </div>
             <input type="hidden" name="Submit" value="S'enregistrer"/>
+                <button id="seConnecter" type="submit" name="Submit" form="subscribe2">Se connecter</button>
         </form>
-        <button type="submit" name="Submit" form="subscribe2">Se connecter</button>
+        <button type="button" class="btn" onclick="openLogin()">J'ai déjà un compte</button>
+        
     </div>
+   
+
+    <script>
+
+    let card = document.getElementById("card");
+
+    function openRegister(){
+        card.style.transform = "rotateY(-180deg)";
+    }
+
+    function openLogin(){
+        card.style.transform = "rotateY(0deg)";
+    }
+
+
+    </script>
 
 </body>
