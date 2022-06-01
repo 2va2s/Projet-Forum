@@ -17,15 +17,15 @@
         <form id="subscribe" method="POST" action="/login">
             <div>
                 <label for="email">Email</label>
-                <input type="email" name="Email" />
+                <input id="email1" type="email" name="Email" />
             </div>
             <div>
                 <label for="Password">Mot de pass</label>
-                <input type="password" name="Password" />
+                <input id="mdp1" type="password" name="Password" />
             </div>
             <input type="hidden" name="Submit" value="Se connecter" />
         </form>
-        <button type="submit" name="Submit" form="subscribe">Se connecter</button>
+        <button onclick="checkLoginForm()" >Se connecter</button>
         </div>
         <button class="signup" onclick="toRegister()"><span>Register</span></button>
     </div>

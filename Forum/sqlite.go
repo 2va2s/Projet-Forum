@@ -2,7 +2,6 @@ package Forum
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -38,7 +37,6 @@ func GetUserRows(rows *sql.Rows) []User {
 		final = append(final, u)
 		// fmt.Println(u)
 	}
-	fmt.Println(final)
 	return final
 }
 

@@ -11,7 +11,6 @@ fetch("/posts").then(function (response) {
 })
 
 let conn = document.getElementById("connected")
-console.log(conn)
 if (conn.innerHTML == " Connecté en tant que [] ") { 
     conn.innerHTML = "Non connecté"
     document.getElementById("logout").style.display = 'none';
