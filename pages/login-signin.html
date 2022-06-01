@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./static/style/login-signin.css">
-    <title>Document</title>
+    <title>test</title>
+    <link rel="stylesheet" href="/static/style/login-signin.css">
 </head>
-
 <body>
-    <div id="left">
-        <h1>Connexion</h1>
+    <div id="login">
+        <div class="loginlogo">
+            <a href="/"><img src="/static/logo.svg" height="90%"></a>
+        </div>
+        <div class="logincase">
+            <h1>Connexion</h1>
         <form id="subscribe" method="POST" action="/login">
             <div>
                 <label for="email">Email</label>
@@ -24,10 +26,16 @@
             <input type="hidden" name="Submit" value="Se connecter" />
         </form>
         <button type="submit" name="Submit" form="subscribe">Se connecter</button>
+        </div>
+        <button class="signup" onclick="toRegister()"><span>Register</span></button>
     </div>
-
-    <div id="right">
-        <h2>Inscription</h2>
+    <div id="register">
+        <button class="signin" onclick="toLogin()"><span>Login</span></button>
+        <div class="registerlogo">
+            <a href="/"><img src="/static/logo.svg" height="90%"></a>
+        </div>
+        <div class="registercase">
+            <h2>Inscription</h2>
         <form id="subscribe2" method="POST" action="/signin">
             <div>
                 <label for="surnom">Surnom</label>
@@ -36,6 +44,10 @@
             <div>
                 <label for="password">Mot de passe</label>
                 <input type="password" name="Password" />
+            </div>
+            <div>
+                <label for="password">Confirmer le mot de passe</label>
+                <input type="password" name="PasswordConfirmation" />
             </div>
             <div>
                 <label for="email">Email</label>
@@ -47,7 +59,11 @@
             </div>
             <input type="hidden" name="Submit" value="S'enregistrer" />
         </form>
-        <button type="submit" name="Submit" form="subscribe2">Se connecter</button>
+        <button type="submit" name="Submit" form="subscribe2">S'inscrire</button>
+        </div>
     </div>
-
 </body>
+
+<script type="text/javascript" src="/static/js/login-signin.js"></script>
+
+</html>
