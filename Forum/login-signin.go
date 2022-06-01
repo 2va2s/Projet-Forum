@@ -3,7 +3,6 @@ package Forum
 import (
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -79,7 +78,6 @@ func HandleLogin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	session, _ := store.Get(r, "cookie-forum")
 
 	if _, ok := r.PostForm["Submit"]; ok {
-		fmt.Println("in")
 		res, _ := json.Marshal(r.PostForm)
 		session.Values["authenticated"] = string(res)
 		session.Save(r, w)

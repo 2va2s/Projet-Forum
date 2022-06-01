@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"net/http"
 	"text/template"
+
+	"github.com/gorilla/mux"
 )
 
 type StructTest struct {
@@ -15,6 +17,7 @@ type StructTest struct {
 }
 
 func main() {
+	rr := mux.NewRouter()
 	db := pckg.InitDatabase("forum.db")
 	defer db.Close()
 	// pckg.CreateUser(db, "kanye", "mdpdezinzin", "", 603504132, "")
@@ -32,56 +35,59 @@ func main() {
 	}
 
 	// A SUPPRIMER
-	http.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./pages/components/postCard.html")
 	})
 	// A SUPPRIMER
 
-	http.HandleFunc("/", pckg.HandleHome)
+	rr.HandleFunc("/", pckg.HandleHome)
 
-	http.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {
 		logsign.Execute(w, "")
 	})
 
-	http.HandleFunc("/signin", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/signin", func(w http.ResponseWriter, r *http.Request) {
 		pckg.HandleSignin(w, r, db)
 	})
 
-	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
 		pckg.HandleLogin(w, r, db)
 	})
 
-	http.HandleFunc("/logout", pckg.HandleLogout)
+	rr.HandleFunc("/logout", pckg.HandleLogout)
 
-	http.HandleFunc("/profil", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/profil/{userID}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		userId := vars["userID"]
+		fmt.Print(userId)
+		http.ServeFile(w, r, "./pages/accueil.html")
+	})
+
+	rr.HandleFunc("/topic", func(w http.ResponseWriter, r *http.Request) {
 		home.Execute(w, "")
 	})
 
-	http.HandleFunc("/topic", func(w http.ResponseWriter, r *http.Request) {
-		home.Execute(w, "")
-	})
-
-	http.HandleFunc("/a-propos", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/a-propos", func(w http.ResponseWriter, r *http.Request) {
 		home.Execute(w, "")
 	})
 
 	// routes API
 
-	http.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
 		userList := pckg.GetTable(db, "user")
 		a := pckg.GetUserRows(userList)
 		json, _ := json.Marshal(a)
 		w.Write(json)
 	})
 
-	http.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
 		postList := pckg.GetTable(db, "post")
 		a := pckg.GetPostRows(postList)
 		json, _ := json.Marshal(a)
 		w.Write(json)
 	})
 
-	http.HandleFunc("/topics", func(w http.ResponseWriter, r *http.Request) {
+	rr.HandleFunc("/topics", func(w http.ResponseWriter, r *http.Request) {
 		topicList := pckg.GetTopic(db, "post")
 		a := pckg.GetPostRows(topicList)
 		json, _ := json.Marshal(a)
@@ -89,7 +95,7 @@ func main() {
 	})
 
 	fs := http.FileServer(http.Dir("static/"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	rr.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", rr)
 }
