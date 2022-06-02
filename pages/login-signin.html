@@ -13,19 +13,14 @@
             <a href="/"><img src="/static/logo.svg" height="90%"></a>
         </div>
         <div class="logincase">
-            <h1>Connexion</h1>
-        <form id="subscribe" method="POST" action="/login">
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="Email" />
+            <div class="login-wrap">
+                <h2>Connexion</h2>              
+                <div class="form">
+                    <input type="email" placeholder="Adresse email" name="un" />
+                    <input type="password" placeholder="Mot de passe" name="pw" />
+                    <button> Se connecter </button>
+                </div>
             </div>
-            <div>
-                <label for="Password">Mot de pass</label>
-                <input type="password" name="Password" />
-            </div>
-            <input type="hidden" name="Submit" value="Se connecter" />
-        </form>
-        <button type="submit" name="Submit" form="subscribe">Se connecter</button>
         </div>
         <button class="signup" onclick="toRegister()"><span>Register</span></button>
     </div>
@@ -35,31 +30,16 @@
             <a href="/"><img src="/static/logo.svg" height="90%"></a>
         </div>
         <div class="registercase">
-            <h2>Inscription</h2>
-        <form id="subscribe2" method="POST" action="/signin">
-            <div>
-                <label for="surnom">Surnom</label>
-                <input type="surnom" name="Surnom" />
+            <div class="login-wrap">
+                <h2>Se créer un compte</h2>              
+                <div class="form">
+                    <input type="email" placeholder="Adresse email" name="un" />
+                    <input type="password" placeholder="Mot de passe" name="pw" />
+                    <input type="password" placeholder="Confirmer le mot de passe" name="confirmpw" />
+                    <input type="tel" placeholder="Numéro de téléphone" name="bigo" />
+                    <button> S'inscrire </button>
+                </div>
             </div>
-            <div>
-                <label for="password">Mot de passe</label>
-                <input type="password" name="Password" />
-            </div>
-            <div>
-                <label for="password">Confirmer le mot de passe</label>
-                <input type="password" name="PasswordConfirmation" />
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="Email" />
-            </div>
-            <div>
-                <label for="telephone">Téléphone</label>
-                <input type="telephone" name="Telephone" />
-            </div>
-            <input type="hidden" name="Submit" value="S'enregistrer"/>
-        </form>
-        <button type="submit" name="Submit" form="subscribe2">S'inscrire</button>
         </div>
     </div>
 </body>

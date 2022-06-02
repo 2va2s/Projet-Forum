@@ -31,10 +31,10 @@ func main() {
 		fmt.Println(err)
 	}
 
-	// test, err := template.ParseFiles("./pages/layout.html", "./templates/menu.html") // route test layout
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
+	test, err := template.ParseFiles("./pages/layout.html", "./templates/menu.html") // route test layout
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	// test2, err := template.ParseFiles("./pages/test.html") // route test login/register coulissant
 	// if err != nil {
@@ -43,9 +43,9 @@ func main() {
 
 	http.HandleFunc("/", pckg.HandleHome)
 
-	// http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) { // route test layout
-	// 	test.Execute(w, r)
-	// })
+	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) { // route test layout
+		test.Execute(w, r)
+	})
 
 	// http.HandleFunc("/test2", func(w http.ResponseWriter, r *http.Request) { // route test login/register coulissant
 	// 	test2.Execute(w, r)
