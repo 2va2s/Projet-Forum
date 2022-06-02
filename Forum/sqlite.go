@@ -1,8 +1,12 @@
 package Forum
 
 import (
+	"crypto/md5"
 	"database/sql"
+	"encoding/hex"
+	"fmt"
 	"log"
+	"reflect"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -35,8 +39,8 @@ func GetUserRows(rows *sql.Rows) []User {
 			log.Fatal(err)
 		}
 		final = append(final, u)
-		// fmt.Println(u)
 	}
+	fmt.Println(final)
 	return final
 }
 
@@ -64,23 +68,23 @@ func InitDatabase(database string) *sql.DB {
 	sqlStmnt := `
 				PRAGMA foreign_keys = ON;
 				CREATE TABLE IF NOT EXISTS user (
-					userId INTEGER PRIMARY KEY AUTOINCREMENT,
-					profilePic STRING SECONDARY KEY,
-					pseudo STRING NOT NULL,
-					mail STRING,
-					number INT,
-					password STRING NOT NULL
+					ID INTEGER PRIMARY KEY AUTOINCREMENT,
+					ProfilePic STRING SECONDARY KEY,
+					Pseudo STRING NOT NULL,
+					Mail STRING,
+					Number INT,
+					Password STRING NOT NULL
 				);
 				CREATE TABLE IF NOT EXISTS post (
-					postId INTEGER PRIMARY KEY AUTOINCREMENT,
-					content STRING NOT NULL,
-					isTopic INTEGER NOT NULL,
-					title STRING,
-					category STRING,
-					parentPostId INT,
-					userId INT NOT NULL,
-					FOREIGN KEY (userId) REFERENCES user(userId),
-					FOREIGN KEY (parentPostId) REFERENCES post(postId)
+					ID INTEGER PRIMARY KEY AUTOINCREMENT,
+					Content STRING NOT NULL,
+					IsTopic INTEGER NOT NULL,
+					Title STRING,
+					Category STRING,
+					ParentPostId INT,
+					UserId INT NOT NULL,
+					FOREIGN KEY (UserId) REFERENCES user(UserId),
+					FOREIGN KEY (ParentPostId) REFERENCES post(ID)
 				)
 				`
 	_, err = db.Exec(sqlStmnt)
@@ -91,30 +95,46 @@ func InitDatabase(database string) *sql.DB {
 	return db
 }
 
-func CreateUser(db *sql.DB, pseudo string, password string, mail string, number int, profilePic string) (int64, error) {
-	result, _ := db.Exec(`INSERT INTO user (pseudo, password, mail, number, profilePic) VALUES (?,?,?,?,?)`, pseudo, password, mail, number, profilePic)
-	return result.LastInsertId()
-}
+func ParseTable(model interface{}, table string) (a string) {
 
-func CreateTopic(db *sql.DB, content string, userId int, isTopic int, titre string, categorie string) (int64, error) {
-	result, _ := db.Exec(`INSERT INTO post (content, userId, isTopic, title, category) VALUES (?,?,?,?,?)`, content, userId, isTopic, titre, categorie)
-	return result.LastInsertId()
-}
+	result := ""
+	e := reflect.ValueOf(model)
+	for i := 0; i < e.NumField(); i++ {
+		varName := e.Type().Field(i).Name
+		if varName != "ID" {
 
-func CreatePost(db *sql.DB, content string, userId int, isTopic int, parentPostId int) (int64, error) {
-	result, _ := db.Exec(`INSERT INTO post (content, userId, isTopic, parentPostId) VALUES (?,?,?,?)`, content, userId, isTopic, parentPostId)
-	return result.LastInsertId()
-}
-
-func GetTopic(db *sql.DB, table string) *sql.Rows {
-	query := "SELECT * FROM " + table + " WHERE isTopic = 1"
-	result, _ := db.Query(query)
+			result += string(varName) + ", "
+		}
+	}
+	result = result[:len(result)-2]
 	return result
 }
 
-// à retirer
-func GetTable(db *sql.DB, table string) *sql.Rows {
+func create(db *sql.DB, table string, model interface{}, t ...interface{}) (int64, error) {
+
+	result := "INSERT INTO " + table + " (" + ParseTable(model, table) + ")" + " VALUES " + "("
+	for i := 0; i < len(t); i++ {
+		result += "?, "
+	}
+	result = result[:len(result)-2]
+	result += ")"
+
+	request, err := db.Exec(result, t...)
+	fmt.Println(result)
+
+	if err != nil {
+		fmt.Println(err)
+		return -1, nil
+	}
+
+	return request.LastInsertId()
+}
+
+func Get(db *sql.DB, table string, mode string) *sql.Rows {
 	query := "SELECT * FROM " + table
+	if mode == "topic" {
+		query += " WHERE isTopic = 1"
+	}
 	result, _ := db.Query(query)
 	return result
 }
@@ -125,3 +145,38 @@ func DeletePostById(db *sql.DB, id string) (int64, error) {
 }
 
 // reriter à
+
+func encrypt(pwd string) string {
+	hasher := md5.New()
+	hasher.Write([]byte(pwd))
+	a := hex.EncodeToString(hasher.Sum(nil))
+	fmt.Println(a)
+	return a
+}
+
+// func CreateUser(db *sql.DB, pseudo string, password string, mail string, number int, profilePic string) (int64, error) {
+// 	result, _ := db.Exec(`INSERT INTO user (pseudo, password, mail, number, profilePic) VALUES (?,?,?,?,?)`, pseudo, password, mail, number, profilePic)
+// 	return result.LastInsertId()
+// }
+
+// func CreateTopic(db *sql.DB, content string, userId int, isTopic int, titre string, categorie string) (int64, error) {
+// 	result, _ := db.Exec(`INSERT INTO post (content, userId, isTopic, title, category) VALUES (?,?,?,?,?)`, content, userId, isTopic, titre, categorie)
+// 	return result.LastInsertId()
+// }
+
+// func CreatePost(db *sql.DB, content string, userId int, isTopic int, parentPostId int) (int64, error) {
+// 	result, _ := db.Exec(`INSERT INTO post (content, userId, isTopic, parentPostId) VALUES (?,?,?,?)`, content, userId, isTopic, parentPostId)
+// 	return result.LastInsertId()
+// }
+
+// func GetTopic(db *sql.DB, table string) *sql.Rows {
+// 	query := "SELECT * FROM " + table + " WHERE isTopic = 1"
+// 	result, _ := db.Query(query)
+// 	return result
+// }
+
+// func GetTable(db *sql.DB, table string) *sql.Rows {
+// 	query := "SELECT * FROM " + table
+// 	result, _ := db.Query(query)
+// 	return result
+// }

@@ -5,71 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
-    <link rel="stylesheet" href="/static/style/login-signin.css">
-
-    
+    <link rel="stylesheet" href="./static/style/login-signin.css">
+    <title>Document</title>
 </head>
 
 <body>
-    <div id="login">
-        <div class="loginlogo">
-            <a href="/"><img src="/static/logo.svg" height="90%"></a>
-        </div>
-        <div class="logincase">
-            <h1>Connexion</h1>
-            <form id="subscribe" method="POST" action="/login">
-                <div>
-                    <label for="email">Email</label>
-                    <input id="email1" type="email" name="Email" />
-                </div>
-                <div>
-                    <label for="Password">Mot de pass</label>
-                    <input id="mdp1" type="password" name="Password" />
-                </div>
-                <input type="hidden" name="Submit" value="Se connecter" />
-            </form>
-            <button onclick="checkLoginForm()">Se connecter</button>
-            <p id="loginError"></p>
-        </div>
-        <button class="signup" onclick="toRegister()"><span>Register</span></button>
+    <div id="left">
+        <h1>Connexion</h1>
+        <form id="subscribe" method="POST" action="/login">
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="mail" />
+            </div>
+            <div>
+                <label for="Password">Mot de pass</label>
+                <input type="password" name="password" />
+            </div>
+            <input type="hidden" name="Submit" value="Se connecter" />
+        </form>
+        <button type="submit" name="Submit" form="subscribe">Se connecter</button>
     </div>
-    <div id="register">
-        <button class="signin" onclick="toLogin()"><span>Login</span></button>
-        <div class="registerlogo">
-            <a href="/"><img src="/static/logo.svg" height="90%"></a>
-        </div>
-        <div class="registercase">
-            <h2>Inscription</h2>
-            <form id="subscribe2" method="POST" action="/signin">
-                <div>
-                    <label for="surnom">Surnom</label>
-                    <input id="pseudo2" type="surnom" name="Surnom" />
-                </div>
-                <div>
-                    <label for="password">Mot de passe</label>
-                    <input id="password2" type="password" name="Password" />
-                </div>
-                <div>
-                    <label for="password">Confirmer le mot de passe</label>
-                    <input id="password22" type="password" name="PasswordConfirmation" />
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input id="email2" type="email" name="Email" />
-                </div>
-                <div>
-                    <label for="telephone">Téléphone</label>
-                    <input id="telephone2" type="telephone" name="Telephone" />
-                </div>
-                <input type="hidden" name="Submit" value="S'enregistrer" />
-            </form>
-            <button type="submit" name="Submit" form="subscribe2">S'inscrire</button>
-            <p id="registerError"></p>
-        </div>
+
+    <div id="right">
+        <h2>Inscription</h2>
+        <form id="subscribe2" method="POST" action="/signin">
+            <div>
+                <label for="surnom">Surnom</label>
+                <input type="surnom" name="pseudo" />
+            </div>
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" />
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="mail" />
+            </div>
+            <div>
+                <label for="telephone">Téléphone</label>
+                <input type="telephone" name="number" />
+            </div>
+            <input type="hidden" name="Submit" value="S'enregistrer"/>
+        </form>
+        <button type="submit" name="Submit" form="subscribe2">Se connecter</button>
     </div>
+
 </body>
-
-<script type="text/javascript" src="/static/js/login-signin.js"></script>
-
-</html>

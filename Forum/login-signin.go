@@ -3,8 +3,8 @@ package Forum
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"net/http"
-	"strconv"
 	"text/template"
 
 	"github.com/gorilla/sessions"
@@ -31,8 +31,6 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "cookie-forum")
 	auth := session.Values["authenticated"]
 
-	// fmt.Println([]byte(auth.(string)))
-	// fmt.Println(string([]byte(auth.(string))))
 	if auth != nil {
 		json.Unmarshal([]byte(auth.(string)), &data)
 	}
@@ -53,15 +51,11 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
-	number, _ := strconv.Atoi(r.Form.Get("Telephone"))
-	CreateUser(db, r.Form.Get("Surnom"), r.Form.Get("Password"), r.Form.Get("Email"), number, "")
+	create(db, "user", User{}, r.Form.Get("pseudo"), encrypt(r.Form.Get("password")), r.Form.Get("mail"), r.Form.Get("number"), "")
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "Error parsing form", 500)
-	}
-	// users = db.GetU
+
 	// r.Form pour recup valeurs de form
 	// db.USer == r.Form
 	if r.URL.Path != "/login" {
@@ -69,15 +63,20 @@ func HandleLogin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	///////////////// LOGIN ////////////////
+
 	tmpl, _ := template.ParseFiles("./pages/accueil.html")
 
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Error parsing form", 500)
 	}
 
+	// checkLogin(db, r.Form.Get("pseudo"), )
+
 	session, _ := store.Get(r, "cookie-forum")
 
 	if _, ok := r.PostForm["Submit"]; ok {
+		fmt.Println("user logged in")
 		res, _ := json.Marshal(r.PostForm)
 		session.Values["authenticated"] = string(res)
 		session.Save(r, w)
