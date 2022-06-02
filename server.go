@@ -79,21 +79,21 @@ func main() {
 	// routes API
 
 	rr.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
-		userList := pckg.GetTable(db, "user")
+		userList := pckg.Get(db, "user", "user")
 		a := pckg.GetUserRows(userList)
 		json, _ := json.Marshal(a)
 		w.Write(json)
 	})
 
 	rr.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
-		postList := pckg.GetTable(db, "post")
+		postList := pckg.Get(db, "post", "child")
 		a := pckg.GetPostRows(postList)
 		json, _ := json.Marshal(a)
 		w.Write(json)
 	})
 
 	rr.HandleFunc("/topics", func(w http.ResponseWriter, r *http.Request) {
-		topicList := pckg.GetTopic(db, "post")
+		topicList := pckg.Get(db, "post", "topic")
 		a := pckg.GetPostRows(topicList)
 		json, _ := json.Marshal(a)
 		w.Write(json)

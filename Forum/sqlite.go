@@ -110,7 +110,7 @@ func ParseTable(model interface{}, table string) (a string) {
 	return result
 }
 
-func create(db *sql.DB, table string, model interface{}, t ...interface{}) (int64, error) {
+func Create(db *sql.DB, table string, model interface{}, t ...interface{}) (int64, error) {
 
 	result := "INSERT INTO " + table + " (" + ParseTable(model, table) + ")" + " VALUES " + "("
 	for i := 0; i < len(t); i++ {

@@ -51,7 +51,7 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
-	create(db, "user", User{}, r.Form.Get("pseudo"), encrypt(r.Form.Get("password")), r.Form.Get("mail"), r.Form.Get("number"), "")
+	Create(db, "user", User{}, r.Form.Get("pseudo"), encrypt(r.Form.Get("password")), r.Form.Get("mail"), r.Form.Get("number"), "")
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
@@ -97,12 +97,4 @@ func HandleLogout(w http.ResponseWriter, r *http.Request) {
 	session.Values["authenticated"] = nil
 	session.Save(r, w)
 	http.Redirect(w, r, "/", http.StatusFound)
-}
-
-func checkEmptyField(r *http.Request) string {
-	// mdp := r.Form.Get("Password")
-	// if len(mdp) < 4 {
-	// 	return "le champs mot de passe doit contenir au moins 4 caractères"
-	// }
-	return ""
 }
