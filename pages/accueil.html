@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style/accueil.css">
     <title>Document</title>
 </head>
 
@@ -14,8 +15,17 @@
     <p id="topicList"> liste des topics :<br></p>
     <a href="/logout" id="logout">Déconnexion</a>
     <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
+    <button id="createPost"> Create Post</button>
 </body>
 
-<script type="text/javascript" src="/static/js/accueil.js"></script>
+<script type="module" src="/static/js/accueil.js"></script>
+<script type="module">
+    import {newPost} from '/static/js/accueil.js'
+
+    document.getElementById("createPost").addEventListener('click', () => {
+        const post = newPost({title: "test"})
+        document.body.appendChild(post)
+    })
+</script>
 
 </html>

@@ -108,3 +108,9 @@ body {
 .signup:focus, .signin:focus {
 	outline: none;
 }
+
+#loginError {
+    color: red;
+    font-size: 24px;
+    font-weight: bold
+}
