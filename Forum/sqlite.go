@@ -1,9 +1,7 @@
 package Forum
 
 import (
-	"crypto/md5"
 	"database/sql"
-	"encoding/hex"
 	"fmt"
 	"log"
 	"reflect"
@@ -28,6 +26,8 @@ type Post struct {
 	Category     sql.NullString
 	ParentPostId sql.NullInt64
 	UserId       int
+	Date         string
+	UpVote       int
 }
 
 func GetUserRows(rows *sql.Rows) []User {
@@ -40,7 +40,6 @@ func GetUserRows(rows *sql.Rows) []User {
 		}
 		final = append(final, u)
 	}
-	fmt.Println(final)
 	return final
 }
 
@@ -48,7 +47,7 @@ func GetPostRows(rows *sql.Rows) []Post {
 	final := make([]Post, 0)
 	for rows.Next() {
 		var u Post
-		err := rows.Scan(&u.ID, &u.Content, &u.IsTopic, &u.Title, &u.Category, &u.ParentPostId, &u.UserId)
+		err := rows.Scan(&u.ID, &u.Content, &u.IsTopic, &u.Title, &u.Category, &u.ParentPostId, &u.UserId, &u.Date, &u.UpVote)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -72,7 +71,7 @@ func InitDatabase(database string) *sql.DB {
 					ProfilePic STRING SECONDARY KEY,
 					Pseudo STRING NOT NULL,
 					Mail STRING,
-					Number INT,
+					Number STRING,
 					Password STRING NOT NULL
 				);
 				CREATE TABLE IF NOT EXISTS post (
@@ -81,9 +80,11 @@ func InitDatabase(database string) *sql.DB {
 					IsTopic INTEGER NOT NULL,
 					Title STRING,
 					Category STRING,
-					ParentPostId INT,
-					UserId INT NOT NULL,
-					FOREIGN KEY (UserId) REFERENCES user(UserId),
+					ParentPostId INTEGER,
+					UserId INTEGER NOT NULL ,
+					Date STRING NOT NULL,
+					UpVote STRING NOT NULL,
+					FOREIGN KEY (UserId) REFERENCES user(ID) ,
 					FOREIGN KEY (ParentPostId) REFERENCES post(ID)
 				)
 				`
@@ -91,7 +92,6 @@ func InitDatabase(database string) *sql.DB {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	return db
 }
 
@@ -145,14 +145,6 @@ func DeletePostById(db *sql.DB, id string) (int64, error) {
 }
 
 // reriter à
-
-func encrypt(pwd string) string {
-	hasher := md5.New()
-	hasher.Write([]byte(pwd))
-	a := hex.EncodeToString(hasher.Sum(nil))
-	fmt.Println(a)
-	return a
-}
 
 // func CreateUser(db *sql.DB, pseudo string, password string, mail string, number int, profilePic string) (int64, error) {
 // 	result, _ := db.Exec(`INSERT INTO user (pseudo, password, mail, number, profilePic) VALUES (?,?,?,?,?)`, pseudo, password, mail, number, profilePic)

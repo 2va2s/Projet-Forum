@@ -1,7 +1,9 @@
 package Forum
 
 import (
+	"crypto/md5"
 	"database/sql"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -97,4 +99,11 @@ func HandleLogout(w http.ResponseWriter, r *http.Request) {
 	session.Values["authenticated"] = nil
 	session.Save(r, w)
 	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func encrypt(pwd string) string {
+	hasher := md5.New()
+	hasher.Write([]byte(pwd))
+	a := hex.EncodeToString(hasher.Sum(nil))
+	return a
 }

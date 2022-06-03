@@ -1,15 +1,3 @@
-fetch("/posts").then(function (response) {
-    return response.json()
-}).then(function (response) {
-    let list = document.getElementById("topicList")
-    for (let i in response) {
-        list.appendChild(document.createTextNode(response[i].Content) + "[" + response[i].Date + "]")
-        list.appendChild(document.createElement("br"))
-    }
-}).catch(function (err) {
-    console.log(err)
-})
-
 let conn = document.getElementById("connected")
 if (conn.innerHTML == " Connecté en tant que [] ") {
     conn.innerHTML = "Non connecté"
@@ -19,23 +7,24 @@ if (conn.innerHTML == " Connecté en tant que [] ") {
 
 
 
-export const newPost = (post) => {
-    const p = document.createElement('div')
-    p.innerHTML = 
-        `
-            <div class="toto">
-                <p>${post.title}</p>
-            </div>
-        `
-    return p
+export const displayPosts = () => {
+    fetch("/posts").then(function (response) {
+        return response.json()
+    }).then(function (response) {
+        let list = document.getElementById("topicList")
+        for (let i in response) {
+            const p = document.createElement('div')
+            fetch('./static/components/test.txt')
+                .then(response => response.text())
+                .then(data => {
+                    // Do something with your data
+                    data = data.split("{Pseudo}").join(response[i].Title.String).split("{Content}").join(response[i].Content).split("{Date}").join(response[i].Date).split("{PostId}").join(response[i].ID).split("{UserId}").join(response[i].UserId)
+                    console.log("comp1 " + data)
+                    p.innerHTML = data
+                    list.appendChild(p)
+                })
+        }
+    }).catch(function (err) {
+        console.log(err)
+    })
 }
-
-
-
-
-
-
-
-
-
-

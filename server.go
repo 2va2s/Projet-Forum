@@ -5,16 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"text/template"
 
 	"github.com/gorilla/mux"
 )
-
-type StructTest struct {
-	Users  []pckg.User
-	Posts  []pckg.Post
-	Topics []pckg.Post
-}
 
 func main() {
 	rr := mux.NewRouter()
@@ -23,6 +18,17 @@ func main() {
 	// pckg.CreateUser(db, "kanye", "mdpdezinzin", "", 603504132, "")
 	// pckg.CreateUser(db, "booba", "mdpdezinzin", "", 6035041384, "")
 	// pckg.CreatePost(db, "Ceci est le topic 1", 1, 1, "")
+
+	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy deter", "mdp", "aeze@gmail.com", "6314134235235", "")
+	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi grognon", "mdp", "aeze@gmail.com", "6314134235235", "")
+
+	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", "nostalgie", nil, userId1, "12/12", 0)
+	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", "nostalgie", pqrentPostId, userId2, "15/13", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 0, "Je suis 3", "nostalgie", postId2, userId1, "93/12", 0)
+
+	// pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, "11 11 11 11", 1, "Je suis 11", "santé", nil, userId1, "25/43", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", "nostalgie", pqrentPostId2, userId2, "35/96", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", "nostalgie", pqrentPostId2, userId1, "14/04", 0)
 
 	home, err := template.ParseFiles("./pages/accueil.html")
 	if err != nil {
@@ -68,8 +74,11 @@ func main() {
 		http.ServeFile(w, r, "./pages/accueil.html")
 	})
 
-	rr.HandleFunc("/topic", func(w http.ResponseWriter, r *http.Request) {
-		home.Execute(w, "")
+	rr.HandleFunc("/post/{postID}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		userId := vars["postID"]
+		fmt.Print(userId)
+		http.ServeFile(w, r, "./pages/topic.html")
 	})
 
 	rr.HandleFunc("/a-propos", func(w http.ResponseWriter, r *http.Request) {
@@ -81,6 +90,11 @@ func main() {
 	rr.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
 		userList := pckg.Get(db, "user", "user")
 		a := pckg.GetUserRows(userList)
+		for i := 0; i < len(a); i++ {
+			rr.HandleFunc("/user/"+strconv.Itoa(a[i].ID), func(w http.ResponseWriter, r *http.Request) {
+				http.ServeFile(w, r, "./pages/user.html")
+			})
+		}
 		json, _ := json.Marshal(a)
 		w.Write(json)
 	})
@@ -88,6 +102,11 @@ func main() {
 	rr.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
 		postList := pckg.Get(db, "post", "child")
 		a := pckg.GetPostRows(postList)
+		for i := 0; i < len(a); i++ {
+			rr.HandleFunc("/topic/"+strconv.Itoa(a[i].ID), func(w http.ResponseWriter, r *http.Request) {
+				http.ServeFile(w, r, "./pages/topic.html")
+			})
+		}
 		json, _ := json.Marshal(a)
 		w.Write(json)
 	})

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style/accueil.css">
+    <link rel="stylesheet" href="/static/style/components/postCard.css">
     <title>Document</title>
 </head>
 
@@ -15,17 +16,21 @@
     <p id="topicList"> liste des topics :<br></p>
     <a href="/logout" id="logout">Déconnexion</a>
     <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
-    <button id="createPost"> Create Post</button>
 </body>
 
 <script type="module" src="/static/js/accueil.js"></script>
 <script type="module">
-    import {newPost} from '/static/js/accueil.js'
+    import { displayPosts } from '/static/js/accueil.js'
+    displayPosts()
+</script>
+<script type="text/javascript">
+    const redirectToPost = (id) => {
+        fetch('/posts').then(location.href = '/topic/' + id)
+    }
 
-    document.getElementById("createPost").addEventListener('click', () => {
-        const post = newPost({title: "test"})
-        document.body.appendChild(post)
-    })
+    const redirectToUser = (id) => {
+        fetch('/users').then(location.href = '/user/' + id)
+    }
 </script>
 
 </html>
