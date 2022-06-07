@@ -15,20 +15,20 @@ func main() {
 	rr := mux.NewRouter()
 	db := pckg.InitDatabase("forum.db")
 	defer db.Close()
-	// pckg.CreateUser(db, "kanye", "mdpdezinzin", "", 603504132, "")
-	// pckg.CreateUser(db, "booba", "mdpdezinzin", "", 6035041384, "")
-	// pckg.CreatePost(db, "Ceci est le topic 1", 1, 1, "")
+
+	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
 
 	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy deter", "mdp", "aeze@gmail.com", "6314134235235", "")
 	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi grognon", "mdp", "aeze@gmail.com", "6314134235235", "")
 
-	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", "nostalgie", nil, userId1, "12/12", 0)
-	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", "nostalgie", pqrentPostId, userId2, "15/13", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 0, "Je suis 3", "nostalgie", postId2, userId1, "93/12", 0)
+	// pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
+	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", 1, nil, userId1, "44/44", 0)
+	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "15/13", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 0, "Je suis 3", 1, postId2, userId1, "9312", 0)
 
-	// pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, "11 11 11 11", 1, "Je suis 11", "santé", nil, userId1, "25/43", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", "nostalgie", pqrentPostId2, userId2, "35/96", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", "nostalgie", pqrentPostId2, userId1, "14/04", 0)
+	// pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, "11 11 11 11", 1, "Je suis 11", 1, nil, userId1, "25/43", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "35/96", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "14/04", 0)
 
 	home, err := template.ParseFiles("./pages/accueil.html")
 	if err != nil {

@@ -9,6 +9,12 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+type Category struct {
+	ID    int
+	Name  string
+	Color string
+}
+
 type User struct {
 	ID         int
 	Pseudo     string
@@ -23,7 +29,7 @@ type Post struct {
 	Content      string
 	IsTopic      int
 	Title        sql.NullString
-	Category     sql.NullString
+	Category     sql.NullInt64
 	ParentPostId sql.NullInt64
 	UserId       int
 	Date         string
@@ -74,19 +80,25 @@ func InitDatabase(database string) *sql.DB {
 					Number STRING,
 					Password STRING NOT NULL
 				);
+				CREATE TABLE IF NOT EXISTS category (
+					ID INTEGER PRIMARY KEY AUTOINCREMENT,
+					Name STRING NOT NULL,
+					Color STRING NOT NULL
+				);
 				CREATE TABLE IF NOT EXISTS post (
 					ID INTEGER PRIMARY KEY AUTOINCREMENT,
 					Content STRING NOT NULL,
 					IsTopic INTEGER NOT NULL,
 					Title STRING,
-					Category STRING,
+					Category INTEGER NOT NULL,
 					ParentPostId INTEGER,
 					UserId INTEGER NOT NULL ,
 					Date STRING NOT NULL,
 					UpVote STRING NOT NULL,
 					FOREIGN KEY (UserId) REFERENCES user(ID) ,
-					FOREIGN KEY (ParentPostId) REFERENCES post(ID)
-				)
+					FOREIGN KEY (ParentPostId) REFERENCES post(ID),
+					FOREIGN KEY (Category) REFERENCES category(ID)
+				);
 				`
 	_, err = db.Exec(sqlStmnt)
 	if err != nil {
