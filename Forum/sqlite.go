@@ -63,6 +63,21 @@ func GetPostRows(rows *sql.Rows) []Post {
 	return final
 }
 
+func GetCategoryRows(rows *sql.Rows) []Category {
+	final := make([]Category, 0)
+	for rows.Next() {
+		// fmt.Println(rows)
+		var u Category
+		err := rows.Scan(&u.ID, &u.Name, &u.Color)
+		if err != nil {
+			log.Fatal(err)
+		}
+		final = append(final, u)
+		// fmt.Println(u)
+	}
+	return final
+}
+
 func InitDatabase(database string) *sql.DB {
 	db, err := sql.Open("sqlite3", database)
 
@@ -99,6 +114,13 @@ func InitDatabase(database string) *sql.DB {
 					FOREIGN KEY (ParentPostId) REFERENCES post(ID),
 					FOREIGN KEY (Category) REFERENCES category(ID)
 				);
+				CREATE TABLE IF NOT EXISTS upvote (
+					ID INTEGER PRIMARY KEY AUTOINCREMENT,
+					UserID INTEGER,
+					PostID INTEGER,
+					FOREIGN KEY (UserID) REFERENCES user(ID),
+					FOREIGN KEY (PostID) REFERENCES post(ID)
+				)
 				`
 	_, err = db.Exec(sqlStmnt)
 	if err != nil {

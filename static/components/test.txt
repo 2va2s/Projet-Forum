@@ -5,21 +5,18 @@
         <div class="pseudo-text">
             <h2>{Pseudo}</h2>
             <p>{Content}</p>
-            <div class="pastilles">
-            <div class="pastille-santé">
-                <p>Santé</p>
-            </div>
-            <div class="pastille-santé">
-                <p>Santé</p>
+            <div class="pastilles-wrap">
+            <div class="pastille" style="background-color: {CatColor}">
+                <p>{Category}</p>
             </div>
         </div>
-        </div>
+    </div>
         
    
     <div class="rightCard">
         <p id="postDate">publié le {Date}</p>
         <div class="vote">
-            <div id="upvotenumber"></div>
+            <div id="upvotenumber"><p>{UpVote}</p></div>
             <div id="upvote"></div>
             <div id="downvote"></div>
         </div>
