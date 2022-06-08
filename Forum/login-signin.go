@@ -39,7 +39,7 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	}
 	// fmt.Println(data)
 
-	tmpl, _ := template.ParseFiles("./pages/accueil.html")
+	tmpl, _ := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
 	tmpl.Execute(w, data)
 }
 

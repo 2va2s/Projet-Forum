@@ -21,7 +21,7 @@ func main() {
 	// pckg.CreateUser(db, "booba", "mdpdezinzin", "", 6035041384, "")
 	// pckg.CreatePost(db, "Ceci est le topic 1", 1, 1, "")
 
-	home, err := template.ParseFiles("./pages/accueil.html")
+	home, err := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
 	if err != nil {
 		fmt.Println(err)
 	}
