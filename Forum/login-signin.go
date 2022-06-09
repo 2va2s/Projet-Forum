@@ -38,8 +38,11 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	}
 	// fmt.Println(data)
 
-	tmpl, _ := template.ParseFiles("./pages/accueil.html")
-	tmpl.Execute(w, data)
+	test, err := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+	test.Execute(w, r)
 }
 
 func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {

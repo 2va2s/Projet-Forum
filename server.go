@@ -53,6 +53,7 @@ func main() {
 	})
 	// A SUPPRIMER
 
+	
 	rr.HandleFunc("/", pckg.HandleHome)
 
 	rr.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {

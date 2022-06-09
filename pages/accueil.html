@@ -9,6 +9,7 @@
     <link rel="icon" href="/static/logo.svg">
     <link rel="stylesheet" href="/static/style/accueil.css">
     <link rel="stylesheet" href="/static/style/.layout.css">
+    <link rel="stylesheet" href="/static/style/components/postCard.css">
 </head>
 
 <body>
@@ -17,15 +18,29 @@
         <div id="citation">
             <h1>"Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur."</h1>
         </div>
+        <div style="display:flex; flex-direction:column;">
+            <h2 id="connected"> Connecté en tant que </h2>
+            <p id="topicList"> liste des topics :<br></p>
+            <a href="/logout" id="logout">Déconnexion</a>
+            <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
+        </div>
     </div>
-    <!-- <h1>CECI EST LACCUEIL</h1>
-    <h2 id="connected"> Connecté en tant que {{.Email}} </h2>
-    <p id="topicList"> liste des topics :<br></p>
-    <a href="/logout" id="logout">Déconnexion</a>
-    <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a> -->
 </body>
 
-<script type="text/javascript" src="/static/js/accueil.js"></script>
+<script type="text/javascript" src="../static/js/accueil.js"></script>
 <script type="text/javascript" src="../static/js/menu.js"></script>
+<script type="text/javascript">
+    const redirectToPost = (id) => {
+        fetch('/posts').then(location.href = '/topic/' + id)
+    }
+
+    const redirectToUser = (id) => {
+        fetch('/users').then(location.href = '/user/' + id)
+    }
+
+    const vote = (int) => {
+
+    }
+</script>
 
 </html>
