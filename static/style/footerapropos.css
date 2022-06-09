@@ -1,0 +1,32 @@
+body{
+    background-color: beige;
+    /* display: flex; */
+}
+
+#content {
+    display: flex;
+}
+
+.site-footer{
+    margin-top: 1%;
+    height: 108px;
+}
+
+#blabla{
+    margin-top: 10%;
+    margin-left: 6%;
+    /* margin: 20% auto; */
+    font-family: cursive, sans-serif;
+}
+
+#img {
+    margin-left: 6%;
+    margin-top: 10%;
+}
+
+/* #img{
+    position: absolute;
+    margin-left: 60%; 
+    top: 0;
+    margin-top: 5%;
+} */
