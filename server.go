@@ -32,11 +32,6 @@ func main() {
 	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "35/96", 0)
 	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "14/04", 0)
 
-	home, err := template.ParseFiles("./pages/accueil.html")
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	logsign, err := template.ParseFiles("./pages/login-signin.html")
 	if err != nil {
 		fmt.Println(err)
@@ -53,7 +48,6 @@ func main() {
 	})
 	// A SUPPRIMER
 
-	
 	rr.HandleFunc("/", pckg.HandleHome)
 
 	rr.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {
@@ -84,8 +78,43 @@ func main() {
 		http.ServeFile(w, r, "./pages/topic.html")
 	})
 
-	rr.HandleFunc("/a-propos", func(w http.ResponseWriter, r *http.Request) {
-		home.Execute(w, "")
+	rr.HandleFunc("/Apropos", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/aproposde.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
+	})
+
+	rr.HandleFunc("/Cgu", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/cgu.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
+	})
+
+	rr.HandleFunc("/Support", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/support.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
+		r.ParseForm()
+		objet := r.Form.Get("objetsupport")
+		corps := r.Form.Get("corpssupport")
+		result := objet + "\n" + corps
+		fmt.Println(result)
+		http.Redirect(w, r, "/", http.StatusFound)
+		//joindre le ticket a la bdd pour l'afficher dans le profil du superadmin
+	})
+
+	rr.HandleFunc("/Equipe", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/equipe.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
 	})
 
 	// routes API

@@ -38,7 +38,7 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	}
 	// fmt.Println(data)
 
-	test, err := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
+	test, err := template.ParseFiles("./pages/accueil.html", "./templates/menu.html", "./templates/footer.html", "./templates/logo.html")
 	if err != nil {
 		fmt.Println(err)
 	}
