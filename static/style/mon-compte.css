@@ -1,0 +1,158 @@
+body{
+    background-color: #00848C;
+    width: 90vw;
+    height: 90vh;
+   
+}
+
+#barreHaut{
+    background-color: gray;
+    display: flex;
+    position: fixed;
+    top: 0.5vh;
+    width: 99vw;
+    height: 10vh;
+}
+
+#barreRecherche{
+    display: flex;
+    position: fixed;
+    top: 1vh;
+    left: 30vw;
+    width: 30vw;
+    height: 5vh;
+    margin: auto;
+    
+}
+
+#logo{
+    background-color: antiquewhite;
+    display: flex;
+    position: relative;
+    width: 5vw;
+    height: 7vh;
+    top: 2vh;
+    margin-left: 1vw;
+    text-align: center;
+    font-size: x-large;
+}
+
+#avatar{
+    background-color: #D9D9D9;
+    display: flex;
+    position: fixed;
+    width: 5vw;
+    height: 5vh;
+    top: 1vh;
+    left: 93vw;
+    
+}
+
+#page{
+    height: 100vh;
+    width: 50vw;
+    left: 50vw;
+    position: fixed;
+    background-color: rgb(255, 236, 185);
+}
+
+#compte{
+    background-color: #00848C;
+    display: flex;
+    position: fixed;
+    width: 12vw;
+    height: 30vh;
+    top: 30vh;
+    left: 1vw;
+    border: 2px solid black;
+    border-radius: 20%;
+}
+
+#monCompte{
+    margin-top: 2vh;
+}
+
+#posts{
+    margin-top: 2vh;
+}
+
+#déconnexion{
+    margin-top: 2vh;
+}
+
+#info{
+    background-color: #1C1F4C;
+    display: flex;
+    position: fixed;
+    width: 75vw;
+    height: 75vh;
+    left: 20vw;
+    top: 15vh
+    
+}
+
+#photo{
+    background-color: aliceblue;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    top: 5vh;
+    margin-left: 1vw;
+    display: block;
+    text-align: center;
+}
+
+#pseudo{
+    background-color: aliceblue;
+    display: block;
+    justify-content: space-between;
+    position: fixed;
+    width: 30vw;
+    height: 10vh;
+    top: 20vh;
+    left: 50vw;
+    
+}
+
+#e-mail {
+    background-color: aliceblue;
+    display: block;
+    justify-content: space-between;
+    position: fixed;
+    width: 30vw;
+    height: 10vh;
+    top: 40vh;
+    left: 50vw;
+    
+    
+}
+
+#rang{
+    background-color: aliceblue;
+    display: block;
+    justify-content: space-between;
+    position: fixed;
+    width: 30vw;
+    height: 10vh;
+    top: 60vh;
+    left: 50vw;
+}
+
+#liste{
+    display: none;
+}
+
+#déco{
+    background-color: aliceblue;
+    display: none;
+    justify-content: space-between;
+    position: fixed;
+    width: 30vw;
+    height: 10vh;
+    top: 40vh;
+    left: 45vw;
+    font-size: x-large;
+    text-align: center;
+}
+

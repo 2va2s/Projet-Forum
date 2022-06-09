@@ -48,7 +48,7 @@ func main() {
 	http.HandleFunc("/logout", pckg.HandleLogout)
 
 	http.HandleFunc("/profil", func(w http.ResponseWriter, r *http.Request) {
-		home.Execute(w, "")
+		http.ServeFile(w, r, "./pages/mon-compte.html")
 	})
 
 	http.HandleFunc("/topic", func(w http.ResponseWriter, r *http.Request) {
