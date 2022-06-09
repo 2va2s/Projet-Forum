@@ -1,6 +1,6 @@
 let conn = document.getElementById("connected")
-console.log("azyiaefgyiyisehyuk")
-if (conn.innerHTML == " Connecté en tant que [] ") {
+console.log(conn.innerHTML)
+if (conn.innerHTML == " Connecté en tant que ") {
     conn.innerHTML = "Non connecté"
     document.getElementById("logout").style.display = 'none';
     document.getElementById("login").style.display = 'block';
