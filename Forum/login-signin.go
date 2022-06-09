@@ -39,7 +39,7 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	}
 	// fmt.Println(data)
 
-	tmpl, _ := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
+	tmpl, _ := template.ParseFiles("./pages/accueil.html", "./templates/footer.html", "./templates/logo.html")
 	tmpl.Execute(w, data)
 }
 
@@ -98,10 +98,10 @@ func HandleLogout(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
-func checkEmptyField(r *http.Request) string {
-	// mdp := r.Form.Get("Password")
-	// if len(mdp) < 4 {
-	// 	return "le champs mot de passe doit contenir au moins 4 caractères"
-	// }
-	return ""
-}
+// func checkEmptyField(r *http.Request) string {
+// 	// mdp := r.Form.Get("Password")
+// 	// if len(mdp) < 4 {
+// 	// 	return "le champs mot de passe doit contenir au moins 4 caractères"
+// 	// }
+// 	return ""
+// }

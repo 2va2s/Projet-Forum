@@ -21,7 +21,7 @@ func main() {
 	// pckg.CreateUser(db, "booba", "mdpdezinzin", "", 6035041384, "")
 	// pckg.CreatePost(db, "Ceci est le topic 1", 1, 1, "")
 
-	home, err := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
+	home, err := template.ParseFiles("./pages/accueil.html")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -31,10 +31,10 @@ func main() {
 		fmt.Println(err)
 	}
 
-	test, err := template.ParseFiles("./pages/layout.html", "./templates/menu.html") // route test layout
-	if err != nil {
-		fmt.Println(err)
-	}
+	// test, err := template.ParseFiles("./pages/layout.html", "./templates/menu.html") // route test layout
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 
 	// test2, err := template.ParseFiles("./pages/test.html") // route test login/register coulissant
 	// if err != nil {
@@ -43,9 +43,9 @@ func main() {
 
 	http.HandleFunc("/", pckg.HandleHome)
 
-	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) { // route test layout
-		test.Execute(w, r)
-	})
+	// http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) { // route test layout
+	// 	test.Execute(w, r)
+	// })
 
 	// http.HandleFunc("/test2", func(w http.ResponseWriter, r *http.Request) { // route test login/register coulissant
 	// 	test2.Execute(w, r)
@@ -98,6 +98,45 @@ func main() {
 		a := pckg.GetPostRows(topicList)
 		json, _ := json.Marshal(a)
 		w.Write(json)
+	})
+
+	http.HandleFunc("/Apropos", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/aproposde.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
+	})
+
+	http.HandleFunc("/Cgu", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/cgu.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
+	})
+
+	http.HandleFunc("/Support", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/support.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
+		r.ParseForm()
+		objet := r.Form.Get("objetsupport")
+		corps := r.Form.Get("corpssupport")
+		result := objet + "\n" + corps
+		fmt.Println(result)
+		http.Redirect(w, r, "/", http.StatusFound)
+		//joindre le ticket a la bdd pour l'afficher dans le profil du superadmin
+	})
+
+	http.HandleFunc("/Equipe", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/equipe.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
 	})
 
 	fs := http.FileServer(http.Dir("static/"))
