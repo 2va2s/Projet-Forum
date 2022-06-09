@@ -1,10 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');
 
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(
+    to right,
+    #698EA2 0%,
+    #698EA2 70%,
+    white 70%,
+    white 100%
+  );
+}
+
 #firsthalf {
     position: absolute;
     height: 100%;
     width: 70%;
-    background-color: #698EA2;
+    /* background-color: #698EA2; */
     z-index: -1;
 }
 
@@ -15,6 +27,27 @@
     color: white;
     font-style: italic;
     font-family: 'Qwigley', cursive;
-    margin-top: 20%;
-    margin-left: 20%;
+    margin: 15% auto;
+}
+
+#posts {
+    width: 90%;
+    background-color: red;
+    margin: -10% auto;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.post {
+    width: 90%;
+    height: 15vh;
+    background-color: #FFE8A4;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 }
