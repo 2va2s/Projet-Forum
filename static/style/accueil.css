@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');
 
 body {
-    width: 100%;
-    /* min-height: 100vh; */
-    background: linear-gradient(
-    to right,
-    #698EA2 0%,
-    #698EA2 70%,
-    white 70%,
-    white 100%
-  );
+    background: linear-gradient(to right,
+            #698EA2 0%,
+            #698EA2 70%,
+            white 70%,
+            white 100%);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 }
 
 #firsthalf {
@@ -47,6 +48,6 @@ body {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
