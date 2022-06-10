@@ -99,9 +99,9 @@ func InitDatabase(database string) *sql.DB {
 				CREATE TABLE IF NOT EXISTS user (
 					ID INTEGER PRIMARY KEY AUTOINCREMENT,
 					ProfilePic STRING SECONDARY KEY,
-					Pseudo STRING NOT NULL,
-					Mail STRING,
-					Number STRING,
+					Pseudo STRING NOT NULL UNIQUE,
+					Mail STRING UNIQUE,
+					Number STRING UNIQUE,
 					Password STRING NOT NULL
 				);
 				CREATE TABLE IF NOT EXISTS category (
