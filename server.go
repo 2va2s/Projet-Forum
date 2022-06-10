@@ -56,11 +56,12 @@ func main() {
 	})
 
 	rr.HandleFunc("/signin", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("aaaaaaaa")
 		pckg.HandleSignin(w, r, db)
 	})
 
 	rr.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
-		pckg.HandleLogin(w, r, db)
+		pckg.HandleLogin(db, w, r)
 	})
 
 	rr.HandleFunc("/logout", pckg.HandleLogout)

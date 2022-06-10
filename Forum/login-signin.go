@@ -37,7 +37,7 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 		json.Unmarshal([]byte(auth.(string)), &data)
 	}
 
-	tmpl, _ := template.ParseFiles("./pages/accueil.html")
+	tmpl, _ := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
 	tmpl.Execute(w, data)
 }
 
