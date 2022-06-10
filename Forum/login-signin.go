@@ -18,8 +18,8 @@ var (
 )
 
 type UserData struct {
-	Email    []string `json:"Email"`
-	Password []string `json:"Password"`
+	Pseudo   string `json:"Pseudo"`
+	Password string `json:"Password"`
 }
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
@@ -36,60 +36,66 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	if auth != nil {
 		json.Unmarshal([]byte(auth.(string)), &data)
 	}
-	// fmt.Println(data)
 
-	test, err := template.ParseFiles("./pages/accueil.html", "./templates/menu.html", "./templates/footer.html", "./templates/logo.html")
-	if err != nil {
-		fmt.Println(err)
-	}
-	test.Execute(w, r)
+	tmpl, _ := template.ParseFiles("./pages/accueil.html")
+	tmpl.Execute(w, data)
 }
 
 func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Error parsing form", 500)
 	}
-	// checkEmptyField(r)
-
 	if r.URL.Path != "/signin" {
 		http.NotFound(w, r)
 		return
 	}
 
-	Create(db, "user", User{}, r.Form.Get("pseudo"), encrypt(r.Form.Get("password")), r.Form.Get("mail"), r.Form.Get("number"), "")
+	_, err := Create(db, "user", User{}, r.Form.Get("pseudo"), Encrypt(r.Form.Get("password")), r.Form.Get("mail"), r.Form.Get("number"), "")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 }
 
-func HandleLogin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+func HandleLogin(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 
-	// r.Form pour recup valeurs de form
-	// db.USer == r.Form
-	if r.URL.Path != "/login" {
-		http.NotFound(w, r)
-		return
-	}
-
-	///////////////// LOGIN ////////////////
-
-	tmpl, _ := template.ParseFiles("./pages/accueil.html")
+	var dbPseudo string
+	var dbPwd string
 
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Error parsing form", 500)
 	}
 
-	// checkLogin(db, r.Form.Get("pseudo"), )
+	pseudo := r.Form.Get("pseudo")
+	password := Encrypt(r.Form.Get("password"))
 
-	session, _ := store.Get(r, "cookie-forum")
-
-	if _, ok := r.PostForm["Submit"]; ok {
-		fmt.Println("user logged in")
-		res, _ := json.Marshal(r.PostForm)
-		session.Values["authenticated"] = string(res)
-		session.Save(r, w)
-		http.Redirect(w, r, "/", http.StatusFound)
+	if r.URL.Path != "/login" {
+		http.NotFound(w, r)
 		return
 	}
 
-	tmpl.Execute(w, nil)
+	connexion := db.QueryRow("SELECT pseudo, password FROM user WHERE pseudo=?", pseudo, password).Scan(&dbPseudo, &dbPwd)
+	fmt.Println(pseudo, password)
+
+	if connexion != nil {
+		fmt.Println("error: Wrong password or username. Please try again.")
+	} else {
+
+		fmt.Println("Hello "+dbPseudo, dbPwd)
+		tmpl, _ := template.ParseFiles("./pages/accueil.html")
+
+		session, _ := store.Get(r, "cookie-forum")
+
+		if _, ok := r.PostForm["Submit"]; ok {
+			fmt.Println("user logged in")
+			res, _ := json.Marshal(r.PostForm)
+			session.Values["authenticated"] = string(res)
+			session.Save(r, w)
+			http.Redirect(w, r, "/", http.StatusFound)
+			return
+		}
+
+		tmpl.Execute(w, nil)
+	}
 }
 
 func HandleLogout(w http.ResponseWriter, r *http.Request) {
@@ -104,9 +110,43 @@ func HandleLogout(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusFound)
 }
 
-func encrypt(pwd string) string {
+func Encrypt(pwd string) string {
+	salt := "Jessica Alba"
 	hasher := md5.New()
-	hasher.Write([]byte(pwd))
+	hasher.Write([]byte(pwd + salt))
 	a := hex.EncodeToString(hasher.Sum(nil))
 	return a
 }
+
+func IfExists(db *sql.DB, target string, table string, field string) {
+
+	req := "SELECT * FROM " + table + " WHERE " + field + " LIKE " + "'%" + target + "%'"
+	res, err := db.Query(req)
+	res.Scan(&target, &table, &field)
+	if err != nil {
+		fmt.Println("Error: ", err)
+	}
+
+	// fmt.Printf("%v", res)
+}
+
+// func checkRegister(db *sql.DB, pseudo string, mail string, number string) bool {
+// 	var dbPseudo string
+// 	var dbMail string
+// 	var dbNumber string
+// 	var UserExists bool
+// 	// query := db.QueryRow("SELECT pseudo, mail, number FROM user WHERE pseudo=?", pseudo, email, number).Scan(&dbPseudo, &dbEmail, &dbNumber)
+// 	query := db.QueryRow("SELECT pseudo, mail, number FROM user WHERE pseudo=?", pseudo, mail, number).Scan(&dbPseudo, &dbMail, &dbNumber)
+// 	if dbPseudo == "" {
+// 		fmt.Println("user can be created:")
+// 		UserExists = false
+// 		fmt.Println("ok", query)
+// 		return UserExists
+// 	} else {
+// 		fmt.Println("user already found ! ", dbPseudo, dbNumber, dbNumber)
+// 		fmt.Println("Credentials already exists", dbPseudo, dbMail, dbNumber, "please login")
+// 		UserExists = true
+// 		fmt.Println("nope", query)
+// 		return UserExists
+// 	}
+// }
