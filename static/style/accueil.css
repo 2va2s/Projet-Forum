@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');
 
 body {
-    background: linear-gradient(to right,
-            #698EA2 0%,
-            #698EA2 70%,
-            white 70%,
-            white 100%);
+    background: linear-gradient(
+    to right,
+    #698EA2 0%,
+    #698EA2 70%,
+    white 70%,
+    white 100%
+  );
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
