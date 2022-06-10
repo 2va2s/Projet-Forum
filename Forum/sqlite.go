@@ -36,6 +36,15 @@ type Post struct {
 	UpVote       int
 }
 
+type UpdateVoteParams struct {
+	Table  string
+	Id     string
+	Field  string
+	Value  string
+	Where  string
+	Value2 string
+}
+
 func GetUserRows(rows *sql.Rows) []User {
 	final := make([]User, 0)
 	for rows.Next() {
@@ -176,6 +185,14 @@ func Get(db *sql.DB, table string, mode string) *sql.Rows {
 func DeletePostById(db *sql.DB, id string) (int64, error) {
 	result, _ := db.Exec(`DELETE FROM post WHERE postId = ?`, id)
 	return result.LastInsertId()
+}
+
+func UpdateVotes(db *sql.DB, table string, value string, field string, value2 string, field2 string) string {
+	_, err := db.Exec("UPDATE " + table + " SET " + field + " = " + value + " WHERE " + field2 + " = " + value2 + ";")
+	if err != nil {
+		fmt.Println(err)
+	}
+	return value
 }
 
 // reriter à

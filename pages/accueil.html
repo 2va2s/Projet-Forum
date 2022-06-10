@@ -9,6 +9,7 @@
     <link rel="icon" href="/static/logo.svg">
     <link rel="stylesheet" href="/static/style/accueil.css">
     <link rel="stylesheet" href="/static/style/.layout.css">
+    <link rel="stylesheet" href="/static/style/components/postCard.css">
 </head>
 
 <body>
@@ -19,18 +20,45 @@
             <h2>-Nelson Mandela</h2>
         </div>
         <div id="posts">
-            SALUT
+            <h2 id="connected"> Connecté en tant que </h2>
+            <p id="topicList"> liste des topics :<br></p>
+            <a href="/logout" id="logout">Déconnexion</a>
+            <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
         </div>
     </div>
     <div id="filters"></div>
-    <!-- <h1>CECI EST LACCUEIL</h1>
-    <h2 id="connected"> Connecté en tant que {{.Email}} </h2>
-    <p id="topicList"> liste des topics :<br></p>
-    <a href="/logout" id="logout">Déconnexion</a>
-    <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a> -->
 </body>
 
-<script type="text/javascript" src="/static/js/accueil.js"></script>
+<script type="text/javascript" src="../static/js/accueil.js"></script>
 <script type="text/javascript" src="../static/js/menu.js"></script>
+<script type="text/javascript">
+    const redirectToPost = (id) => {
+        fetch('/posts').then(location.href = '/topic/' + id)
+    }
+
+    const redirectToUser = (id) => {
+        fetch('/users').then(location.href = '/user/' + id)
+    }
+
+    const vote = (id, upvote, pol) => {
+        console.log(typeof id)
+        fetch("/UpdateVote", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                Table: "post",
+                Id: id.toString(),
+                Field: "UpVote",
+                Value: (upvote + pol).toString(),
+                Where: "ID",
+                Value2: id.toString()
+            })
+        }).then(response => response.text()).then(data => {
+            document.getElementById("upvote#"+id).innerText = data
+        })
+    }
+</script>
 
 </html>

@@ -1,5 +1,5 @@
 
-<div class="postCard">
+<div class="postCard" id="post#{PostId}">
     <img class="pp" onclick="redirectToUser({UserId})" style="cursor: pointer;" src="https://cdn.kapwing.com/video_image-PKArdCjxK.png" />
     <div class="middleCard" onclick="redirectToPost({PostId})" style="cursor: pointer;>
         <div class="pseudo-text">
@@ -16,8 +16,8 @@
     <div class="rightCard">
         <p id="postDate">publié le {Date}</p>
         <div class="vote">
-            <div id="upvotenumber"><p>{UpVote}</p></div>
-            <div id="upvote"></div>
+            <div class="upvotenumber" id="upvote#{PostId}"><p>{UpVote}</p></div>
+            <div onclick="vote({PostId},{UpVote},1)" id="upvote"></div>
             <div id="downvote"></div>
         </div>
     </div>

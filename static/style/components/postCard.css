@@ -70,6 +70,7 @@
 }
 
 #downvote {
+    display: none;
     margin-top: 3%;
     width: 25%;
     height: 20%;
@@ -86,7 +87,7 @@
     opacity: 1;
 }
 
-#upvotenumber {
+.upvotenumber {
     position: absolute;
     font-size: 150%;
     /* margin-left: 50%; */

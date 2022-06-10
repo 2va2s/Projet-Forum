@@ -4,6 +4,7 @@ import (
 	pckg "Forum/Forum"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -101,10 +102,10 @@ func main() {
 			return
 		}
 		r.ParseForm()
-		objet := r.Form.Get("objetsupport")
-		corps := r.Form.Get("corpssupport")
-		result := objet + "\n" + corps
-		fmt.Println(result)
+		// objet := r.Form.Get("objetsupport")
+		// corps := r.Form.Get("corpssupport")
+		// result := objet + "\n" + corps
+		// fmt.Println(result)
 		http.Redirect(w, r, "/", http.StatusFound)
 		//joindre le ticket a la bdd pour l'afficher dans le profil du superadmin
 	})
@@ -115,6 +116,15 @@ func main() {
 			tmpl.Execute(w, nil)
 			return
 		}
+	})
+
+	rr.HandleFunc("/UpdateVote", func(w http.ResponseWriter, r *http.Request) {
+		var params pckg.UpdateVoteParams
+		body, _ := ioutil.ReadAll(r.Body)
+		json.Unmarshal(body, &params)
+		// fmt.Println(params)
+		w.Write([]byte(pckg.UpdateVotes(db, params.Table, params.Value, params.Field, params.Value2, params.Where)))
+
 	})
 
 	// routes API

@@ -2,7 +2,7 @@
 
 body {
     width: 100%;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background: linear-gradient(
     to right,
     #698EA2 0%,
@@ -32,7 +32,6 @@ body {
 
 #posts {
     width: 90%;
-    background-color: red;
     margin: -10% auto;
     display: flex;
     flex-direction: column;
