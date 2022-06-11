@@ -18,8 +18,14 @@ var (
 )
 
 type UserData struct {
-	Pseudo   string `json:"Pseudo"`
-	Password string `json:"Password"`
+	Pseudo   []string `json:"pseudo"`
+	Password []string `json:"password"`
+	UserID   []string `json:"user_id"`
+}
+type UserDataConvert struct {
+	Pseudo   string `json:"pseudo"`
+	Password string `json:"password"`
+	UserID   string `json:"user_id"`
 }
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
@@ -33,12 +39,17 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "cookie-forum")
 	auth := session.Values["authenticated"]
 
-	if auth != nil {
-		json.Unmarshal([]byte(auth.(string)), &data)
-	}
-
 	tmpl, _ := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
-	tmpl.Execute(w, data)
+	data2 := UserDataConvert{}
+
+	if auth != nil {
+		// fmt.Println("-")
+		// fmt.Println(auth.(string))
+		// fmt.Println("-")
+		json.Unmarshal([]byte(auth.(string)), &data)
+		data2 = UserDataConvert{data.Pseudo[0], data.Password[0], data.UserID[0]}
+	}
+	tmpl.Execute(w, data2)
 }
 
 func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
@@ -60,6 +71,7 @@ func HandleLogin(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 
 	var dbPseudo string
 	var dbPwd string
+	var dbId string
 
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Error parsing form", 500)
@@ -73,28 +85,22 @@ func HandleLogin(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	connexion := db.QueryRow("SELECT pseudo, password FROM user WHERE pseudo=?", pseudo, password).Scan(&dbPseudo, &dbPwd)
-	fmt.Println(pseudo, password)
+	loginQuery := db.QueryRow("SELECT pseudo, password, id FROM user WHERE pseudo=?", pseudo, password)
+	connexion := loginQuery.Scan(&dbPseudo, &dbPwd, &dbId)
 
 	if connexion != nil {
 		fmt.Println("error: Wrong password or username. Please try again.")
 	} else {
 
-		fmt.Println("Hello "+dbPseudo, dbPwd)
-		tmpl, _ := template.ParseFiles("./pages/accueil.html")
+		// tmpl, _ := template.ParseFiles("./pages/accueil.html")
 
 		session, _ := store.Get(r, "cookie-forum")
 
-		if _, ok := r.PostForm["Submit"]; ok {
-			fmt.Println("user logged in")
-			res, _ := json.Marshal(r.PostForm)
-			session.Values["authenticated"] = string(res)
-			session.Save(r, w)
-			http.Redirect(w, r, "/", http.StatusFound)
-			return
-		}
-
-		tmpl.Execute(w, nil)
+		r.PostForm["user_id"] = []string{dbId}
+		res, _ := json.Marshal(r.PostForm)
+		session.Values["authenticated"] = string(res)
+		session.Save(r, w)
+		http.Redirect(w, r, "/", http.StatusFound)
 	}
 }
 

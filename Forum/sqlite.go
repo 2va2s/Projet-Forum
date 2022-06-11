@@ -43,6 +43,12 @@ type UpdateVoteParams struct {
 	Value  string
 	Where  string
 	Value2 string
+	UserId string
+}
+
+type IsUpvotedParams struct {
+	UserId string
+	PostId string
 }
 
 func GetUserRows(rows *sql.Rows) []User {
@@ -125,8 +131,8 @@ func InitDatabase(database string) *sql.DB {
 				);
 				CREATE TABLE IF NOT EXISTS upvote (
 					ID INTEGER PRIMARY KEY AUTOINCREMENT,
-					UserID INTEGER,
-					PostID INTEGER,
+					UserID INTEGER NOT NULL,
+					PostID INTEGER NOT NULL,
 					FOREIGN KEY (UserID) REFERENCES user(ID),
 					FOREIGN KEY (PostID) REFERENCES post(ID)
 				)
@@ -163,7 +169,6 @@ func Create(db *sql.DB, table string, model interface{}, t ...interface{}) (int6
 	result += ")"
 
 	request, err := db.Exec(result, t...)
-	fmt.Println(result)
 
 	if err != nil {
 		fmt.Println(err)
@@ -187,12 +192,35 @@ func DeletePostById(db *sql.DB, id string) (int64, error) {
 	return result.LastInsertId()
 }
 
-func UpdateVotes(db *sql.DB, table string, value string, field string, value2 string, field2 string) string {
+func UpdateVotes(db *sql.DB, table string, value string, field string, value2 string, field2 string, userId string, notVoted bool) string {
 	_, err := db.Exec("UPDATE " + table + " SET " + field + " = " + value + " WHERE " + field2 + " = " + value2 + ";")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Update Post upvote error:")
+	}
+	if notVoted {
+		_, err2 := db.Exec("INSERT INTO upvote (UserID, PostID) VALUES (?, ?)", userId, value2)
+		if err2 != nil {
+			fmt.Println("Insert upvote error")
+		}
+	} else {
+		_, err2 := db.Exec("DELETE FROM upvote WHERE UserID = "+userId+" AND PostID = "+value2+";", userId, value2)
+		if err2 != nil {
+			fmt.Println("Delete upvote error")
+		}
 	}
 	return value
+}
+
+func IsUpvoted(db *sql.DB, postId string, userId string) bool {
+	query := "SELECT ID FROM upvote WHERE UserID = " + userId + " AND PostID = " + postId + ";"
+	rows := db.QueryRow(query)
+	var u string
+	rows.Scan(&u)
+	if u != "" {
+		return false
+	} else {
+		return true
+	}
 }
 
 // reriter à

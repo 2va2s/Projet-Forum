@@ -54,7 +54,7 @@
     display: block;
 }
 
-#upvote {
+.upvote {
     width: 25%;
     height: 20%;
     /* background-color: black; */
@@ -62,11 +62,26 @@
     border-top-right-radius: 110px;
     border: 10px solid #4BC35F;
     border-bottom: 0;
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
-#upvote:hover {
+.upvoteUp {
+    width: 25%;
+    height: 20%;
+    /* background-color: black; */
+    border-top-left-radius: 110px;
+    border-top-right-radius: 110px;
+    border: 10px solid #4BC35F;
+    border-bottom: 0;
     opacity: 1;
+}
+
+.upvoteUp:hover {
+    opacity: 0.7;
+}
+
+.upvote:hover {
+    opacity: 0.7;
 }
 
 #downvote {

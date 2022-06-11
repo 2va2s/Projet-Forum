@@ -1,7 +1,7 @@
 let conn = document.getElementById("connected")
-console.log(conn.innerHTML)
-if (conn.innerHTML == " Connecté en tant que ") {
-    conn.innerHTML = "Non connecté"
+console.log(conn.innerText)
+if (conn.innerText == 'Connecté en tant que') {
+    conn.innerText = "Non connecté"
     document.getElementById("logout").style.display = 'none';
     document.getElementById("login").style.display = 'block';
 }
@@ -35,4 +35,3 @@ fetch("/topics").then(function (response) {
 }).catch(function (err) {
     console.log(err)
 })
-// }

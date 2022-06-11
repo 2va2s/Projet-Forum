@@ -10,6 +10,12 @@ import (
 	"text/template"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
+)
+
+var (
+	key   = []byte("inserer clé")
+	store = sessions.NewCookieStore(key)
 )
 
 func main() {
@@ -19,8 +25,8 @@ func main() {
 
 	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
 
-	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy deter", "mdp", "aeze@gmail.com", "6314134235235", "")
-	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi grognon", "mdp", "aeze@gmail.com", "6314134235235", "")
+	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", "")
+	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "63141134235235", "")
 
 	// pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
 	// pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
@@ -56,7 +62,6 @@ func main() {
 	})
 
 	rr.HandleFunc("/signin", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("aaaaaaaa")
 		pckg.HandleSignin(w, r, db)
 	})
 
@@ -119,12 +124,28 @@ func main() {
 		}
 	})
 
+	rr.HandleFunc("/IsUpvoted", func(w http.ResponseWriter, r *http.Request) {
+		var params pckg.IsUpvotedParams
+		body, _ := ioutil.ReadAll(r.Body)
+		json.Unmarshal(body, &params)
+		if pckg.IsUpvoted(db, params.PostId, params.UserId) {
+			w.Write([]byte("upvote"))
+		} else {
+			w.Write([]byte("upvoteUp"))
+		}
+	})
+
 	rr.HandleFunc("/UpdateVote", func(w http.ResponseWriter, r *http.Request) {
 		var params pckg.UpdateVoteParams
 		body, _ := ioutil.ReadAll(r.Body)
 		json.Unmarshal(body, &params)
-		// fmt.Println(params)
-		w.Write([]byte(pckg.UpdateVotes(db, params.Table, params.Value, params.Field, params.Value2, params.Where)))
+		notVoted := pckg.IsUpvoted(db, params.Value2, params.Id)
+		if !notVoted {
+			invert, _ := strconv.Atoi(params.Value)
+			invert = invert - 2
+			params.Value = strconv.Itoa(invert)
+		}
+		w.Write([]byte(pckg.UpdateVotes(db, params.Table, params.Value, params.Field, params.Value2, params.Where, params.Id, notVoted)))
 
 	})
 

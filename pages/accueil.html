@@ -20,7 +20,8 @@
             <h2>-Nelson Mandela</h2>
         </div>
         <div id="posts">
-            <h2 id="connected"> Connecté en tant que </h2>
+            <h2 id="connected"> Connecté en tant que {{.Pseudo}} <p id="userId" style="display: none">{{.UserID}}</p>
+            </h2>
             <p id="topicList"> liste des topics :<br></p>
             <a href="/logout" id="logout">Déconnexion</a>
             <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
@@ -40,8 +41,25 @@
         fetch('/users').then(location.href = '/user/' + id)
     }
 
+    console.log("la dégaine à la mexico")
+
+    connectedUser = document.getElementById("userId").innerText
+    const loadVote = (postId) => {
+        console.log("loading upvote")
+        fetch("/IsUpvoted", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                UserId: connectedUser,
+                PostId: postId.toString()
+            })
+        }).then(response => response.text()).then(response => document.getElementById("arrowUp#" + postId).className = response)
+    }
+
     const vote = (id, upvote, pol) => {
-        console.log(typeof id)
+        console.log(upvote)
         fetch("/UpdateVote", {
             method: "POST",
             headers: {
@@ -49,14 +67,21 @@
             },
             body: JSON.stringify({
                 Table: "post",
-                Id: id.toString(),
+                Id: connectedUser,
                 Field: "UpVote",
-                Value: (upvote + pol).toString(),
+                Value: (parseInt(upvote) + 1).toString(),
                 Where: "ID",
-                Value2: id.toString()
+                Value2: id.toString(),
             })
         }).then(response => response.text()).then(data => {
-            document.getElementById("upvote#"+id).innerText = data
+            arrowUp = document.getElementById("arrowUp#" + id)
+            if (data > upvote) {
+                arrowUp.className = "upvoteUp"
+            } else {
+                arrowUp.className = "upvote"
+            }
+            console.log("data:" + data)
+            document.getElementById("upvoteNumber#" + id).innerText = data
         })
     }
 </script>
