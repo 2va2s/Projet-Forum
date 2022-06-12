@@ -136,6 +136,16 @@ func IfExists(db *sql.DB, target string, table string, field string) {
 	// fmt.Printf("%v", res)
 }
 
+func IsLogged(r *http.Request) {
+	var data UserData = UserData{}
+	session, _ := store.Get(r, "cookie-forum")
+	auth := session.Values["authenticated"]
+
+	json.Unmarshal([]byte(auth.(string)), &data)
+	fmt.Println(data)
+
+}
+
 // func checkRegister(db *sql.DB, pseudo string, mail string, number string) bool {
 // 	var dbPseudo string
 // 	var dbMail string

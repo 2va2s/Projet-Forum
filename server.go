@@ -136,6 +136,7 @@ func main() {
 	})
 
 	rr.HandleFunc("/UpdateVote", func(w http.ResponseWriter, r *http.Request) {
+		pckg.IsLogged(r)
 		var params pckg.UpdateVoteParams
 		body, _ := ioutil.ReadAll(r.Body)
 		json.Unmarshal(body, &params)
