@@ -2,16 +2,19 @@
 
 <div id="menu">
     <div class="logo">
-        <a href=""><img src="/static/logo.svg" height="90%"></a>
+        <a href="/"><img src="/static/logo.svg" height="90%"></a>
     </div>
     <div class="twomenu">
         <div>
             <a href="/createPost">je suis gay</a>
         </div>
         <div class="btn-menu">
-            <form method="get" action="/connexion-inscription" class="signup">
-                <button
-                    class="custom-btn btn-12 signup"><span>Enregistrez-vous</span><span>Inscription/connexion</span></button>
+            <!-- <form method="get" action="/connexion-inscription" class="signup">
+                <button class="custom-btn btn-12 signup"><span>Enregistrez-vous</span><span>Inscription/connexion</span></button>
+            </form> -->
+            <a href="/connexion-inscription" class="signin">Sign in</a>
+            <form method="get" action="/connexion-inscription">
+                <button class="signup"><span>Sign up</span></button>
             </form>
             <div id="notLoggedAlert"
                 onclick="document.getElementById('notLoggedAlert').style.display= 'none'" style="display:none;width:100vw;height:100vh;position:absolute;top:0px;right:0px;bottom:0px;background-color: rgb(59 59 59 / 52%);flex-direction: column;align-items: center;justify-content: center;">

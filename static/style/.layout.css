@@ -21,6 +21,20 @@
     width: 13%;
 }
 
+.btn-menu .signin:after {
+    display: block;
+    content: '';
+    border-bottom: solid 2px black;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+    transform-origin: 100% 50%
+}
+
+.btn-menu .signin:hover:after {
+    transform: scaleX(1);
+    transform-origin: 0 50%;
+}
+
 .twomenu {
     display: flex;
     margin-top: auto;
@@ -136,28 +150,55 @@
 }
 
 .btn-menu {
-    width: 30%;
+    width: 50%;
     height: 80%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
-    margin-right: 1%;
+    margin-right: 3%;
     display:flex;
     font-size: 150%;
+    /* background-color: red; */
+}
+
+.btn-menu a {
+    text-decoration: none;
+    color: black;
+    margin: 5% 5%;
+    /* bottom: 0; */
 }
 
 .btn-menu .signup {
-    margin-left: auto;
+    /* margin-left: auto;
     margin-top: auto;
-    margin-bottom: auto;
+    margin-bottom: auto; */
+    /* margin-right: 5%; */
+    margin-left: 5%;
+    margin-top: 15%;
+    background-color: #008DDC;
+    padding: 10%;
+    width: 200%;
 }
 
-button {
+.signup {
+    outline: none;
+    border: 0;
+    font-size: 70%;
+    border-radius: 40px;
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+.signup:hover {
+    background-color: #006198;
+}
+
+/* button {
     margin: 20px;
     outline: none;
-}
+} */
 
-.custom-btn {
+/* .custom-btn {
     width: 50%;
     height: 10%;
     padding: 10px 25px;
@@ -241,4 +282,4 @@ button {
     -webkit-transform: rotateX(-90deg);
     -moz-transform: rotateX(-90deg);
     transform: rotateX(-90deg);
-}
+} */
