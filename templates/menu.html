@@ -2,12 +2,16 @@
 
 <div id="menu">
     <div class="logo">
-        <a href=""><img src="/static/logo.svg" height="90%"></a>
+        <a href="/"><img src="/static/logo.svg" height="90%"></a>
     </div>
     <div class="twomenu">
         <div class="btn-menu">
-            <form method="get" action="/connexion-inscription" class="signup">
+            <!-- <form method="get" action="/connexion-inscription" class="signup">
                 <button class="custom-btn btn-12 signup"><span>Enregistrez-vous</span><span>Inscription/connexion</span></button>
+            </form> -->
+            <a href="/connexion-inscription" class="signin">Sign in</a>
+            <form method="get" action="/connexion-inscription">
+                <button class="signup"><span>Sign up</span></button>
             </form>
         </div>
         <div id="connected-menu" onclick="showContent()" style="display:none;">

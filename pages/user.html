@@ -6,10 +6,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" href="/static/logo.svg">
+    <link rel="stylesheet" href="/static/style/user.css">
+    <link rel="stylesheet" href="/static/style/.layout.css">
 </head>
 
 <body>
-    <p>Ceci est la page affichant le détail d'un profil</p>
+    {{template "menu"}}
+    <div class="profilcard">
+        <div class="profilavatar"></div>
+        <div class="vl"></div>
+        <div class="profilinfo">
+            <div class="profilname">
+                <p><b>Nom d'utilisateur:</b> xXx_theKiller78</p>
+            </div>
+            <div class="profilrank">
+                <p><b>Rang d'utilisateur:</b> user</p>
+            </div>
+        </div>
+    </div>
+    <div id="profilposts">
+        <div id="row1">
+            <h1>Posts de l'utilisateur</h1>
+            <div id="profilpostedposts">
+                    <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies viverra ante, vitae volutpat est convallis at. Proin in ante eget eros tincidunt ultrices id quis nisl. Duis mollis malesuada metus, id sagittis lectus efficitur quis. Nulla facilisi. Fusce sit amet elit ex. Vestibulum ac arcu velit. Ut luctus tortor non neque vulputate, ac lacinia erat gravida. Curabitur ultrices tincidunt nulla, vitae accumsan dui. In nec lectus erat. In hac habitasse platea dictumst. Nullam quis dolor lobortis, venenatis erat ut, varius dolor. Vestibulum euismod eget metus in lobortis. Proin a mi vel velit hendrerit volutpat. Pellentesque vitae suscipit leo, laoreet tempus eros.
+        
+        Aliquam lorem nibh, lacinia non dolor quis, mollis eleifend mi. Morbi purus est, feugiat sit amet accumsan et, convallis a turpis. Duis sollicitudin enim est, eget auctor erat vestibulum vitae. Nam nulla turpis, consequat ut massa sed, consequat tristique diam. Phasellus a vehicula neque. Nam vel libero mauris. Fusce nec sollicitudin metus. Curabitur id velit sed lacus laoreet imperdiet. Suspendisse molestie viverra libero at fringilla. In quam elit, feugiat ut mauris id, facilisis vestibulum diam. Maecenas vitae venenatis lectus, non sollicitudin libero. Donec suscipit mi sed metus aliquet, eu interdum massa vehicula. Mauris volutpat commodo augue ut blandit. Donec gravida vestibulum eros, a iaculis leo tempus eu. Fusce maximus lobortis est a pellentesque.
+        
+        Vestibulum ac dictum lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nec aliquam mi. Aenean accumsan magna sit amet sapien efficitur, auctor sodales odio bibendum. Nunc ornare ultricies lacus ac sodales. Pellentesque ullamcorper, dui nec accumsan varius, nisl erat porta lorem, eu accumsan tortor dolor et ex. Sed tempor mattis posuere. Suspendisse scelerisque nulla erat, vel varius sapien hendrerit eu. Vestibulum sit amet fermentum metus. Cras vitae eros sed elit dapibus posuere. Etiam libero tortor, cursus eu tincidunt consequat, aliquam vel dui. Ut dictum arcu vitae tortor mattis, ut porttitor lacus sagittis. Nam sit amet risus ac justo blandit finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        
+        Fusce vulputate dui non mauris euismod, id ullamcorper neque feugiat. Morbi commodo luctus mauris nec pharetra. Phasellus iaculis urna ut dui imperdiet, quis rhoncus risus tempus. Duis eget orci in nunc consectetur luctus eget a massa. Sed lacinia, orci eu mattis rutrum, turpis sem scelerisque massa, eu varius est nibh vel enim. Fusce luctus felis nec risus porttitor, in consectetur felis efficitur. Curabitur purus sem, accumsan vel urna non, auctor consectetur leo. Morbi vel tortor pulvinar, porta mauris a, facilisis dolor. Etiam aliquam euismod turpis id laoreet.
+        
+        Nunc condimentum libero ut mi dictum sollicitudin. Praesent sit amet elit at risus eleifend congue. Morbi quis leo lacus. Sed nisl odio, interdum sed neque sit amet, fermentum elementum sapien. Maecenas tempus dignissim euismod. Phasellus scelerisque quam sed diam maximus ornare sit amet at libero. In sed lorem quis nunc bibendum convallis. Suspendisse lacinia consequat ornare. Phasellus ante tellus, sagittis vel interdum et, dictum ac dolor. Sed ac ligula sit amet nisi viverra egestas. Phasellus quis nibh in ante laoreet accumsan. Quisque quis molestie nibh. Donec laoreet sem ac consectetur sodales. Donec arcu diam, tristique nec lacus aliquam, luctus pharetra diam. -->
+            </div>
+        </div>
+        <div id="row2">
+            <h1>Posts likés par l'utilisateur</h1>
+            <div id="profillikedposts">
+                <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies viverra ante, vitae volutpat est convallis at. Proin in ante eget eros tincidunt ultrices id quis nisl. Duis mollis malesuada metus, id sagittis lectus efficitur quis. Nulla facilisi. Fusce sit amet elit ex. Vestibulum ac arcu velit. Ut luctus tortor non neque vulputate, ac lacinia erat gravida. Curabitur ultrices tincidunt nulla, vitae accumsan dui. In nec lectus erat. In hac habitasse platea dictumst. Nullam quis dolor lobortis, venenatis erat ut, varius dolor. Vestibulum euismod eget metus in lobortis. Proin a mi vel velit hendrerit volutpat. Pellentesque vitae suscipit leo, laoreet tempus eros.
+        
+        Aliquam lorem nibh, lacinia non dolor quis, mollis eleifend mi. Morbi purus est, feugiat sit amet accumsan et, convallis a turpis. Duis sollicitudin enim est, eget auctor erat vestibulum vitae. Nam nulla turpis, consequat ut massa sed, consequat tristique diam. Phasellus a vehicula neque. Nam vel libero mauris. Fusce nec sollicitudin metus. Curabitur id velit sed lacus laoreet imperdiet. Suspendisse molestie viverra libero at fringilla. In quam elit, feugiat ut mauris id, facilisis vestibulum diam. Maecenas vitae venenatis lectus, non sollicitudin libero. Donec suscipit mi sed metus aliquet, eu interdum massa vehicula. Mauris volutpat commodo augue ut blandit. Donec gravida vestibulum eros, a iaculis leo tempus eu. Fusce maximus lobortis est a pellentesque.
+        
+        Vestibulum ac dictum lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nec aliquam mi. Aenean accumsan magna sit amet sapien efficitur, auctor sodales odio bibendum. Nunc ornare ultricies lacus ac sodales. Pellentesque ullamcorper, dui nec accumsan varius, nisl erat porta lorem, eu accumsan tortor dolor et ex. Sed tempor mattis posuere. Suspendisse scelerisque nulla erat, vel varius sapien hendrerit eu. Vestibulum sit amet fermentum metus. Cras vitae eros sed elit dapibus posuere. Etiam libero tortor, cursus eu tincidunt consequat, aliquam vel dui. Ut dictum arcu vitae tortor mattis, ut porttitor lacus sagittis. Nam sit amet risus ac justo blandit finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        
+        Fusce vulputate dui non mauris euismod, id ullamcorper neque feugiat. Morbi commodo luctus mauris nec pharetra. Phasellus iaculis urna ut dui imperdiet, quis rhoncus risus tempus. Duis eget orci in nunc consectetur luctus eget a massa. Sed lacinia, orci eu mattis rutrum, turpis sem scelerisque massa, eu varius est nibh vel enim. Fusce luctus felis nec risus porttitor, in consectetur felis efficitur. Curabitur purus sem, accumsan vel urna non, auctor consectetur leo. Morbi vel tortor pulvinar, porta mauris a, facilisis dolor. Etiam aliquam euismod turpis id laoreet.
+        
+        Nunc condimentum libero ut mi dictum sollicitudin. Praesent sit amet elit at risus eleifend congue. Morbi quis leo lacus. Sed nisl odio, interdum sed neque sit amet, fermentum elementum sapien. Maecenas tempus dignissim euismod. Phasellus scelerisque quam sed diam maximus ornare sit amet at libero. In sed lorem quis nunc bibendum convallis. Suspendisse lacinia consequat ornare. Phasellus ante tellus, sagittis vel interdum et, dictum ac dolor. Sed ac ligula sit amet nisi viverra egestas. Phasellus quis nibh in ante laoreet accumsan. Quisque quis molestie nibh. Donec laoreet sem ac consectetur sodales. Donec arcu diam, tristique nec lacus aliquam, luctus pharetra diam. -->
+            </div>
+        </div>
+        <div id="row3">
+            <h1>Réponses de l'utilisateur</h1>
+            <div id="profilansweredposts">
+                <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies viverra ante, vitae volutpat est convallis at. Proin in ante eget eros tincidunt ultrices id quis nisl. Duis mollis malesuada metus, id sagittis lectus efficitur quis. Nulla facilisi. Fusce sit amet elit ex. Vestibulum ac arcu velit. Ut luctus tortor non neque vulputate, ac lacinia erat gravida. Curabitur ultrices tincidunt nulla, vitae accumsan dui. In nec lectus erat. In hac habitasse platea dictumst. Nullam quis dolor lobortis, venenatis erat ut, varius dolor. Vestibulum euismod eget metus in lobortis. Proin a mi vel velit hendrerit volutpat. Pellentesque vitae suscipit leo, laoreet tempus eros.
+        
+        Aliquam lorem nibh, lacinia non dolor quis, mollis eleifend mi. Morbi purus est, feugiat sit amet accumsan et, convallis a turpis. Duis sollicitudin enim est, eget auctor erat vestibulum vitae. Nam nulla turpis, consequat ut massa sed, consequat tristique diam. Phasellus a vehicula neque. Nam vel libero mauris. Fusce nec sollicitudin metus. Curabitur id velit sed lacus laoreet imperdiet. Suspendisse molestie viverra libero at fringilla. In quam elit, feugiat ut mauris id, facilisis vestibulum diam. Maecenas vitae venenatis lectus, non sollicitudin libero. Donec suscipit mi sed metus aliquet, eu interdum massa vehicula. Mauris volutpat commodo augue ut blandit. Donec gravida vestibulum eros, a iaculis leo tempus eu. Fusce maximus lobortis est a pellentesque.
+        
+        Vestibulum ac dictum lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent nec aliquam mi. Aenean accumsan magna sit amet sapien efficitur, auctor sodales odio bibendum. Nunc ornare ultricies lacus ac sodales. Pellentesque ullamcorper, dui nec accumsan varius, nisl erat porta lorem, eu accumsan tortor dolor et ex. Sed tempor mattis posuere. Suspendisse scelerisque nulla erat, vel varius sapien hendrerit eu. Vestibulum sit amet fermentum metus. Cras vitae eros sed elit dapibus posuere. Etiam libero tortor, cursus eu tincidunt consequat, aliquam vel dui. Ut dictum arcu vitae tortor mattis, ut porttitor lacus sagittis. Nam sit amet risus ac justo blandit finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        
+        Fusce vulputate dui non mauris euismod, id ullamcorper neque feugiat. Morbi commodo luctus mauris nec pharetra. Phasellus iaculis urna ut dui imperdiet, quis rhoncus risus tempus. Duis eget orci in nunc consectetur luctus eget a massa. Sed lacinia, orci eu mattis rutrum, turpis sem scelerisque massa, eu varius est nibh vel enim. Fusce luctus felis nec risus porttitor, in consectetur felis efficitur. Curabitur purus sem, accumsan vel urna non, auctor consectetur leo. Morbi vel tortor pulvinar, porta mauris a, facilisis dolor. Etiam aliquam euismod turpis id laoreet.
+        
+        Nunc condimentum libero ut mi dictum sollicitudin. Praesent sit amet elit at risus eleifend congue. Morbi quis leo lacus. Sed nisl odio, interdum sed neque sit amet, fermentum elementum sapien. Maecenas tempus dignissim euismod. Phasellus scelerisque quam sed diam maximus ornare sit amet at libero. In sed lorem quis nunc bibendum convallis. Suspendisse lacinia consequat ornare. Phasellus ante tellus, sagittis vel interdum et, dictum ac dolor. Sed ac ligula sit amet nisi viverra egestas. Phasellus quis nibh in ante laoreet accumsan. Quisque quis molestie nibh. Donec laoreet sem ac consectetur sodales. Donec arcu diam, tristique nec lacus aliquam, luctus pharetra diam. -->
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

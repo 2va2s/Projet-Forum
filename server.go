@@ -135,7 +135,9 @@ func main() {
 		a := pckg.GetUserRows(userList)
 		for i := 0; i < len(a); i++ {
 			rr.HandleFunc("/user/"+strconv.Itoa(a[i].ID), func(w http.ResponseWriter, r *http.Request) {
-				http.ServeFile(w, r, "./pages/user.html")
+				// http.ServeFile(w, r, "./pages/user.html")
+				tmpl, _ := template.ParseFiles("./pages/user.html", "./templates/menu.html")
+				tmpl.Execute(w, nil)
 			})
 		}
 		json, _ := json.Marshal(a)
