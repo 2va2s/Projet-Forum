@@ -1,4 +1,3 @@
-
 <div class="postCard" id="post#{PostId}">
     <img class="pp" onclick="redirectToUser({UserId})" style="cursor: pointer;" src="https://cdn.kapwing.com/video_image-PKArdCjxK.png" />
     <div class="middleCard" onclick="redirectToPost({PostId})" style="cursor: pointer;>
@@ -17,7 +16,7 @@
         <p id="postDate">publié le {Date}</p>
         <div class="vote">
             <div class="upvotenumber" id="upvote#{PostId}"><p id="upvoteNumber#{PostId}">{UpVote}</p></div>
-            <div onclick="vote({PostId},document.getElementById('upvoteNumber#{PostId}').innerText,1)" class="upvote" id="arrowUp#{PostId}"></div>
+            <div onclick="vote({PostId},1)" class="upvote" id="arrowUp#{PostId}"></div>
             <div id="downvote"></div>
         </div>
     </div>

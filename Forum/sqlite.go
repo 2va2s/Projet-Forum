@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"reflect"
+	"strconv"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -42,7 +43,7 @@ type UpdateVoteParams struct {
 	Field  string
 	Value  string
 	Where  string
-	Value2 string
+	PostId string
 	UserId string
 }
 
@@ -221,6 +222,14 @@ func IsUpvoted(db *sql.DB, postId string, userId string) bool {
 	} else {
 		return true
 	}
+}
+
+func GetVoteById(db *sql.DB, id string) int {
+	query := "SELECT UpVote FROM post WHERE ID =" + id + ";"
+	var number string
+	db.QueryRow(query).Scan(&number)
+	result, _ := strconv.Atoi(number)
+	return result
 }
 
 // reriter à

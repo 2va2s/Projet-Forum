@@ -83,10 +83,6 @@ func main() {
 		tmpl.Execute(w, nil)
 	})
 
-	rr.HandleFunc("/createPost", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "./pages/newPost")
-	})
-
 	rr.HandleFunc("/post/{postID}", func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
 		userId := vars["postID"]
@@ -150,13 +146,14 @@ func main() {
 			var params pckg.UpdateVoteParams
 			body, _ := ioutil.ReadAll(r.Body)
 			json.Unmarshal(body, &params)
-			notVoted := pckg.IsUpvoted(db, params.Value2, params.Id)
-			if !notVoted {
-				invert, _ := strconv.Atoi(params.Value)
-				invert = invert - 2
-				params.Value = strconv.Itoa(invert)
+			voteNumber := pckg.GetVoteById(db, params.PostId)
+			notVoted := pckg.IsUpvoted(db, params.PostId, params.Id)
+			if notVoted {
+				voteNumber++
+			} else {
+				voteNumber--
 			}
-			w.Write([]byte(pckg.UpdateVotes(db, params.Table, params.Value, params.Field, params.Value2, params.Where, params.Id, notVoted)))
+			w.Write([]byte(pckg.UpdateVotes(db, params.Table, strconv.Itoa(voteNumber), params.Field, params.PostId, params.Where, params.Id, notVoted)))
 		} else {
 			w.Write([]byte("isntLogged"))
 		}

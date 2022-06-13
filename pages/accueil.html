@@ -58,8 +58,7 @@
         }).then(response => response.text()).then(response => document.getElementById("arrowUp#" + postId).className = response)
     }
 
-    const vote = (id, upvote, pol) => {
-        console.log(upvote)
+    const vote = (id, pol) => {
         fetch("/UpdateVote", {
             method: "POST",
             headers: {
@@ -69,14 +68,14 @@
                 Table: "post",
                 Id: connectedUser,
                 Field: "UpVote",
-                Value: (parseInt(upvote) + 1).toString(),
                 Where: "ID",
-                Value2: id.toString(),
+                PostId: id.toString(),
             })
         }).then(response => response.text()).then(data => {
             if (data != "isntLogged") {
                 arrowUp = document.getElementById("arrowUp#" + id)
-                if (data > upvote) {
+                // A CHANGER ZRGQEHTTJQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+                if (data > document.getElementById("upvoteNumber#" + id).innerText) {
                     arrowUp.className = "upvoteUp"
                 } else {
                     arrowUp.className = "upvote"
@@ -85,13 +84,10 @@
                 document.getElementById("upvoteNumber#" + id).innerText = data
             } else {
                 console.log("notLogged")
+                document.getElementById("notLoggedAlert").style.display = "flex"
                 // APPELLER FONCTION "VOUS NETES PAS CONNECT2"
             }
         })
-
-        const notLoggedAlert = () => {
-            
-        }
     }
 </script>
 
