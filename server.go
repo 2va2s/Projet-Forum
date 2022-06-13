@@ -75,7 +75,16 @@ func main() {
 		vars := mux.Vars(r)
 		userId := vars["userID"]
 		fmt.Print(userId)
-		http.ServeFile(w, r, "./pages/accueil.html")
+		http.ServeFile(w, r, "./pages/user.html")
+	})
+
+	rr.HandleFunc("/mon-compte", func(w http.ResponseWriter, r *http.Request) {
+		tmpl, _ := template.ParseFiles("./pages/mon-compte.html", "./templates/menu.html")
+		tmpl.Execute(w, nil)
+	})
+
+	rr.HandleFunc("/createPost", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./pages/newPost")
 	})
 
 	rr.HandleFunc("/post/{postID}", func(w http.ResponseWriter, r *http.Request) {
@@ -136,17 +145,21 @@ func main() {
 	})
 
 	rr.HandleFunc("/UpdateVote", func(w http.ResponseWriter, r *http.Request) {
-		pckg.IsLogged(r)
-		var params pckg.UpdateVoteParams
-		body, _ := ioutil.ReadAll(r.Body)
-		json.Unmarshal(body, &params)
-		notVoted := pckg.IsUpvoted(db, params.Value2, params.Id)
-		if !notVoted {
-			invert, _ := strconv.Atoi(params.Value)
-			invert = invert - 2
-			params.Value = strconv.Itoa(invert)
+		if pckg.IsLogged(r) {
+
+			var params pckg.UpdateVoteParams
+			body, _ := ioutil.ReadAll(r.Body)
+			json.Unmarshal(body, &params)
+			notVoted := pckg.IsUpvoted(db, params.Value2, params.Id)
+			if !notVoted {
+				invert, _ := strconv.Atoi(params.Value)
+				invert = invert - 2
+				params.Value = strconv.Itoa(invert)
+			}
+			w.Write([]byte(pckg.UpdateVotes(db, params.Table, params.Value, params.Field, params.Value2, params.Where, params.Id, notVoted)))
+		} else {
+			w.Write([]byte("isntLogged"))
 		}
-		w.Write([]byte(pckg.UpdateVotes(db, params.Table, params.Value, params.Field, params.Value2, params.Where, params.Id, notVoted)))
 
 	})
 

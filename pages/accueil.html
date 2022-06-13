@@ -43,7 +43,7 @@
 
     console.log("la dégaine à la mexico")
 
-    connectedUser = document.getElementById("userId").innerText
+    connectedUser = document.getElementById("userId")?.innerText
     const loadVote = (postId) => {
         console.log("loading upvote")
         fetch("/IsUpvoted", {
@@ -74,15 +74,24 @@
                 Value2: id.toString(),
             })
         }).then(response => response.text()).then(data => {
-            arrowUp = document.getElementById("arrowUp#" + id)
-            if (data > upvote) {
-                arrowUp.className = "upvoteUp"
+            if (data != "isntLogged") {
+                arrowUp = document.getElementById("arrowUp#" + id)
+                if (data > upvote) {
+                    arrowUp.className = "upvoteUp"
+                } else {
+                    arrowUp.className = "upvote"
+                }
+                console.log("data:" + data)
+                document.getElementById("upvoteNumber#" + id).innerText = data
             } else {
-                arrowUp.className = "upvote"
+                console.log("notLogged")
+                // APPELLER FONCTION "VOUS NETES PAS CONNECT2"
             }
-            console.log("data:" + data)
-            document.getElementById("upvoteNumber#" + id).innerText = data
         })
+
+        const notLoggedAlert = () => {
+            
+        }
     }
 </script>
 
