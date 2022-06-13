@@ -56,13 +56,15 @@ body{
     background-color: rgb(255, 236, 185);
 }
 
+
+
 #compte{
     background-color: #00848C;
     display: flex;
     position: fixed;
-    width: 12vw;
-    height: 30vh;
-    top: 30vh;
+    width: 30vw;
+    height: 40vh;
+    top: 15vh;
     left: 1vw;
     border: 2px solid black;
     border-radius: 20%;
@@ -70,31 +72,67 @@ body{
 
 #monCompte{
     margin-top: 2vh;
+    font-size: x-large;
+    height: 5vh;
 }
 
 #posts{
     margin-top: 2vh;
+    font-size: x-large;
+    height: 10vh;
+}
+
+#mesCommentaires{
+    margin-top: 2vh;
+    font-size: x-large;
+    height: 5vh;
 }
 
 #déconnexion{
     margin-top: 2vh;
+    font-size: x-large;
+    height: 5vh;
 }
 
 #info{
     background-color: #1C1F4C;
     display: flex;
     position: fixed;
-    width: 75vw;
-    height: 75vh;
-    left: 20vw;
+    width: 47vw;
+    height: 47vh;
+    left: 35vw;
     top: 15vh
     
 }
 
+.scroll-bg{
+    position: fixed;
+    top: 20vh;
+    background-color: #1C1F4C;
+    width: 47vw;
+    height: 80vh;
+}
+
+.scroll-div{
+    width: 47vw;
+    height: 80vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: #1C1F4C;
+}
+
+.scroll-object{
+    color: aliceblue;
+}
+
+#scroll{
+    display: none;
+}
+
 #photo{
     background-color: aliceblue;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     position: absolute;
     top: 5vh;
@@ -103,15 +141,45 @@ body{
     text-align: center;
 }
 
+.wrapper{
+    width: 25vw;
+    background-color: aliceblue;
+    position: absolute;
+    top: 3vh;
+}
+
+.wrapper .input-data input{
+    width: 23vw;
+    top: 8vh;
+    margin: 1vw;
+    border: none;
+    border-bottom: 2px solid silver;
+}
+
+.input-data input:focus ~label{
+    transform: translateY(-20px);
+    
+    
+}
+
+.wrapper .input-data label{
+    position:absolute;
+    bottom: 2vh;
+    left: 1vw;
+    color: grey;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
 #pseudo{
     background-color: aliceblue;
     display: block;
     justify-content: space-between;
     position: fixed;
-    width: 30vw;
-    height: 10vh;
+    width: 25vw;
+    height: 8vh;
     top: 20vh;
-    left: 50vw;
+    left: 55vw;
     
 }
 
@@ -120,10 +188,10 @@ body{
     display: block;
     justify-content: space-between;
     position: fixed;
-    width: 30vw;
-    height: 10vh;
-    top: 40vh;
-    left: 50vw;
+    width: 25vw;
+    height: 8vh;
+    top: 35vh;
+    left: 55vw;
     
     
 }
@@ -133,13 +201,17 @@ body{
     display: block;
     justify-content: space-between;
     position: fixed;
-    width: 30vw;
-    height: 10vh;
-    top: 60vh;
-    left: 50vw;
+    width: 25vw;
+    height: 8vh;
+    top: 50vh;
+    left: 55vw;
 }
 
 #liste{
+    display: none;
+}
+
+#commentaires{
     display: none;
 }
 
@@ -148,11 +220,84 @@ body{
     display: none;
     justify-content: space-between;
     position: fixed;
-    width: 30vw;
+    width: 25vw;
     height: 10vh;
-    top: 40vh;
-    left: 45vw;
+    top: 35vh;
+    left: 50vw;
     font-size: x-large;
     text-align: center;
 }
 
+#badges{
+    display: block;
+    width: 47vw;
+    height: 20vh;
+    background-color: azure;
+    position: fixed;
+    top: 65vh;
+    left: 35vw;
+    background-color: gray;
+    text-align: center;
+}
+
+#badge1{
+    width: 5vw;
+    height: 7vh;
+    position: fixed;
+    left: 38vw;
+    top: 72vh;
+    background-color: aliceblue;
+}
+
+#badge2{
+    width: 5vw;
+    height: 7vh;
+    position: fixed;
+    left: 44vw;
+    top: 72vh;
+    background-color: aliceblue;
+}
+
+#badge3{
+    width: 5vw;
+    height: 7vh;
+    position: fixed;
+    left: 50vw;
+    top: 72vh;
+    background-color: aliceblue;
+}
+
+#badge4{
+    width: 5vw;
+    height: 7vh;
+    position: fixed;
+    left: 56vw;
+    top: 72vh;
+    background-color: aliceblue;
+}
+
+#badge5{
+    width: 5vw;
+    height: 7vh;
+    position: fixed;
+    left: 62vw;
+    top: 72vh;
+    background-color: aliceblue;
+}
+
+#badge6{
+    width: 5vw;
+    height: 7vh;
+    position: fixed;
+    left: 68vw;
+    top: 72vh;
+    background-color: aliceblue;
+}
+#badge7{
+    width: 5vw;
+    height: 7vh;
+    position: fixed;
+    left: 74vw;
+    top: 72vh;
+    background-color: aliceblue;
+}
