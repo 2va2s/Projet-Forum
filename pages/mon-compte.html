@@ -24,9 +24,14 @@
            
                 <button id="mesCommentaires">Mes commentaires</button>
            
-                <button id="déconnexion">Déconnexion</button>
-           
-
+                <button id="déconnexion" type="submit">Se déconnecter</button>
+                <div id="openPopup">
+                    <div class="popup">
+            
+                        <h1>êtes vous sûr de vouloir vous déconnectez ?</h1>
+                        <button type="button"><a href="/connexion-inscription">Déconnexion</a></button>
+                    </div>
+                </div>
 
 
 
@@ -37,7 +42,7 @@
             <div id="pseudo">
                 <div class="wrapper">
                     <div class="input-data">
-                        <input type="text" required>
+                        <div>required</div> 
 
                         <label>Pseudo :</label>
                     </div>
