@@ -85,6 +85,21 @@ body {
     font-weight: 400;
 }
 
+@media screen and (max-width: 1000px) {
+    .profilcard {
+        /* margin-top: 15%; */
+        margin-left: 5%;
+        width: 90%;
+        /* height: 30%; */
+    }
+    #profilposts {
+        margin-top: 40%;
+    }
+    #profilposts h1 {
+        font-size: 20px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .profilcard {
         margin-top: 15%;
