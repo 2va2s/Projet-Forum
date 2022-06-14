@@ -87,13 +87,12 @@
 }
 
 .blocker {
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    content: ' ';
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
 }
 
 .name {
