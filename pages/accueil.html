@@ -5,17 +5,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>58-99 - Accueil</title>
+    <link rel="icon" href="/static/logo.svg">
+    <link rel="stylesheet" href="/static/style/accueil.css">
+    <link rel="stylesheet" href="/static/style/.layout.css">
+    <link rel="stylesheet" href="/static/style/components/postCard.css">
 </head>
 
 <body>
-    <h1>CECI EST LACCUEIL</h1>
-    <h2 id="connected"> Connecté en tant que {{.Email}} </h2>
-    <p id="topicList"> liste des topics :<br></p>
-    <a href="/logout" id="logout">Déconnexion</a>
-    <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
+    {{template "menu"}}
+    <div id="firsthalf">
+        <div id="citation">
+            <h1>"Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur."</h1>
+            <h2>-Nelson Mandela</h2>
+        </div>
+        <div id="posts">
+            <h2 id="connected"> Connecté en tant que {{.Pseudo}} <p id="userId" style="display: none">{{.UserID}}</p>
+            </h2>
+            <p id="topicList"> liste des topics :<br></p>
+            <a href="/logout" id="logout">Déconnexion</a>
+            <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
+        </div>
+    </div>
+    <div id="filters"></div>
 </body>
 
-<script type="text/javascript" src="/static/js/accueil.js"></script>
+<script type="text/javascript" src="../static/js/accueil.js"></script>
+<script type="text/javascript" src="../static/js/menu.js"></script>
+<script type="text/javascript">
+    const redirectToPost = (id) => {
+        fetch('/posts').then(location.href = '/topic/' + id)
+    }
+
+    const redirectToUser = (id) => {
+        fetch('/users').then(location.href = '/user/' + id)
+    }
+
+    console.log("la dégaine à la mexico")
+
+    connectedUser = document.getElementById("userId")?.innerText
+    const loadVote = (postId) => {
+        console.log("loading upvote")
+        fetch("/IsUpvoted", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                UserId: connectedUser,
+                PostId: postId.toString()
+            })
+        }).then(response => response.text()).then(response => document.getElementById("arrowUp#" + postId).className = response)
+    }
+
+    const vote = (id, upvote, pol) => {
+        console.log(upvote)
+        fetch("/UpdateVote", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                Table: "post",
+                Id: connectedUser,
+                Field: "UpVote",
+                Value: (parseInt(upvote) + 1).toString(),
+                Where: "ID",
+                Value2: id.toString(),
+            })
+        }).then(response => response.text()).then(data => {
+            if (data != "isntLogged") {
+                arrowUp = document.getElementById("arrowUp#" + id)
+                if (data > upvote) {
+                    arrowUp.className = "upvoteUp"
+                } else {
+                    arrowUp.className = "upvote"
+                }
+                console.log("data:" + data)
+                document.getElementById("upvoteNumber#" + id).innerText = data
+            } else {
+                console.log("notLogged")
+                // APPELLER FONCTION "VOUS NETES PAS CONNECT2"
+            }
+        })
+
+        const notLoggedAlert = () => {
+            
+        }
+    }
+</script>
 
 </html>
