@@ -17,11 +17,12 @@ body {
 
 .profilavatar {
     width: 25%;
-    height: 90%;
+    /* height: 90%; */
     margin: auto 2%;
     border-radius: 50%;
     background-color: grey;
     border: 1px solid black;
+    aspect-ratio: 1/1;
 }
 
 .vl {
