@@ -17,11 +17,12 @@ body {
 
 .profilavatar {
     width: 25%;
-    height: 90%;
+    /* height: 90%; */
     margin: auto 2%;
     border-radius: 50%;
     background-color: grey;
     border: 1px solid black;
+    aspect-ratio: 1/1;
 }
 
 .vl {
@@ -83,6 +84,21 @@ body {
     padding-bottom: 2%;
     text-decoration: underline;
     font-weight: 400;
+}
+
+@media screen and (max-width: 1000px) {
+    .profilcard {
+        /* margin-top: 15%; */
+        margin-left: 5%;
+        width: 90%;
+        /* height: 30%; */
+    }
+    #profilposts {
+        margin-top: 40%;
+    }
+    #profilposts h1 {
+        font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 800px) {
