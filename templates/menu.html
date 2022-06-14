@@ -12,24 +12,22 @@
             <!-- <form method="get" action="/connexion-inscription" class="signup">
                 <button class="custom-btn btn-12 signup"><span>Enregistrez-vous</span><span>Inscription/connexion</span></button>
             </form> -->
-            <a href="/connexion-inscription" class="signin">Sign in</a>
+            <a href="/connexion-inscription" class="signin">Se connecter</a>
             <form method="get" action="/connexion-inscription">
-                <button class="signup"><span>Sign up</span></button>
+                <button class="signup"><span>S'inscrire</span></button>
             </form>
-            <div id="notLoggedAlert"
-                onclick="document.getElementById('notLoggedAlert').style.display= 'none'" style="display:none;width:100vw;height:100vh;position:absolute;top:0px;right:0px;bottom:0px;background-color: rgb(59 59 59 / 52%);flex-direction: column;align-items: center;justify-content: center;">
+            <div id="notLoggedAlert" onclick="document.getElementById('notLoggedAlert').style.display= 'none'"
+                style="display:none;width:100vw;height:100vh;position:absolute;top:0px;right:0px;bottom:0px;background-color: rgb(59 59 59 / 52%);flex-direction: column;align-items: center;justify-content: center;">
                 <div
                     style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center;">
                     <a href=""><img src="/static/logo.svg" height="90%" style="margin: 10px"></a>
                     <h3 style="margin: 5px">Vous devez être connecté pour effectuer cette action</h3>
-                    <div style="display:flex; align-items:center">
-                        <button style="height: 11vh;width: 15vw;" onclick="location.href = '/connexion-inscription';">
-                            <h4>Se connecter</h4>
-                        </button>
-                        <h2>/</h2>
-                        <button style="height: 11vh;width: 15vw;" onclick="location.href = '/connexion-inscription';">
-                            <h4>S'inscrire</h4>
-                        </button>
+                    <div style="display:flex; align-items:center; position:relative;right:20px">
+                        <a href="/connexion-inscription" class="signin">Se connecter</a>
+
+                        <form method="get" action="/connexion-inscription">
+                            <button class="signup"><span> S'inscrire</span></button>
+                        </form>
                     </div>
                 </div>
             </div>

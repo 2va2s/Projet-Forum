@@ -74,7 +74,6 @@
         }).then(response => response.text()).then(data => {
             if (data != "isntLogged") {
                 arrowUp = document.getElementById("arrowUp#" + id)
-                // A CHANGER ZRGQEHTTJQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
                 if (data > document.getElementById("upvoteNumber#" + id).innerText) {
                     arrowUp.className = "upvoteUp"
                 } else {
@@ -85,7 +84,6 @@
             } else {
                 console.log("notLogged")
                 document.getElementById("notLoggedAlert").style.display = "flex"
-                // APPELLER FONCTION "VOUS NETES PAS CONNECT2"
             }
         })
     }
