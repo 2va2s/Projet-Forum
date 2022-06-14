@@ -85,23 +85,17 @@ body {
     font-weight: 400;
 }
 
-/* #profilpostedposts, #profillikedposts, #profilansweredposts {
-    border: 2px solid black;
+@media screen and (max-width: 800px) {
+    .profilcard {
+        margin-top: 15%;
+        margin-left: 5%;
+        width: 90%;
+        height: 30%;
+    }
+    #profilposts {
+        margin-top: 45%;
+    }
+    #profilposts h1 {
+        font-size: 25px;
+    }
 }
-
-#profilpostedposts {
-    border-left: 4px solid black;
-    border-top: 4px solid black;
-    border-bottom: 4px solid black;
-}
-
-#profillikedposts {
-    border-top: 4px solid black;
-    border-bottom: 4px solid black;
-}
-
-#profilansweredposts {
-    border-right: 4px solid black;
-    border-top: 4px solid black;
-    border-bottom: 4px solid black;
-} */

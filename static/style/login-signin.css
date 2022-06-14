@@ -169,3 +169,23 @@ body {
     height: 5px;
     border-radius: 5px 5px 0 0;
 }
+
+@media screen and (max-width: 800px) {
+    .login-wrap form {
+        height: 70%;
+    }
+    .login-wrap {
+        margin-top: 2%;
+        height: 85%;
+    }
+    .registerlogo {
+        margin-right: 50px;
+    }
+    #register {
+        height: 100%;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+    }
+}
