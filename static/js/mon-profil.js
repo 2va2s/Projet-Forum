@@ -66,3 +66,7 @@ mesCommentaires.addEventListener("click", () => {
         openPopup.style.display ="none"
         
 })
+
+openPopup.addEventListener("click",() => {
+        openPopup.style.display = "none"
+})

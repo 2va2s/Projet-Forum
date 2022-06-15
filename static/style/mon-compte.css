@@ -1,3 +1,7 @@
+body{
+    margin: 0;
+}
+
 #barreHaut{
     background-color: gray;
     display: flex;
@@ -109,7 +113,19 @@
 }
 
 #openPopup{
+    display: flex;
+width: 100vw;
+height: 100vh;
+position: absolute;
+top: 0px;
+right: 0px;
+bottom: 0px;
+background-color: rgba(59, 59, 59, 0.52);
+flex-direction: column;
+align-items: center;
+justify-content: center;
     display: none;
+    
 }
 
 .popup{
