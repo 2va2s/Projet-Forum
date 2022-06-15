@@ -49,11 +49,23 @@ func main() {
 	fileServer := http.FileServer(http.Dir("./static"))
 	rr.PathPrefix("/static").Handler(http.StripPrefix("/static", fileServer))
 
-	// A SUPPRIMER
-	rr.HandleFunc("/post", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "./pages/components/postCard.html")
-	})
-	// A SUPPRIMER
+	userList := pckg.Get(db, "user", "user")
+	userData := pckg.GetUserRows(userList)
+	for i := 0; i < len(userData); i++ {
+		rr.HandleFunc("/user/"+strconv.Itoa(userData[i].ID), func(w http.ResponseWriter, r *http.Request) {
+			tmpl, _ := template.ParseFiles("./pages/user.html", "./templates/menu.html")
+			tmpl.Execute(w, nil)
+		})
+	}
+
+	postList := pckg.Get(db, "post", "child")
+	postArray := pckg.GetPostRows(postList)
+	for i := 0; i < len(postArray); i++ {
+		rr.HandleFunc("/topic/"+strconv.Itoa(postArray[i].ID), func(w http.ResponseWriter, r *http.Request) {
+			tmpl, _ := template.ParseFiles("./pages/topic.html", "./templates/menu.html")
+			tmpl.Execute(w, nil)
+		})
+	}
 
 	rr.HandleFunc("/", pckg.HandleHome)
 
@@ -163,35 +175,19 @@ func main() {
 	// routes API
 
 	rr.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
-		userList := pckg.Get(db, "user", "user")
-		a := pckg.GetUserRows(userList)
-		for i := 0; i < len(a); i++ {
-			rr.HandleFunc("/user/"+strconv.Itoa(a[i].ID), func(w http.ResponseWriter, r *http.Request) {
-				// http.ServeFile(w, r, "./pages/user.html")
-				tmpl, _ := template.ParseFiles("./pages/user.html", "./templates/menu.html")
-				tmpl.Execute(w, nil)
-			})
-		}
-		json, _ := json.Marshal(a)
+		json, _ := json.Marshal(userData)
 		w.Write(json)
 	})
 
 	rr.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
-		postList := pckg.Get(db, "post", "child")
-		a := pckg.GetPostRows(postList)
-		for i := 0; i < len(a); i++ {
-			rr.HandleFunc("/topic/"+strconv.Itoa(a[i].ID), func(w http.ResponseWriter, r *http.Request) {
-				http.ServeFile(w, r, "./pages/topic.html")
-			})
-		}
-		json, _ := json.Marshal(a)
+		json, _ := json.Marshal(postArray)
 		w.Write(json)
 	})
 
 	rr.HandleFunc("/topics", func(w http.ResponseWriter, r *http.Request) {
 		topicList := pckg.Get(db, "post", "topic")
-		a := pckg.GetPostRows(topicList)
-		json, _ := json.Marshal(a)
+		topicArray := pckg.GetPostRows(topicList)
+		json, _ := json.Marshal(topicArray)
 		w.Write(json)
 	})
 

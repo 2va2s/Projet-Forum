@@ -6,12 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" href="/static/logo.svg">
+    <link rel="stylesheet" href="/static/style/topic.css">
+    <link rel="stylesheet" href="/static/style/.layout.css">
+    <link rel="stylesheet" href="/static/style/components/postCard.css">
 </head>
 
 <body>
-    <div>
-        <p>Ceci est la page affichant le fil d'un topic</p>
+    {{template "menu"}}
+    <div style="height: 13vh;width: 100%;"></div>
+    <div id="postContainer">
     </div>
 </body>
+
+<script type="text/javascript" src="../static/js/menu.js"></script>
+<script type="text/javascript" src="../static/js/topic.js"></script>
 
 </html>

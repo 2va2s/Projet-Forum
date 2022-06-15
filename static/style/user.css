@@ -1,10 +1,10 @@
 body {
-    background-color: #698EA2; 
+    background-color: #698EA2;
     display: flex;
 }
 
 .profilcard {
-    position:absolute;
+    position: absolute;
     width: 70%;
     height: 40%;
     background-color: #FFE8A4;
@@ -39,6 +39,8 @@ body {
 
 .profilname {
     margin-bottom: 25%;
+    display: inline-block;
+    vertical-align: top;
 }
 
 #profilposts {
@@ -48,6 +50,7 @@ body {
     width: 90%;
     height: 90%;
     position: absolute;
+    top: 15%;
     /* background-color: red; */
     /* justify-content: space-between; */
     margin: 30% 4%;
@@ -60,24 +63,24 @@ body {
     background-color: #FFE8A4;
     overflow: auto;
     height: 42%;
-    -webkit-box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-    box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 #profillikedposts {
     background-color: #FFE8A4;
     overflow: auto;
     height: 42%;
-    -webkit-box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-    box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 #profilansweredposts {
     background-color: #FFE8A4;
     overflow: auto;
     height: 42%;
-    -webkit-box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
-    box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 #profilposts h1 {
@@ -93,9 +96,11 @@ body {
         width: 90%;
         /* height: 30%; */
     }
+
     #profilposts {
         margin-top: 40%;
     }
+
     #profilposts h1 {
         font-size: 20px;
     }
@@ -108,9 +113,11 @@ body {
         width: 90%;
         height: 30%;
     }
+
     #profilposts {
         margin-top: 45%;
     }
+
     #profilposts h1 {
         font-size: 25px;
     }

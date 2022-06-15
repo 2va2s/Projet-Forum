@@ -109,7 +109,8 @@ func InitDatabase(database string) *sql.DB {
 					Pseudo STRING NOT NULL UNIQUE,
 					Mail STRING UNIQUE,
 					Number STRING UNIQUE,
-					Password STRING NOT NULL
+					Password STRING NOT NULL,
+					Level STRING
 				);
 				CREATE TABLE IF NOT EXISTS category (
 					ID INTEGER PRIMARY KEY AUTOINCREMENT,
