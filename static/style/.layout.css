@@ -1,9 +1,6 @@
 /* laisser le . au dé but du nom de fichier pour qu'il s'affiche toujours tout en  haut */  
 
-* {
-    margin: 0;
-    padding: 0;
-}
+
 
 #menu {
     /* background-color:antiquewhite; */

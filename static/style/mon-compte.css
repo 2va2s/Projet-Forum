@@ -54,42 +54,93 @@
 #compte{
     background-color: #00848C;
     display: flex;
+    flex-direction: column;
     position: fixed;
     width: 30vw;
-    height: 40vh;
+    height: 50vh;
     top: 15vh;
     left: 1vw;
     border: 2px solid black;
     border-radius: 20%;
 }
 
+
+
+
+
 #monCompte{
-    margin-top: 2vh;
+    
     font-size: x-large;
     height: 5vh;
+    
+    position: absolute;
+    top: 2vh;
+    left: 5vw;
+    width: 20vw;
 }
 
 #posts{
-    margin-top: 2vh;
+    
     font-size: x-large;
     height: 10vh;
+    position: absolute;
+    top:12vh;
+    left: 5vw;
+    width: 20vw;
 }
 
 #mesCommentaires{
-    margin-top: 2vh;
+    
     font-size: x-large;
     height: 5vh;
+    position: absolute;
+    top:27vh;
+    left: 5vw;
+    width: 20vw;
 }
 
 #déconnexion{
-    margin-top: 2vh;
+    
     font-size: x-large;
-    height: 5vh;
+    height: 5vh; position: absolute;
+    top:37vh;
+    left: 5vw;
+    width: 20vw;
 }
+
+#openPopup{
+    display: none;
+}
+
+.popup{
+    
+    position: fixed;
+    left: 36vw;
+    top: 16vh;
+    background-color: #00848C; 
+    z-index: 10;
+    width: 45vw;
+    height: 43vh;
+    border: 4px solid floralwhite;
+    border-radius: 25% ;
+}
+
+.popup h1{
+    margin: 2vw;
+    margin-top: 15vh;
+}
+
+.popup button{
+    margin-top: 5vh;
+    margin-left: 15vw;
+    font-size: x-large;
+}
+
+
 
 #info{
     background-color: #1C1F4C;
-    display: flex;
+    display: block;
     position: fixed;
     width: 47vw;
     height: 47vh;
