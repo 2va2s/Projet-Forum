@@ -10,42 +10,52 @@
 </head>
 
 <body>
-    <div id="login">
-        <div class="loginlogo">
-            <a href="/"><img src="/static/logo.svg" height="90%"></a>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Créer un compte</h1>
+                <!-- <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span> -->
+                <input type="text" placeholder="Pseudo" />
+                <input type="email" placeholder="Adresse email" />
+                <input type="password" placeholder="Mot de passe" />
+                <input type="password" placeholder="Confirmer le mot de passe" />
+                <button>S'inscrire</button>
+            </form>
         </div>
-        <div class="logincase">
-            <div class="login-wrap">
-                <h2>Connexion</h2>
-                <form method="post" action="/login">
-                    <div class="form">
-                        <input  placeholder="Adresse email" name="pseudo" />
-                        <input type="password" placeholder="Mot de passe" name="password" />
-                        <button> Se connecter </button>
-                    </div>
-                </form>
-            </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Connexion</h1>
+                <!-- <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div> -->
+                <!-- <span>or use your account</span> -->
+                <input type="email" placeholder="Adresse email ou pseudo" />
+                <input type="password" placeholder="Mot de passe" />
+                <a href="#">Mot de passe oublié ?</a>
+                <button>Se connecter</button>
+            </form>
         </div>
-        <button class="signup" onclick="toRegister()"><span>Register</span></button>
-    </div>
-    <div id="register">
-        <button class="signin" onclick="toLogin()"><span>Login</span></button>
-        <div class="registerlogo">
-            <a href="/"><img src="/static/logo.svg" height="90%"></a>
-        </div>
-        <div class="registercase">
-            <div class="login-wrap">
-                <h2>Se créer un compte</h2>
-                <form method="post" action="/signin">
-
-                    <div class="form">
-                        <input type="email" placeholder="Adresse email" name="pseudo" />
-                        <input type="password" placeholder="Mot de passe" name="password" />
-                        <input type="password" placeholder="Confirmer le mot de passe" name="confirmpw" />
-                        <input type="tel" placeholder="Numéro de téléphone" name="number" />
-                        <button> S'inscrire </button>
-                    </div>
-                </form>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Rebonjour !</h1>
+                    <!-- <p>To keep connected with us please login with your personal info</p> -->
+                    <p>Pour continuer ton aventure avec nous rentre tes identifiants et connecte toi</p>
+                    <button class="ghost" id="signIn">Connexion</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Salut l'ami !</h1>
+                    <!-- <p>Enter your personal details and start journey with us</p> -->
+                    <p>Choisi des identifiants pour commencer ton aventure à nos côtés</p>
+                    <button class="ghost" id="signUp">Créer un compte</button>
+                </div>
             </div>
         </div>
     </div>
