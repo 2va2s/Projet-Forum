@@ -14,10 +14,12 @@
             <!-- <form method="get" action="/connexion-inscription" class="signup">
                 <button class="custom-btn btn-12 signup"><span>Enregistrez-vous</span><span>Inscription/connexion</span></button>
             </form> -->
-            <a href="/connexion-inscription" class="signin">Se connecter</a>
-            <form method="get" action="/connexion-inscription">
-                <button class="signup"><span>S'inscrire</span></button>
-            </form>
+            <!-- <a class="signin" id="menusignin">Se connecter</a>
+            <form method="get" action="">
+                <button class="signup" id="menusignup"><span>S'inscrire</span></button>
+            </form> -->
+            <div id="menusignin">Se connecter</div>
+            <div id="menusignup"><span>S'inscrire</span></div>
         </div>
         <div id="connected-menu" onclick="showContent()" style="display:none;">
             <div class="avatar"></div>
@@ -49,12 +51,12 @@
 
 
 <div id="notLoggedAlert" onclick="document.getElementById('notLoggedAlert').style.display= 'none'"
-    style="display:none;width:100vw;height:100vh;position:absolute;top:0px;right:0px;bottom:0px;background-color: rgb(59 59 59 / 52%);flex-direction: column;align-items: center;justify-content: center;">
+    style="display:none;width:100vw;height:100vh;position:fixed;top:0px;right:0px;bottom:0px;background-color: rgb(59 59 59 / 52%);flex-direction: column;align-items: center;justify-content: center;">
     <div
         style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center;">
         <a href=""><img src="/static/logo.svg" height="90%" style="margin: 10px"></a>
         <h3 style="margin: 5px">Vous devez être connecté pour effectuer cette action</h3>
-        <div style="display:flex; align-items:center; position:relative;right:20px">
+        <div class="" style="display:flex; align-items:center; position:relative;right:20px">
             <a href="/connexion-inscription" class="signin">Se connecter</a>
             <form method="get" action="/connexion-inscription">
                 <button class="signup"><span> S'inscrire</span></button>
@@ -62,4 +64,56 @@
         </div>
     </div>
 </div>
+
+<div id="logblocker"></div>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Créer un compte</h1>
+                <!-- <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span> -->
+                <input type="text" placeholder="Pseudo" />
+                <input type="email" placeholder="Adresse email" />
+                <input type="tel" placeholder="Numéro de téléphone" />
+                <input type="password" placeholder="Mot de passe" />
+                <input type="password" placeholder="Confirmer le mot de passe" />
+                <button class="logbtn">S'inscrire</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Connexion</h1>
+                <!-- <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div> -->
+                <!-- <span>or use your account</span> -->
+                <input type="email" placeholder="Adresse email ou pseudo" />
+                <input type="password" placeholder="Mot de passe" />
+                <a href="#">Mot de passe oublié ?</a>
+                <button class="logbtn">Se connecter</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Rebonjour !</h1>
+                    <!-- <p>To keep connected with us please login with your personal info</p> -->
+                    <p>Pour continuer ton aventure avec nous rentre tes identifiants et connecte toi</p>
+                    <button class="logbtn ghost" id="signIn">Connexion</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Salut l'ami !</h1>
+                    <!-- <p>Enter your personal details and start journey with us</p> -->
+                    <p>Choisi des identifiants pour commencer ton aventure à nos côtés</p>
+                    <button class="logbtn ghost" id="signUp">Créer un compte</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {{end}}

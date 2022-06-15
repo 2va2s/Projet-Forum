@@ -8,12 +8,17 @@
     <title>Document</title>
     <link rel="icon" href="/static/logo.svg">
     <link rel="stylesheet" href="/static/style/user.css">
-    <link rel="stylesheet" href="/static/style/.layout.css">
+    <link rel="stylesheet" href="../static/style/.layout.css">
 </head>
 
 <body>
     {{template "menu"}}
     <div class="profilcard">
+        <div class="profilavatar"></div>
+        <div class="profilname">xXx_theKiller78</div>
+        <div class="profilrank">user</div>
+    </div>
+    <!-- <div class="profilcard">
         <div class="profilavatar"></div>
         <div class="vl"></div>
         <div class="profilinfo">
@@ -24,7 +29,7 @@
                 <p><b>Rang d'utilisateur:</b> user</p>
             </div>
         </div>
-    </div>
+    </div> -->
     <div id="profilposts">
         <div id="row1">
             <h1>Posts de l'utilisateur</h1>
@@ -70,5 +75,8 @@
         </div>
     </div>
 </body>
+
+<script type="text/javascript" src="../static/js/menu.js"></script>
+<script type="text/javascript" src="../static/js/login-signin.js"></script>
 
 </html>

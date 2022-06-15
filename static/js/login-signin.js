@@ -1,17 +1,36 @@
-const toLogin = () => {
-    // document.getElementById("login").style.transition = "margin 1000ms ease-in-out"
-    // document.getElementById("register").style.transition = "margin 1000ms ease-in-out"
-    document.getElementById("register").style.marginLeft = "-680%"
-    // document.getElementById("register").style.
-    document.getElementById("login").style.marginLeft = "0"
-}
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+const logBlocker = document.getElementById('logblocker')
+const signIn = document.getElementById('menusignin')
+const signUp = document.getElementById('menusignup')
 
-const toRegister = () => {
-    // document.getElementById("register").style.transition = "margin 1000ms ease-in-out"
-    // document.getElementById("login").style.transition = "margin 1000ms ease-in-out"
-    document.getElementById("login").style.marginLeft = "-680%"
-    document.getElementById("register").style.marginLeft = "0"
-}
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+
+logBlocker.addEventListener('click', () => {
+	document.getElementById('container').style.display = 'none'
+    logBlocker.style.display = 'none'
+    document.body.style.overflow = 'auto'
+});
+
+signUp.addEventListener('click', () => {
+	container.style.display = 'block'
+    logBlocker.style.display = 'block'
+    container.classList.add("right-panel-active");
+    document.body.style.overflow = 'hidden'
+});
+
+signIn.addEventListener('click', () => {
+	container.style.display = 'block'
+    logBlocker.style.display = 'block'
+    document.body.style.overflow = 'hidden'
+});
 
 const checkLoginForm = () => {
     fetch("/users").then(function (response) {
