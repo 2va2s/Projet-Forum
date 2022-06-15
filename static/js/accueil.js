@@ -13,7 +13,7 @@ if (conn.innerText != 'Connecté en tant que') {
 console.log("displaying post")
 fetch("/topics").then(function (response) {
     return response.json()
-}).then(response => FilterBy(response)).then(function (response) {
+}).then(function (response) {
     let list = document.getElementById("topicList")
     for (let i in response) {
         const p = document.createElement('div')
