@@ -103,16 +103,20 @@ func main() {
 			return
 		}
 		r.ParseForm()
-		// objet := r.Form.Get("objetsupport")
-		// corps := r.Form.Get("corpssupport")
-		// result := objet + "\n" + corps
-		// fmt.Println(result)
 		http.Redirect(w, r, "/", http.StatusFound)
 		//joindre le ticket a la bdd pour l'afficher dans le profil du superadmin
 	})
 
 	rr.HandleFunc("/Equipe", func(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("./pages/equipe.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+		if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+		}
+	})
+
+	rr.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		tmpl := template.Must(template.ParseFiles("./pages/test.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
 		if r.Method != http.MethodPost {
 			tmpl.Execute(w, nil)
 			return
@@ -147,7 +151,8 @@ func main() {
 		a := pckg.GetPostRows(postList)
 		for i := 0; i < len(a); i++ {
 			rr.HandleFunc("/topic/"+strconv.Itoa(a[i].ID), func(w http.ResponseWriter, r *http.Request) {
-				http.ServeFile(w, r, "./pages/topic.html")
+				tmpl := template.Must(template.ParseFiles("./pages/topic.html", "./templates/footer.html", "./templates/logo.html", "./templates/menu.html"))
+				tmpl.Execute(w, nil)
 			})
 		}
 		json, _ := json.Marshal(a)
