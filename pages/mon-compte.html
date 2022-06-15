@@ -12,34 +12,20 @@
 <body>
     {{template "menu"}}
 
-    <div id="logo">
-        <p>Logo</p>
-    </div>
-    <form id="barreRecherche" method="post">
-        <input id="barreRecherche" type="search">
-    </form>
-
-    <div id="avatar">
-        <p>Avatar</p>
-    </div>
+    
 
 
     <div id="compte">
-        <ul>
-            <li>
+        
                 <button id="monCompte">Mon compte</button>
-            </li>
-            <li>
+                
+           
                 <button id="posts">Posts sauvegardés/likés</button>
-            </li>
-            <li>
+           
                 <button id="mesCommentaires">Mes commentaires</button>
-            </li>
-            <li>
-                <button id="déconnexion">Déconnexion</button>
-            </li>
-        </ul>
-
+           
+                <button id="déconnexion" type="submit">Se déconnecter</button>
+                
 
 
 
@@ -50,7 +36,7 @@
             <div id="pseudo">
                 <div class="wrapper">
                     <div class="input-data">
-                        <input type="text" required>
+                        <div>required</div> 
 
                         <label>Pseudo :</label>
                     </div>
@@ -145,6 +131,24 @@
 
         </div>
     </div>
+    <div id="openPopup">
+                    
+            
+                        
+                
+        <div
+                        style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center; top: 25vh; left: 3vw;">
+                        <a href=""><img src="/static/logo.svg" height="90%;" style="margin: 10px"></a>
+                        <h3 style="margin: 5px">Vous devez être connecté pour effectuer cette action</h3>
+                        <div style="display:flex; align-items:center; position:relative;right:20px;">
+                            <a href="/connexion-inscription" class="signin">Se connecter</a>
+                            <form method="get" action="/connexion-inscription">
+                                <button class="signup"><span> S'inscrire</span></button>
+                            </form>
+                        </div>
+                   
+                    </div>
+                </div>
     </div>
 </body>
 <script type="text/javascript" src="/static/js/mon-profil.js"></script>

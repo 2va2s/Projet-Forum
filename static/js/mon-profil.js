@@ -12,7 +12,8 @@ let déco = document.getElementById("déco");
 let mesCommentaires = document.getElementById("mesCommentaires");
 let commentaires = document.getElementById("commentaires");
 let badges = document.getElementById("badges");
-let déroul = document.getElementById("scroll")
+let déroul = document.getElementById("scroll");
+let openPopup = document.getElementById("openPopup")
 
 monCompte.addEventListener("click", () => {
     
@@ -26,7 +27,9 @@ monCompte.addEventListener("click", () => {
         liste.style.display = "none"
         déco.style.display = "none";
         commentaires.style.display = "none"
-        déroul.style.display = "none"   
+        déroul.style.display = "none"
+        openPopup.style.display ="none"
+          
     }
 )
 
@@ -41,19 +44,13 @@ posts.addEventListener("click", () => {
         déco.style.display = "none";
         commentaires.style.display ="none"
         badges.style.display ="none"
+        openPopup.style.display ="none"
+        
     } 
 )
 
 déconnexion.addEventListener("click", () => {
-        déco.style.display = "block"
-        liste.style.display = "none"
-        photo.style.display = "none";
-        pseudo.style.display = "none";
-        mail.style.display = "none";
-        rang.style.display = "none";
-        commentaires.style.display = "none"
-        badges.style.display = "none"
-        déroul.style.display = "none"
+        openPopup.style.display ="block"
         
 })
 
@@ -66,5 +63,10 @@ mesCommentaires.addEventListener("click", () => {
         mail.style.display = "none";
         rang.style.display = "none";
         badges.style.display = "none"
+        openPopup.style.display ="none"
+        
 })
 
+openPopup.addEventListener("click",() => {
+        openPopup.style.display = "none"
+})
