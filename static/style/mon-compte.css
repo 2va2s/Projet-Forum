@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background-color: #698EA2;
 }
 
 #barreHaut{
@@ -166,7 +167,7 @@ justify-content: center;
 
 
 .buttonMenu{
-    border: 5px solid black;
+    border: 5px solid #1C1F4C;
     
     background-color: aliceblue;
 }
@@ -318,11 +319,11 @@ justify-content: center;
     display: block;
     width: 47vw;
     height: 20vh;
-    background-color: azure;
+    background-color:#FFE8A4;
     position: fixed;
     top: 65vh;
     left: 35vw;
-    background-color: gray;
+    
     text-align: center;
 }
 
