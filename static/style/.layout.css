@@ -221,6 +221,20 @@
     display: none;
 }
 
+#logerror {
+    background-color: #cc0000;
+    position: fixed;
+    min-width: 10%;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 1%;
+    text-align: center;
+    border-radius: 50px 50px;
+    z-index: 999;
+    display: none;
+}
+
 .container {
     /* background: #f6f5f7; */
 	display: flex;
