@@ -23,6 +23,7 @@ type User struct {
 	Mail       string
 	Number     int
 	ProfilePic string
+	Level      string
 }
 
 type Post struct {
@@ -56,7 +57,7 @@ func GetUserRows(rows *sql.Rows) []User {
 	final := make([]User, 0)
 	for rows.Next() {
 		var u User
-		err := rows.Scan(&u.ID, &u.ProfilePic, &u.Pseudo, &u.Mail, &u.Number, &u.Password)
+		err := rows.Scan(&u.ID, &u.Pseudo, &u.Password, &u.Mail, &u.Number, &u.ProfilePic, &u.Level)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -105,11 +106,11 @@ func InitDatabase(database string) *sql.DB {
 				PRAGMA foreign_keys = ON;
 				CREATE TABLE IF NOT EXISTS user (
 					ID INTEGER PRIMARY KEY AUTOINCREMENT,
-					ProfilePic STRING SECONDARY KEY,
 					Pseudo STRING NOT NULL UNIQUE,
+					Password STRING NOT NULL,
 					Mail STRING UNIQUE,
 					Number STRING UNIQUE,
-					Password STRING NOT NULL,
+					ProfilePic STRING,
 					Level STRING
 				);
 				CREATE TABLE IF NOT EXISTS category (

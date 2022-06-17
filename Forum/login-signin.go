@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"text/template"
 
@@ -22,6 +23,15 @@ type UserData struct {
 	Password []string `json:"password"`
 	UserID   []string `json:"user_id"`
 }
+
+type signinParams struct {
+	Pseudo    string `json:"Pseudo"`
+	Mail      string `json:"Email"`
+	Number    string `json:"Number"`
+	Password  string `json:"Password"`
+	Password2 string `json:"Password2"`
+}
+
 type UserDataConvert struct {
 	Pseudo   string `json:"pseudo"`
 	Password string `json:"password"`
@@ -53,17 +63,23 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+	var params signinParams
+	body, _ := ioutil.ReadAll(r.Body)
+	json.Unmarshal(body, &params)
+	fmt.Println(params)
+
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Error parsing form", 500)
 	}
+
 	if r.URL.Path != "/signin" {
 		http.NotFound(w, r)
 		return
 	}
 
-	_, err := Create(db, "user", User{}, r.Form.Get("pseudo"), Encrypt(r.Form.Get("password")), r.Form.Get("mail"), r.Form.Get("number"), "")
+	_, err := Create(db, "user", User{}, params.Pseudo, params.Password, params.Mail, params.Number, "", "1")
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println("error on user creation " + err.Error())
 	}
 }
 
