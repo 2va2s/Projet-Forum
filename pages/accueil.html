@@ -9,21 +9,25 @@
     <link rel="icon" href="/static/logo.svg">
     <link rel="stylesheet" href="/static/style/accueil.css">
     <link rel="stylesheet" href="/static/style/.layout.css">
-    <link rel="stylesheet" href="../static/style/login-signin.css">
     <link rel="stylesheet" href="/static/style/components/postCard.css">
 </head>
 
 <body>
     {{template "menu"}}
     <div id="firsthalf">
-        <div id="citation">
-            <h1>"Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur."</h1>
-            <h2>-Nelson Mandela</h2>
+        <div id="banner">
+            <div id="box-citation">
+                <h1>"Le courage n'est pas l'absence de peur, mais la capacité de vaincre ce qui fait peur."</h1>
+                <h2>-Nelson Mandela</h2>
+            </div>
         </div>
+
         <div id="posts">
             <h2 id="connected"> Connecté en tant que {{.Pseudo}} <p id="userId" style="display: none">{{.UserID}}</p>
             </h2>
-            <p id="topicList"> liste des topics :<br></p>
+            <p id="topicList"><br></p>
+            <a href="/logout" id="logout">Déconnexion</a>
+            <a href="/connexion-inscription" id="login" style="display:none;">Se connecter</a>
         </div>
     </div>
     <div id="filters"></div>
@@ -31,9 +35,7 @@
 
 <script type="text/javascript" src="../static/js/accueil.js"></script>
 <script type="text/javascript" src="../static/js/menu.js"></script>
-<script type="text/javascript" src="../static/js/login-signin.js"></script>
 <script type="text/javascript">
-    
     const redirectToPost = (id) => {
         fetch('/posts').then(location.href = '/topic/' + id)
     }
