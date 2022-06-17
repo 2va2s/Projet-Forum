@@ -7,7 +7,32 @@
     margin-right: 65%;
 }
 
+.separatedfilters {
+    display: flex;
+    /* flex-direction: column; */
+}
 
+#catégories {
+    width: 50%;
+    height: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+#catégories div {
+    margin-bottom: 2%;
+    margin-left: 20%;
+}
+
+#catégories div label {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.others {
+    width: 50%;
+    height: 100%;
+}
 
 h1 {
     position: relative;
@@ -86,4 +111,15 @@ button {
 .btn-5:hover:after {
     width: 100%;
     transition: 800ms ease all;
+}
+
+
+input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #bfbfc0;
+    border-radius: 50%;
 }
