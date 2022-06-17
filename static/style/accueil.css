@@ -1,41 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');
 
 body {
-    background: linear-gradient(0deg, rgba(182,255,241,1) 0%, rgba(0,195,238,1) 100%);
+    background-color :#698EA2;
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
+
 #firsthalf {
     position: absolute;
     height: 100%;
-    width: 100%;
+    width: 70%;
     /* background-color: #698EA2; */
     z-index: -1;
 }
 
-#banner {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/da4a8e35051401.57176f2e5dbe5.jpg);
-    background-position: center;
-    height: 40%;
-    width: 100%;
-    background-color: #ffffff;
-    z-index: -1;
-    margin: 10% auto;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-}
-
-#box-citation {
+#citation {
     width: 70%;
     height: 20%;
-    color: rgb(255, 255, 255);
+    /* background-color: red; */
+    color: white;
     font-style: italic;
     font-family: 'Qwigley', cursive;
     margin: 15% auto;
@@ -43,7 +29,7 @@ body {
 
 #posts {
     width: 90%;
-    margin:  35% auto;
+    margin: -10% auto;
     display: flex;
     flex-direction: column;
     overflow: auto;
