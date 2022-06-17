@@ -4,6 +4,8 @@ const container = document.getElementById('container');
 const logBlocker = document.getElementById('logblocker')
 const signIn = document.getElementById('menusignin')
 const signUp = document.getElementById('menusignup')
+const notLoggedSignIn = document.getElementById('notLoggedLogIn')
+const notLoggedSignUp = document.getElementById('notLoggedLogUp')
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
@@ -29,6 +31,21 @@ signUp.addEventListener('click', () => {
 signIn.addEventListener('click', () => {
 	container.style.display = 'block'
     logBlocker.style.display = 'block'
+    container.classList.remove("right-panel-active");
+    document.body.style.overflow = 'hidden'
+});
+
+notLoggedSignUp.addEventListener('click', () => {
+	container.style.display = 'block'
+    logBlocker.style.display = 'block'
+    container.classList.add("right-panel-active");
+    document.body.style.overflow = 'hidden'
+});
+
+notLoggedSignIn.addEventListener('click', () => {
+	container.style.display = 'block'
+    logBlocker.style.display = 'block'
+    container.classList.remove("right-panel-active");
     document.body.style.overflow = 'hidden'
 });
 

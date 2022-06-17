@@ -16,7 +16,7 @@
             <div id="menusignin">Se connecter</div>
             <div id="menusignup"><span>S'inscrire</span></div>
         </div>
-        <div id="notLoggedAlert" onclick="document.getElementById('notLoggedAlert').style.display= 'none'"
+        <!-- <div id="notLoggedAlert" onclick="document.getElementById('notLoggedAlert').style.display= 'none'"
             style="display:none;width:100vw;height:100vh;position:absolute;top:0px;right:0px;bottom:0px;background-color: rgb(59 59 59 / 52%);flex-direction: column;align-items: center;justify-content: center;">
             <div
                 style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center;">
@@ -30,7 +30,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div id="connected-menu" onclick="showContent()" style="display:none;">
             <div class="avatar"></div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -62,17 +62,17 @@
 </div>
 
 
-<div id="notLoggedAlert" onclick="document.getElementById('notLoggedAlert').style.display= 'none'"
-    style="display:none;width:100vw;height:100vh;position:fixed;top:0px;right:0px;bottom:0px;background-color: rgb(59 59 59 / 52%);flex-direction: column;align-items: center;justify-content: center;">
-    <div
-        style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center;">
+<div id="notLoggedAlert" onclick="document.getElementById('notLoggedAlert').style.display= 'none'">
+    <div id="notLoggedContainer">
         <a href=""><img src="/static/logo.svg" height="90%" style="margin: 10px"></a>
         <h3 style="margin: 5px">Vous devez être connecté pour effectuer cette action</h3>
-        <div class="" style="display:flex; align-items:center; position:relative;right:20px">
-            <a href="/connexion-inscription" class="signin">Se connecter</a>
+        <div class="notLoggedButtons">
+            <!-- <a href="/connexion-inscription" class="signin">Se connecter</a>
             <form method="get" action="/connexion-inscription">
                 <button class="signup"><span> S'inscrire</span></button>
-            </form>
+            </form> -->
+            <div id="notLoggedLogIn">Se connecter</div>
+            <div id="notLoggedLogUp">S'inscrire</div>
         </div>
     </div>
 </div>
