@@ -1,12 +1,13 @@
-
-
 .postCard {
     display: flex;
-    background-color: #FFE8A4;
-    border-radius: 15px;
-    width: 80%;
+    background-color: #ffffff;
+    border-radius: 2px;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    width: 65%;
     height: 20%;
-    margin: 20px
+    /* margin: 5px */
 }
 
 .pp {
@@ -21,8 +22,22 @@
     width: 65%;
     padding-left: 1%;
     padding-right: 1%;
+    overflow: hidden;
 }
 
+.middleCard h2 {
+    padding-top: 2vh;
+    font-size: 1em;
+    /* background-color: white; */
+    font-family: 'verdana';
+}
+
+.middleCard p {
+    font-size: 0.9em;
+    
+    font-family: 'verdana';
+    color: #767676;
+}
 .pastilles-wrap {
     display: flex;
 }
@@ -36,6 +51,7 @@
     justify-content: center;
     margin-right: 2%;
     margin-bottom: 5px;
+    color: linear-gradient(transparent, rgba(255, 255, 255, 0.5));
 }
 
 .rightCard {
@@ -48,9 +64,11 @@
 }
 
 .vote {
-    width: 150%;
+    width: 80%;
     height:50%;
     padding-left: 20%;
+    align-items: center;
+
     display: block;
 }
 
