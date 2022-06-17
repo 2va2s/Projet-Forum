@@ -13,7 +13,7 @@ let mesCommentaires = document.getElementById("mesCommentaires");
 let commentaires = document.getElementById("commentaires");
 let badges = document.getElementById("badges");
 let déroul = document.getElementById("scroll");
-let openPopup = document.getElementById("openPopup")
+let non = document.getElementById("non")
 
 monCompte.addEventListener("click", () => {
     
@@ -67,6 +67,6 @@ mesCommentaires.addEventListener("click", () => {
         
 })
 
-openPopup.addEventListener("click",() => {
+non.addEventListener("click",() => {
         openPopup.style.display = "none"
 })
