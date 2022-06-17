@@ -77,6 +77,11 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
+	if params.Password != params.Password2 {
+		w.Write([]byte("Erreur: Mots de passes non identique"))
+		return
+	}
+
 	_, err := Create(db, "user", User{}, params.Pseudo, params.Password, params.Mail, params.Number, "", "1")
 	if err != nil {
 		fmt.Println("error on user creation " + err.Error())

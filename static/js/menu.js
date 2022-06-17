@@ -21,5 +21,5 @@ function onClickRegister() {
       Password: document.getElementById("signinPassword").value,
       Password2: document.getElementById("signinPassword2").value
     })
-  })
+  }).then(response => response.json())
 }
