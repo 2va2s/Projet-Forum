@@ -21,7 +21,7 @@ type User struct {
 	Pseudo     string
 	Password   string
 	Mail       string
-	Number     int
+	Number     string
 	ProfilePic string
 	Level      string
 }

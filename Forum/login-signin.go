@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"text/template"
 
 	"github.com/gorilla/sessions"
@@ -86,8 +87,20 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		w.Write([]byte("Erreur: Mots de passes non identique"))
 		return
 	}
+	if len(params.Password) < 7 {
+		w.Write([]byte("Erreur: Le mot de passe doit contenir au moins 6 caractères"))
+		return
+	}
+	if _, err := strconv.Atoi(params.Number); err != nil || len(params.Number) != 10 {
+		w.Write([]byte("Erreur: Le numéro de téléphone est invalide"))
+		return
+	}
+	if params.Pseudo == "" || params.Password == "" || (params.Mail == "" && params.Number == "") {
+		w.Write([]byte("Erreur: Veuillez renseigner tous les champs obligatoire"))
+		return
+	}
 
-	_, err := Create(db, "user", User{}, params.Pseudo, params.Password, params.Mail, params.Number, "", "1")
+	_, err := Create(db, "user", User{}, params.Pseudo, Encrypt(params.Password), params.Mail, params.Number, "", "1")
 	if err != nil {
 		fmt.Println("error on user creation " + err.Error())
 	}
@@ -120,7 +133,7 @@ func HandleLogin(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 	if connexion != nil {
 		fmt.Println(connexion)
 		fmt.Println("error: Wrong password or username. Please try again.")
-		w.Write([]byte("Error"))
+		w.Write([]byte("Erreur: Pseudo ou mot de passe erroné"))
 	} else {
 		fmt.Println("utilisateur trouvé dans la bdd")
 		// tmpl, _ := template.ParseFiles("./pages/accueil.html")
