@@ -6,6 +6,7 @@ const signIn = document.getElementById('menusignin')
 const signUp = document.getElementById('menusignup')
 const notLoggedSignIn = document.getElementById('notLoggedLogIn')
 const notLoggedSignUp = document.getElementById('notLoggedLogUp')
+const logError = document.getElementById('logerror')
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
@@ -18,6 +19,7 @@ signInButton.addEventListener('click', () => {
 logBlocker.addEventListener('click', () => {
 	document.getElementById('container').style.display = 'none'
     logBlocker.style.display = 'none'
+    logError.style.display = 'none'
     document.body.style.overflow = 'auto'
 });
 
