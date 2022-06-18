@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background-color: #698EA2;
 }
 
 #barreHaut{
@@ -75,7 +76,7 @@ body{
 #monCompte{
     
     font-size: x-large;
-    height: 5vh;
+   
     
     position: absolute;
     top: 2vh;
@@ -86,7 +87,7 @@ body{
 #posts{
     
     font-size: x-large;
-    height: 10vh;
+    
     position: absolute;
     top:12vh;
     left: 5vw;
@@ -96,20 +97,23 @@ body{
 #mesCommentaires{
     
     font-size: x-large;
-    height: 5vh;
+    
     position: absolute;
     top:27vh;
     left: 5vw;
+    
     width: 20vw;
 }
 
 #déconnexion{
     
     font-size: x-large;
-    height: 5vh; position: absolute;
+     
+    position: absolute;
     top:37vh;
     left: 5vw;
     width: 20vw;
+    margin-top: 5vh;
 }
 
 #openPopup{
@@ -146,10 +150,33 @@ justify-content: center;
     margin-top: 15vh;
 }
 
-.popup button{
-    margin-top: 5vh;
-    margin-left: 15vw;
+.buttonPopup{
     font-size: x-large;
+    background-color: aliceblue;
+    transition: ease-out 0.3s;
+    border-radius: 10px;
+    width: 15vw;
+    
+}
+
+.buttonPopup:hover{
+    box-shadow:inset 15vw 0 0 0 black;
+    color: aliceblue;
+}
+
+
+
+.buttonMenu{
+    border: 5px solid #1C1F4C;
+    
+    background-color: aliceblue;
+}
+
+.buttonMenu:hover{
+    transform: translateX(40%);
+    transition: 0.3s;
+    background-color: black;
+    color: aliceblue;
 }
 
 
@@ -292,11 +319,11 @@ justify-content: center;
     display: block;
     width: 47vw;
     height: 20vh;
-    background-color: azure;
+    background-color:#FFE8A4;
     position: fixed;
     top: 65vh;
     left: 35vw;
-    background-color: gray;
+    
     text-align: center;
 }
 

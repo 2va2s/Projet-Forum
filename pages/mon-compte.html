@@ -17,14 +17,14 @@
 
     <div id="compte">
         
-                <button id="monCompte">Mon compte</button>
+                <button id="monCompte" class="buttonMenu">Mon compte</button>
                 
            
-                <button id="posts">Posts sauvegardés/likés</button>
+                <button id="posts" class="buttonMenu">Posts sauvegardés/likés</button>
            
-                <button id="mesCommentaires">Mes commentaires</button>
+                <button id="mesCommentaires" class="buttonMenu">Mes commentaires</button>
            
-                <button id="déconnexion" type="submit">Se déconnecter</button>
+                <button id="déconnexion" class="buttonMenu" type="submit">Se déconnecter</button>
                 
 
 
@@ -139,12 +139,12 @@
         <div
                         style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center; top: 25vh; left: 3vw;">
                         <a href=""><img src="/static/logo.svg" height="90%;" style="margin: 10px"></a>
-                        <h3 style="margin: 5px">Vous devez être connecté pour effectuer cette action</h3>
+                        <h3 style="margin: 5px">Êtes-vous de vouloir vous déconnecter ?</h3>
                         <div style="display:flex; align-items:center; position:relative;right:20px;">
-                            <a href="/connexion-inscription" class="signin">Se connecter</a>
-                            <form method="get" action="/connexion-inscription">
-                                <button class="signup"><span> S'inscrire</span></button>
-                            </form>
+                            
+                                <a href="/logout" style="margin: 2.5vw;"><button class="buttonPopup">oui</button></a>
+                                <a href=""></a><button class="buttonPopup" id="non">non</button></a>
+                            
                         </div>
                    
                     </div>
