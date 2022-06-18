@@ -23,3 +23,18 @@ function onClickRegister() {
     })
   }).then(response => response.json())
 }
+
+function onClickLogin() {
+  fetch("/login", {
+    method: 'POST',
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      Pseudo: document.getElementById("loginPseudo").value,
+      Password: document.getElementById("loginPassword").value
+    })
+  }).then(response => response.text()).then(response => {
+    console.log("aa " + response)
+  })
+}

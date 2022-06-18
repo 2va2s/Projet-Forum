@@ -19,9 +19,9 @@ var (
 )
 
 type UserData struct {
-	Pseudo   []string `json:"pseudo"`
-	Password []string `json:"password"`
-	UserID   []string `json:"user_id"`
+	Pseudo   [1]string `json:"pseudo"`
+	Password [1]string `json:"password"`
+	UserID   [1]string `json:"user_id"`
 }
 
 type signinParams struct {
@@ -30,6 +30,11 @@ type signinParams struct {
 	Number    string `json:"Number"`
 	Password  string `json:"Password"`
 	Password2 string `json:"Password2"`
+}
+
+type loginParams struct {
+	Pseudo   string `json:"Pseudo"`
+	Password string `json:"Password"`
 }
 
 type UserDataConvert struct {
@@ -68,9 +73,9 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	json.Unmarshal(body, &params)
 	fmt.Println(params)
 
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "Error parsing form", 500)
-	}
+	// if err := r.ParseForm(); err != nil {
+	// 	http.Error(w, "Error parsing form", 500)
+	// }
 
 	if r.URL.Path != "/signin" {
 		http.NotFound(w, r)
@@ -90,35 +95,46 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 
 func HandleLogin(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 
-	var dbPseudo string
-	var dbPwd string
-	var dbId string
+	// if err := r.ParseForm(); err != nil {
+	// 	http.Error(w, "Error parsing form", 500)
+	// }
 
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "Error parsing form", 500)
-	}
+	// pseudo := r.Form.Get("pseudo")
+	// password := Encrypt(r.Form.Get("password"))
 
-	pseudo := r.Form.Get("pseudo")
-	password := Encrypt(r.Form.Get("password"))
-
+	var params loginParams
+	body, _ := ioutil.ReadAll(r.Body)
+	json.Unmarshal(body, &params)
+	fmt.Println(params)
 	if r.URL.Path != "/login" {
 		http.NotFound(w, r)
 		return
 	}
 
-	loginQuery := db.QueryRow("SELECT pseudo, password, id FROM user WHERE pseudo=?", pseudo, password)
-	connexion := loginQuery.Scan(&dbPseudo, &dbPwd, &dbId)
+	fmt.Println(params.Pseudo + " zz " + params.Password)
+	loginQuery := db.QueryRow("SELECT pseudo, password, id FROM user WHERE Pseudo=? AND Password=? ", params.Pseudo, Encrypt(params.Password))
+	fmt.Println(loginQuery)
+	u := UserData{}
+	connexion := loginQuery.Scan(&u.Pseudo[0], &u.Password[0], &u.UserID[0])
 
 	if connexion != nil {
+		fmt.Println(connexion)
 		fmt.Println("error: Wrong password or username. Please try again.")
+		w.Write([]byte("Error"))
 	} else {
-
+		fmt.Println("utilisateur trouvé dans la bdd")
 		// tmpl, _ := template.ParseFiles("./pages/accueil.html")
 
-		session, _ := store.Get(r, "cookie-forum")
+		session, err := store.Get(r, "cookie-forum")
 
-		r.PostForm["user_id"] = []string{dbId}
-		res, _ := json.Marshal(r.PostForm)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
+		res, err := json.Marshal(u)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
 		session.Values["authenticated"] = string(res)
 		session.Save(r, w)
 		http.Redirect(w, r, "/", http.StatusFound)
