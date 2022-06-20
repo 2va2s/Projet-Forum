@@ -12,53 +12,49 @@
 <body>
     {{template "menu"}}
 
-    
+
 
 
     <div id="compte">
-        
-                <button id="monCompte" class="buttonMenu">Mon compte</button>
-                
-           
-                <button id="posts" class="buttonMenu">Posts sauvegardés/likés</button>
-           
-                <button id="mesCommentaires" class="buttonMenu">Mes commentaires</button>
-           
-                <button id="déconnexion" class="buttonMenu" type="submit">Se déconnecter</button>
-                
+
+        <button id="monCompte" class="buttonMenu">Mon compte</button>
+
+
+        <button id="posts" class="buttonMenu">Posts sauvegardés/likés</button>
+
+        <button id="mesCommentaires" class="buttonMenu">Mes commentaires</button>
+
+        <button id="déconnexion" class="buttonMenu" type="submit">Se déconnecter</button>
+
 
 
 
         <form id="info">
             <div id="photo">
-                <ul>Photo</ul>
+                <ul></ul>
             </div>
             <div id="pseudo">
+                <label>Pseudo :</label>
                 <div class="wrapper">
                     <div class="input-data">
-                        <div>required</div> 
+                        <p id="PseudoDisplay" style="margin:0 !important"></p>
 
-                        <label>Pseudo :</label>
                     </div>
                 </div>
             </div>
-
             <div id="e-mail">
+                <label>Email :</label>
                 <div class="wrapper">
                     <div class="input-data">
-                        <input type="email" required>
-                        <label>e-mail :</label>
-
+                        <p id="EmailDisplay" style="margin:0 !important"></p>
                     </div>
                 </div>
             </div>
-
             <div id="rang">
+                <label>Téléphone :</label>
                 <div class="wrapper">
                     <div class="input-data">
-
-                        <input type="number" required>
-                        <label>rang :</label>
+                        <p id="NumberDisplay" style="margin:0 !important"></p>
                     </div>
                 </div>
             </div>
@@ -132,25 +128,26 @@
         </div>
     </div>
     <div id="openPopup">
-                    
-            
-                        
-                
+
+
+
+
         <div
-                        style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center; top: 25vh; left: 3vw;">
-                        <a href=""><img src="/static/logo.svg" height="90%;" style="margin: 10px"></a>
-                        <h3 style="margin: 5px">Êtes-vous de vouloir vous déconnecter ?</h3>
-                        <div style="display:flex; align-items:center; position:relative;right:20px;">
-                            
-                                <a href="/logout" style="margin: 2.5vw;"><button class="buttonPopup">oui</button></a>
-                                <a href=""></a><button class="buttonPopup" id="non">non</button></a>
-                            
-                        </div>
-                   
-                    </div>
-                </div>
+            style=" width:40%;height:38%;margin:0 auto;background:#f7f7f7;position:relative;bottom: 5%;display:flex;flex-direction: column;align-items: center; top: 25vh; left: 3vw;">
+            <a href=""><img src="/static/logo.svg" height="90%;" style="margin: 10px"></a>
+            <h3 style="margin: 5px">Êtes-vous de vouloir vous déconnecter ?</h3>
+            <div style="display:flex; align-items:center; position:relative;right:20px;">
+
+                <a href="/logout" style="margin: 2.5vw;"><button class="buttonPopup">oui</button></a>
+                <a href=""></a><button class="buttonPopup" id="non">non</button></a>
+
+            </div>
+
+        </div>
+    </div>
     </div>
 </body>
 <script type="text/javascript" src="/static/js/mon-profil.js"></script>
+
 
 </html>

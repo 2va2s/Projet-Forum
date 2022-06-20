@@ -1,11 +1,12 @@
 .postCard {
     display: flex;
+    justify-content: space-between;
     background-color: #ffffff;
     border-radius: 2px;
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-    width: 65%;
+    /* width: 65%; */
     height: 20%;
     /* margin: 5px */
 }
@@ -34,10 +35,11 @@
 
 .middleCard p {
     font-size: 0.9em;
-    
+
     font-family: 'verdana';
     color: #767676;
 }
+
 .pastilles-wrap {
     display: flex;
 }
@@ -57,7 +59,7 @@
 .rightCard {
     display: flex;
     flex-direction: column;
-    width: 14%;
+    width: 11%;
     font-size: 82%;
     padding-left: 1%;
     color: rgb(77, 77, 77)
@@ -65,7 +67,7 @@
 
 .vote {
     width: 80%;
-    height:50%;
+    height: 50%;
     padding-left: 20%;
     align-items: center;
 

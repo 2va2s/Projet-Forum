@@ -53,6 +53,12 @@ type IsUpvotedParams struct {
 	PostId string
 }
 
+type Upvote struct {
+	ID     string
+	UserId string
+	PostId string
+}
+
 func GetUserRows(rows *sql.Rows) []User {
 	final := make([]User, 0)
 	for rows.Next() {
@@ -86,6 +92,21 @@ func GetCategoryRows(rows *sql.Rows) []Category {
 		// fmt.Println(rows)
 		var u Category
 		err := rows.Scan(&u.ID, &u.Name, &u.Color)
+		if err != nil {
+			log.Fatal(err)
+		}
+		final = append(final, u)
+		// fmt.Println(u)
+	}
+	return final
+}
+
+func GetUpvoteRows(rows *sql.Rows) []Upvote {
+	final := make([]Upvote, 0)
+	for rows.Next() {
+		// fmt.Println(rows)
+		var u Upvote
+		err := rows.Scan(&u.ID, &u.UserId, &u.PostId)
 		if err != nil {
 			log.Fatal(err)
 		}

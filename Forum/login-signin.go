@@ -186,6 +186,16 @@ func IfExists(db *sql.DB, target string, table string, field string) {
 	// fmt.Printf("%v", res)
 }
 
+func GetUserId(r *http.Request) string {
+	var data UserData = UserData{}
+	session, _ := store.Get(r, "cookie-forum")
+	auth := session.Values["authenticated"]
+	if auth != nil {
+		json.Unmarshal([]byte(auth.(string)), &data)
+	}
+	return data.UserID[0]
+}
+
 func IsLogged(r *http.Request) bool {
 	var data UserData = UserData{}
 	session, _ := store.Get(r, "cookie-forum")

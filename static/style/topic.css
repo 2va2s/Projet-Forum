@@ -8,9 +8,10 @@ body {
 
 #postContainer {
     width: 100%;
-    background-color:red;
+    /* background-color:red; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 2%;
 }

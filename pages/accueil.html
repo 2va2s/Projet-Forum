@@ -20,9 +20,7 @@
             <h2>-Nelson Mandela</h2>
         </div>
         <div id="posts">
-            <h2 id="connected"> Connecté en tant que {{.Pseudo}} <p id="userId" style="display: none">{{.UserID}}</p>
-            </h2>
-            <p id="topicList"> liste des topics :<br></p>
+            <p id="topicList"><br></p>
         </div>
     </div>
     <div id="filters"></div>
@@ -31,61 +29,5 @@
 <script type="text/javascript" src="../static/js/accueil.js"></script>
 <script type="text/javascript" src="../static/js/menu.js"></script>
 <script type="text/javascript" src="../static/js/login-signin.js"></script>
-<script type="text/javascript">
-
-    const redirectToPost = (id) => {
-        fetch('/posts').then(location.href = '/topic/' + id)
-    }
-
-    const redirectToUser = (id) => {
-        fetch('/users').then(location.href = '/user/' + id)
-    }
-
-
-    connectedUser = document.getElementById("userId")?.innerText
-    const loadVote = (postId) => {
-        console.log("loading upvote")
-        fetch("/IsUpvoted", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({
-                UserId: connectedUser,
-                PostId: postId.toString()
-            })
-        }).then(response => response.text()).then(response => document.getElementById("arrowUp#" + postId).className = response)
-    }
-
-    const vote = (id, pol) => {
-        fetch("/UpdateVote", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({
-                Table: "post",
-                Id: connectedUser,
-                Field: "UpVote",
-                Where: "ID",
-                PostId: id.toString(),
-            })
-        }).then(response => response.text()).then(data => {
-            if (data != "isntLogged") {
-                arrowUp = document.getElementById("arrowUp#" + id)
-                if (data > document.getElementById("upvoteNumber#" + id).innerText) {
-                    arrowUp.className = "upvoteUp"
-                } else {
-                    arrowUp.className = "upvote"
-                }
-                // console.log("data:" + data)
-                document.getElementById("upvoteNumber#" + id).innerText = data
-            } else {
-                console.log("notLogged")
-                document.getElementById("notLoggedAlert").style.display = "flex"
-            }
-        })
-    }
-</script>
 
 </html>

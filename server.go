@@ -33,10 +33,12 @@ func main() {
 
 	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", 1, nil, userId1, "44/44", 0)
 	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "15/13", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 0, "Je suis 3", 1, postId2, userId1, "9312", 0)
+	// postId3, _ := pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 0, "Je suis 3", 1, postId2, userId1, "9312", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "4 4 4 4", 0, "Je suis 4", 1, postId3, userId1, "9312", 0)
 
 	// pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, "11 11 11 11", 1, "Je suis 11", 2, nil, userId1, "25/43", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "35/96", 0)
+	// parent22, _ := pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "35/96", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, parent22, userId2, "35/96", 0)
 	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "14/04", 0)
 
 	logsign, err := template.ParseFiles("./pages/login-signin.html")
@@ -54,7 +56,7 @@ func main() {
 	for i := 0; i < len(userData); i++ {
 		rr.HandleFunc("/user/"+strconv.Itoa(userData[i].ID), func(w http.ResponseWriter, r *http.Request) {
 			tmpl, _ := template.ParseFiles("./pages/user.html", "./templates/menu.html")
-			tmpl.Execute(w, nil)
+			tmpl.Execute(w, pckg.GetUserId(r))
 		})
 	}
 
@@ -63,7 +65,7 @@ func main() {
 	for i := 0; i < len(postArray); i++ {
 		rr.HandleFunc("/topic/"+strconv.Itoa(postArray[i].ID), func(w http.ResponseWriter, r *http.Request) {
 			tmpl, _ := template.ParseFiles("./pages/topic.html", "./templates/menu.html")
-			tmpl.Execute(w, nil)
+			tmpl.Execute(w, pckg.GetUserId(r))
 		})
 	}
 
@@ -196,6 +198,29 @@ func main() {
 		a := pckg.GetCategoryRows(topicList)
 		json, _ := json.Marshal(a)
 		w.Write(json)
+	})
+
+	rr.HandleFunc("/upvote", func(w http.ResponseWriter, r *http.Request) {
+		upvoteList := pckg.Get(db, "upvote", "")
+		a := pckg.GetUpvoteRows(upvoteList)
+		json, _ := json.Marshal(a)
+		w.Write(json)
+	})
+
+	rr.HandleFunc("/cookies-data", func(w http.ResponseWriter, r *http.Request) {
+		session, _ := store.Get(r, "cookie-forum")
+		auth := session.Values["authenticated"]
+		var data pckg.UserData = pckg.UserData{}
+
+		if auth != nil {
+			// fmt.Println("-")
+			// fmt.Println(auth.(string))
+			// fmt.Println	("-")
+			json.Unmarshal([]byte(auth.(string)), &data)
+			data2 := pckg.UserDataConvert{Pseudo: data.Pseudo[0], Password: data.Password[0], UserID: data.UserID[0]}
+			cookie, _ := json.Marshal(data2)
+			w.Write(cookie)
+		}
 	})
 
 	http.ListenAndServe(":8080", rr)

@@ -43,11 +43,13 @@
 <div id="connectedmenucontent">
     <div class="blocker" onclick="hideMenu()"></div>
     <div id="cm-container">
-        <div class="name">
-            <p>xXx_theKiller78</p>
+        <div class="name"
+            onclick="fetch('/cookies-data').then(response => response.json()).then(response => location.href = '/user/'+response.user_id)"
+            style="cursor: pointer">
+            <p id="DisplayPseudo"></p>
         </div>
-        <div class="profile">
-            <p>Mon profil</p>
+        <div class="profile" onclick="location.href = '/mon-compte'" style="cursor: pointer">
+            <p>Modifier mon profil</p>
         </div>
         <div class="disconnect">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
