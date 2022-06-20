@@ -97,7 +97,7 @@ func main() {
 	})
 
 	rr.HandleFunc("/mon-compte", func(w http.ResponseWriter, r *http.Request) {
-		tmpl, _ := template.ParseFiles("./pages/mon-compte.html", "./templates/menu.html")
+		tmpl, _ := template.ParseFiles("./pages/mon-compte.html", "./templates/menu.html", "./templates/footer.html")
 		tmpl.Execute(w, nil)
 	})
 

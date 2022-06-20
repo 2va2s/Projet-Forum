@@ -62,6 +62,10 @@ non.addEventListener("click", () => {
         openPopup.style.display = "none"
 })
 
+function close() {
+        console.log("test")
+}
+
 fetch("/cookies-data").then((response) => response.json()).then(data => {
         console.log("datas: " + data.pseudo)
         document.getElementById("PseudoDisplay").innerText = data.pseudo

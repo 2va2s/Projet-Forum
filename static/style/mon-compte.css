@@ -48,7 +48,7 @@ body {
 
 
 #compte {
-    background-color: #00848C;
+    /* background-color: #00848C; */
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -56,7 +56,7 @@ body {
     height: 30vh;
     top: 15vh;
     left: 1vw;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 20%;
 }
 
@@ -158,16 +158,22 @@ body {
 
 
 .buttonMenu {
-    border: 5px solid #1C1F4C;
-
+    border: 1px solid black;
+    border-radius: 10px 10px;
     background-color: aliceblue;
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 5px 5px 5px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    transition: all ease 0.5s;
+    cursor: pointer;
 }
 
 .buttonMenu:hover {
-    transform: translateX(40%);
+    /* transform: translateX(40%);
     transition: 0.3s;
     background-color: black;
-    color: aliceblue;
+    color: aliceblue; */
+    background-color: black;
+    color: white;
 }
 
 
