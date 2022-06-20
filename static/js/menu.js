@@ -35,7 +35,13 @@ function onClickLogin() {
       Pseudo: document.getElementById("loginPseudo").value,
       Password: document.getElementById("loginPassword").value
     })
-  }).then(response => response.text())
+  }).then(response => response.text()).then(response => {
+    if (response != "") {
+      let poppup = document.getElementById("logerror")
+      poppup.innerText = response
+      poppup.style.display = "block"
+    }
+  })
 }
 
 async function getUserId() {

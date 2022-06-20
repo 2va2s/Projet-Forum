@@ -343,6 +343,7 @@ form {
     padding: 0 50px;
     height: 100%;
     text-align: center;
+    height: 32vh;
 }
 
 input {
