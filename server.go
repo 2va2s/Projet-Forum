@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -25,11 +26,11 @@ func main() {
 
 	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
 
-	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
-	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
+	pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
+	pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
 
-	// pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
-	// pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
+	pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
+	pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
 
 	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", 1, nil, userId1, "44/44", 0)
 	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "15/13", 0)
@@ -171,7 +172,14 @@ func main() {
 		} else {
 			w.Write([]byte("isntLogged"))
 		}
+	})
 
+	rr.HandleFunc("/new-post", func(w http.ResponseWriter, r *http.Request) {
+		pckg.NewPost(w, r, db)
+	})
+
+	rr.HandleFunc("/addNewPost", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./pages/new-post.html")
 	})
 
 	// routes API

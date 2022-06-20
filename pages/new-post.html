@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouveau Post</title>
+
+</head>
+
+<body>
+    {{template "menu"}}
+    <div class="container">
+        <h1>Créer un nouveau post</h1>
+        <form action="/new-post" method="POST">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" id="titre" name="title" placeholder="Titre">
+            </div>
+            <div class="form-group">
+                <label for="post-body">Contenu</label>
+                <textarea id="post-body" name="post-body"></textarea>
+            </div>
+            <fieldset id="categories">
+                <legend>Quelles catégories?</legend>
+                <div>
+                    <input type="checkbox" id="horns" name="horns">
+                    <label for="horns">Argent</label>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </form>
+
+</body>
+<!-- <script type="text/javascript", src="../static/js/new-post.js"></script> -->
+
+</html>

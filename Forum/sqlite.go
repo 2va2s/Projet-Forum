@@ -149,7 +149,6 @@ func InitDatabase(database string) *sql.DB {
 					UserId INTEGER NOT NULL ,
 					Date STRING NOT NULL,
 					UpVote STRING NOT NULL,
-					ProfilePic String,
 					FOREIGN KEY (UserId) REFERENCES user(ID) ,
 					FOREIGN KEY (ParentPostId) REFERENCES post(ID),
 					FOREIGN KEY (Category) REFERENCES category(ID)
