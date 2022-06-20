@@ -71,6 +71,7 @@
     width: 15%;
     border: 2px solid black;
     color: black;
+    z-index: 10;
 }
 
 .blocker {
@@ -80,6 +81,7 @@
     top: 0px;
     right: 0px;
     bottom: 0px;
+    /* z-index: 1000; */
 }
 
 .name {

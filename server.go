@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -25,21 +26,24 @@ func main() {
 
 	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
 
-	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
-	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
+	userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
+	userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", strconv.Itoa(rand.Intn(9-1)+1), "2")
+	userId3, _ := pckg.Create(db, "user", pckg.User{}, "koba", pckg.Encrypt("mdp"), "aedqze@gmail.com", "6488235235", strconv.Itoa(rand.Intn(9-1)+1), "2")
+	userId4, _ := pckg.Create(db, "user", pckg.User{}, "la_dd", pckg.Encrypt("mdp"), "aeqzed@gmail.com", "64235244435", strconv.Itoa(rand.Intn(9-1)+1), "3")
 
-	// pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
-	// pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
+	pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
+	pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
 
-	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", 1, nil, userId1, "44/44", 0)
-	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "15/13", 0)
-	// postId3, _ := pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 0, "Je suis 3", 1, postId2, userId1, "9312", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "4 4 4 4", 0, "Je suis 4", 1, postId3, userId1, "9312", 0)
+	pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", 1, nil, userId1, "44/44", 0)
+	pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "15/13", 0)
+	postId3, _ := pckg.Create(db, "post", pckg.Post{}, "6 6 6 6 6 6 ", 1, "Je suis 666", 1, pqrentPostId, userId3, "15/13", 0)
+	pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 1, "Je suis 3", 1, nil, userId4, "9312", 0)
+	pckg.Create(db, "post", pckg.Post{}, "4 4 4 4", 0, "Je suis 4", 1, postId3, userId1, "9312", 0)
 
-	// pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, "11 11 11 11", 1, "Je suis 11", 2, nil, userId1, "25/43", 0)
-	// parent22, _ := pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "35/96", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, parent22, userId2, "35/96", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "14/04", 0)
+	pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, "11 11 11 11", 1, "Je suis 11", 2, nil, userId1, "25/43", 0)
+	parent22, _ := pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "35/96", 0)
+	pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, parent22, userId2, "35/96", 0)
+	pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "14/04", 0)
 
 	logsign, err := template.ParseFiles("./pages/login-signin.html")
 	if err != nil {

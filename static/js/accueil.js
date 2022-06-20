@@ -29,3 +29,10 @@ fetch("/posts").then(function (response) {
 }).catch(function (err) {
     console.log(err)
 })
+
+window.addEventListener("scroll", myPageScroll)
+
+function myPageScroll() {
+    console.log(window.scrollY, " :( ", window.OffsetHeight)
+
+}
