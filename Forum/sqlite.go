@@ -175,7 +175,6 @@ func ParseTable(model interface{}, table string) (a string) {
 	for i := 0; i < e.NumField(); i++ {
 		varName := e.Type().Field(i).Name
 		if varName != "ID" {
-
 			result += string(varName) + ", "
 		}
 	}

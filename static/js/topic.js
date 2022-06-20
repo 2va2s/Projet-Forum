@@ -16,11 +16,14 @@ fetch("/posts").then(function (response) {
                         let category = catt.filter(obj => obj.ID == response[i].Category.Int64)[0]
                         console.log(category)
                         data = data.split("{CatColor}").join(category.Color).split("{Category}").join(category.Name)
-                        div.innerHTML = data
-                        div.style.width = "60vw"
-                        container.appendChild(div)
+                        fetch("/users").then(users => users.json()).then(users => users.filter(user => user.ID == response[i].UserId)[0]).then(user => {
+                            data = data.split("{ProfilePic}").join(user.ProfilePic)
+                            div.innerHTML = data
+                            div.style.width = "60vw"
+                            container.appendChild(div)
+                            generateChild(response, response[i], div, 60 - 10)
+                        })
                         console.log("AAAA" + response)
-                        generateChild(response, response[i], div, 60 - 10)
                     })
                     // console.log(response[i].UpVote)
                 })
@@ -49,13 +52,16 @@ async function generatePostCard(divToAdd, struc, width) {
         .then(async data => {
             data = data.split("{Pseudo}").join(struc.Title.String).split("{Content}").join(struc.Content).split("{Date}").join(struc.Date).split("{PostId}").join(struc.ID).split("{UserId}").join(struc.UserId).split("{UpVote}").join(struc.UpVote).split("{PostId}").join(struc.ID)
             // console.log("comp1 " + data)
-            return await fetch("/categories").then(catt => catt.json()).then(function (catt) {
+            return await fetch("/categories").then(catt => catt.json()).then(async catt => {
                 let category = catt.filter(obj => obj.ID == struc.Category.Int64)[0]
                 data = data.split("{CatColor}").join(category.Color).split("{Category}").join(category.Name)
-                div.innerHTML = data
-                div.style.width = width + "vw"
-                div.style.marginLeft = "5vw"
-                return div
+                return await fetch("/users").then(users => users.json()).then(users => users.filter(user => user.ID == struc.UserId)[0]).then(user => {
+                    data = data.split("{ProfilePic}").join(user.ProfilePic)
+                    div.innerHTML = data
+                    div.style.width = width + "vw"
+                    div.style.marginLeft = "5vw"
+                    return div
+                })
             })
             // console.log(response[i].UpVote)
         })
