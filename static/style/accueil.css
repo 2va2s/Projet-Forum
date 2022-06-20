@@ -13,14 +13,12 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    /* background-color: #698EA2; */
     z-index: -1;
 }
 
 #citation {
     width: 70%;
     height: 20%;
-    /* background-color: red; */
     color: white;
     font-style: italic;
     font-family: 'Qwigley', cursive;
@@ -54,11 +52,9 @@ body {
     margin-right: auto;
     background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/da4a8e35051401.57176f2e5dbe5.jpg);
     background-position:bottom;
-
-    background-attachment: fixed; /* Fixe l'image pendant le scroll */
-    background-size: cover; /* L'image prendra 100% de l'espace, quitte à la crop */
+    background-attachment: fixed;
+    background-size: cover;
     background-repeat: no-repeat;
-
     height: 40%;
     width: 100%;
     background-color: #ffffff;
@@ -72,7 +68,6 @@ body {
 #box-citation {
     width: 70%;
     height: 20%;
-    /* color: rgb(255, 255, 255); */
     color: black;
     font-style: italic;
     font-family: 'Qwigley', cursive;
