@@ -3,7 +3,6 @@
 
 
 #menu {
-    /* background-color:antiquewhite; */
     width: 100%;
     height: 13%;
     position: fixed;
@@ -24,7 +23,7 @@
     margin-bottom: auto;
     margin-left: auto;
     margin-right: 1%;
-    width: 28%;
+    width: 35%;
     height: 80%;
 }
 
@@ -45,6 +44,19 @@
     width: 70%;
     border-radius: 50%;
     margin: auto 5%;
+}
+
+.newPost {
+    height: 90%;
+    width: 10%;
+    right: 0;
+}
+
+.newPost svg {
+    height: 75%;
+    width: 75%;
+    margin: 25% 25%;
+    /* color: white; */
 }
 
 #connected-menu svg {
