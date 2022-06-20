@@ -13,11 +13,11 @@ let mesCommentaires = document.getElementById("mesCommentaires");
 let commentaires = document.getElementById("commentaires");
 let badges = document.getElementById("badges");
 let déroul = document.getElementById("scroll");
-let openPopup = document.getElementById("openPopup")
+let non = document.getElementById("non")
 
 monCompte.addEventListener("click", () => {
-    
-    
+
+
         console.log("hvjyg")
         photo.style.display = "block";
         pseudo.style.display = "block";
@@ -28,30 +28,30 @@ monCompte.addEventListener("click", () => {
         déco.style.display = "none";
         commentaires.style.display = "none"
         déroul.style.display = "none"
-        openPopup.style.display ="none"
-          
-    }
+        openPopup.style.display = "none"
+
+}
 )
 
 posts.addEventListener("click", () => {
-    
-    
+
+
         déroul.style.display = "block"
         photo.style.display = "none";
         pseudo.style.display = "none";
         mail.style.display = "none";
         rang.style.display = "none";
         déco.style.display = "none";
-        commentaires.style.display ="none"
-        badges.style.display ="none"
-        openPopup.style.display ="none"
-        
-    } 
+        commentaires.style.display = "none"
+        badges.style.display = "none"
+        openPopup.style.display = "none"
+
+}
 )
 
 déconnexion.addEventListener("click", () => {
-        openPopup.style.display ="block"
-        
+        openPopup.style.display = "block"
+
 })
 
 mesCommentaires.addEventListener("click", () => {
@@ -63,10 +63,20 @@ mesCommentaires.addEventListener("click", () => {
         mail.style.display = "none";
         rang.style.display = "none";
         badges.style.display = "none"
-        openPopup.style.display ="none"
-        
+        openPopup.style.display = "none"
+
 })
 
-openPopup.addEventListener("click",() => {
+non.addEventListener("click", () => {
         openPopup.style.display = "none"
+})
+
+fetch("/cookies-data").then((response) => response.json()).then(data => {
+        console.log("datas: " + data.pseudo)
+        document.getElementById("PseudoDisplay").innerText = data.pseudo
+        fetch("/users").then(response => response.json()).then(response => {
+                let userData = response.filter(user => user.ID == data.user_id)[0]
+                document.getElementById("EmailDisplay").innerText = userData.Mail
+                document.getElementById("NumberDisplay").innerText = userData.Number
+        })
 })

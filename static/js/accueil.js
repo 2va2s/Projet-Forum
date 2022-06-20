@@ -1,14 +1,3 @@
-let conn = document.getElementById("connected")
-console.log(conn.innerText)
-if (conn.innerText != 'Connecté en tant que') {
-    document.getElementById("connected-menu").style.display = 'block'
-    document.getElementById("signin/login").style.display = 'none'
-} else {
-    conn.innerText = "Non connecté"
-}
-
-
-
 // export const displayPosts = () => {
 console.log("displaying post")
 fetch("/topics").then(function (response) {

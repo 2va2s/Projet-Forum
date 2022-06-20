@@ -23,12 +23,12 @@ body {
     aspect-ratio: 1/1;
 }
 
-.profilname {
+#profilname {
     font-weight: bold;
     font-size: 32px;
 }
 
-.profilrank {
+#profilrank {
     font-size: 28px;
 }
 
