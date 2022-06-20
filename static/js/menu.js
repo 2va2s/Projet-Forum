@@ -23,7 +23,6 @@ function onClickRegister() {
       Password2: document.getElementById("signinPassword2").value
     })
   }).then(response => response.text()).then(response => {
-    console.log(response)
     if (response.includes("Erreur")) {
       let poppup = document.getElementById("logerror")
       poppup.innerText = response
@@ -45,7 +44,6 @@ function onClickLogin() {
       Password: document.getElementById("loginPassword").value
     })
   }).then(response => response.text()).then(response => {
-    console.log(response)
     if (response.includes("Erreur")) {
       let poppup = document.getElementById("logerror")
       poppup.innerText = response
@@ -58,10 +56,8 @@ function onClickLogin() {
 
 async function getUserId() {
   connectedUser = await fetch('/cookies-data').then(response => response.json()).then(response => response.user_id).catch(response => response)
-  console.log("aa" + connectedUser)
   return connectedUser
 }
-console.log("getUserId: " + getUserId())
 async function loadProfilePic() {
   let connectUser = await fetch('/cookies-data').then(response => response.json()).then(response => response.user_id).catch(response => response)
   if (typeof connectUser == "string") {
@@ -73,7 +69,6 @@ loadProfilePic()
 
 async function loadVote(postId) {
   const connectedUser = await getUserId()
-  console.log("loading upvote")
   fetch("/IsUpvoted", {
     method: "POST",
     headers: {
@@ -108,10 +103,8 @@ async function vote(id) {
       } else {
         arrowUp.className = "upvote"
       }
-      // console.log("data:" + data)
       document.getElementById("upvoteNumber#" + id).innerText = data
     } else {
-      console.log("notLogged")
       document.getElementById("notLoggedAlert").style.display = "flex"
     }
   })

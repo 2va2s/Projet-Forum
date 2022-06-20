@@ -19,7 +19,6 @@ let infoDiv = document.getElementById("info")
 monCompte.addEventListener("click", () => {
 
 
-        console.log("hvjyg")
         infoDiv.style.backgroundColor = "#1C1F4C"
         photo.style.display = "block";
         pseudo.style.display = "block";
@@ -63,7 +62,6 @@ non.addEventListener("click", () => {
 })
 
 fetch("/cookies-data").then((response) => response.json()).then(data => {
-        console.log("datas: " + data.pseudo)
         document.getElementById("PseudoDisplay").innerText = data.pseudo
         fetch("/users").then(response => response.json()).then(response => {
                 let userData = response.filter(user => user.ID == data.user_id)[0]
@@ -80,7 +78,6 @@ fetch('/cookies-data').then(function (response) {
 }).then(async response => {
 
         const posts = await fetch("/posts").then(data => data.json()).then(data => data.filter(post => post.UserId == response.ID))
-        console.log("ses posts: " + posts)
         posts.forEach(post => {
                 let postsDiv = document.getElementById("postUpvotes")
                 let newDiv = document.createElement("div")
