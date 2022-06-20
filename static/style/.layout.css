@@ -530,3 +530,15 @@ input {
         margin-right: 23%;
     }
 }
+
+.newPost {
+    height: 90%;
+    width: 10%;
+    right: 0;
+}
+
+.newPost svg {
+    height: 75%;
+    width: 75%;
+    margin: 25% 25%;
+}
