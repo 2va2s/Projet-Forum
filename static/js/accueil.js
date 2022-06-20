@@ -1,8 +1,8 @@
 // export const displayPosts = () => {
 console.log("displaying post")
-fetch("/topics").then(function (response) {
+fetch("/posts").then(function (response) {
     return response.json()
-}).then(function (response) {
+}).then(response => response.filter(post => post.IsTopic == 1)).then(function (response) {
     let list = document.getElementById("topicList")
     for (let i in response) {
         const p = document.createElement('div')

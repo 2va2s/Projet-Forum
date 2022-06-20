@@ -13,7 +13,7 @@ func FormatDate() string {
 
 	// p := fmt.Println
 	now := time.Now()
-	date := now.Format("01-02-2006")
+	date := now.Format("01/02/2006")
 	// p(date)
 	return date
 }

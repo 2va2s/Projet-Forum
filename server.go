@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"math/rand"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -26,11 +25,11 @@ func main() {
 
 	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
 
-	pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
-	pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
+	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
+	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
 
-	pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
-	pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
+	// pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
+	// pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
 
 	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", 1, nil, userId1, "44/44", 0)
 	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "15/13", 0)
@@ -185,21 +184,25 @@ func main() {
 	// routes API
 
 	rr.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
+		userList = pckg.Get(db, "user", "user")
+		userData = pckg.GetUserRows(userList)
 		json, _ := json.Marshal(userData)
 		w.Write(json)
 	})
 
 	rr.HandleFunc("/posts", func(w http.ResponseWriter, r *http.Request) {
+		postList = pckg.Get(db, "post", "child")
+		postArray = pckg.GetPostRows(postList)
 		json, _ := json.Marshal(postArray)
 		w.Write(json)
 	})
 
-	rr.HandleFunc("/topics", func(w http.ResponseWriter, r *http.Request) {
-		topicList := pckg.Get(db, "post", "topic")
-		topicArray := pckg.GetPostRows(topicList)
-		json, _ := json.Marshal(topicArray)
-		w.Write(json)
-	})
+	// rr.HandleFunc("/topics", func(w http.ResponseWriter, r *http.Request) {
+	// 	topicList := pckg.Get(db, "post", "topic")
+	// 	topicArray := pckg.GetPostRows(topicList)
+	// 	json, _ := json.Marshal(topicArray)
+	// 	w.Write(json)
+	// })
 
 	rr.HandleFunc("/categories", func(w http.ResponseWriter, r *http.Request) {
 		topicList := pckg.Get(db, "category", "")
