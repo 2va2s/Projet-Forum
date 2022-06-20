@@ -7,7 +7,7 @@ fetch("/posts").then(function (response) {
     for (let i in response) {
         if (response[i].ID == postId) {
             const div = document.createElement('div')
-            fetch('../static/components/test.txt')
+            fetch('../static/components/postCard.txt')
                 .then(data => data.text())
                 .then(data => {
                     data = data.split("{Pseudo}").join(response[i].Title.String).split("{Content}").join(response[i].Content).split("{Date}").join(response[i].Date).split("{PostId}").join(response[i].ID).split("{UserId}").join(response[i].UserId).split("{UpVote}").join(response[i].UpVote).split("{PostId}").join(response[i].ID)
@@ -40,7 +40,7 @@ async function generateChild(response, parent, div, width) {
 
 async function generatePostCard(divToAdd, struc, width) {
     const div = document.createElement('div')
-    let fetch1 = await fetch('../static/components/test.txt')
+    let fetch1 = await fetch('../static/components/postCard.txt')
         .then(response => response.text())
         .then(async data => {
             data = data.split("{Pseudo}").join(struc.Title.String).split("{Content}").join(struc.Content).split("{Date}").join(struc.Date).split("{PostId}").join(struc.ID).split("{UserId}").join(struc.UserId).split("{UpVote}").join(struc.UpVote).split("{PostId}").join(struc.ID)

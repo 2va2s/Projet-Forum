@@ -5,7 +5,7 @@ fetch("/posts").then(function (response) {
     let list = document.getElementById("topicList")
     for (let i in response) {
         const p = document.createElement('div')
-        fetch('./static/components/test.txt')
+        fetch('./static/components/postCard.txt')
             .then(resp => resp.text())
             .then(data => {
                 // Do something with your data

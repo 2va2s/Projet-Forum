@@ -56,7 +56,7 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "cookie-forum")
 	auth := session.Values["authenticated"]
 
-	tmpl, _ := template.ParseFiles("./pages/accueil.html", "./templates/menu.html")
+	tmpl, _ := template.ParseFiles("./pages/accueil.html", "./templates/menu.html", "./templates/filtre.html")
 	data2 := UserDataConvert{}
 
 	if auth != nil {

@@ -5,6 +5,11 @@
 #global {
     background-color: #253E5C;
     margin-right: 65%;
+    width: 30%;
+    position: absolute;
+    top: 70vh;
+    left: 67vw;
+    display: none;
 }
 
 .separatedfilters {
@@ -47,7 +52,7 @@ p {
     font-weight: 300;
     text-align: center;
     font-size: 18px;
-    color: white
+    color: rgb(0, 0, 0)
 }
 
 .frame {
