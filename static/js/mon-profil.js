@@ -78,5 +78,6 @@ fetch("/cookies-data").then((response) => response.json()).then(data => {
                 let userData = response.filter(user => user.ID == data.user_id)[0]
                 document.getElementById("EmailDisplay").innerText = userData.Mail
                 document.getElementById("NumberDisplay").innerText = userData.Number
+                document.getElementById("photo").src = "../static/img/avatar/"+userData.ProfilePic +".png"
         })
 })

@@ -39,7 +39,7 @@ function onClickLogin() {
 }
 
 async function getUserId() {
-  connectedUser = await fetch('/cookies-data').then(response => response.json()).then(response => response.user_id)
+  connectedUser = await fetch('/cookies-data').then(response => response.json()).then(response => response.user_id).catch(response => response)
   console.log("aa" + connectedUser)
   return connectedUser
 }
@@ -98,7 +98,7 @@ fetch("/cookies-data").then(response => response.json()).then(data => {
     document.getElementById("signin/login").style.display = 'none'
     document.getElementById("DisplayPseudo").innerText = data.pseudo
   }
-})
+}).catch(response => response)
 
 const redirectToPost = (id) => {
   fetch('/posts').then(location.href = '/topic/' + id)

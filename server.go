@@ -25,8 +25,8 @@ func main() {
 
 	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
 
-	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", "", "1")
-	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", "", "1")
+	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy_deter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
+	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi_grognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "64235235", strconv.Itoa(rand.Intn(9-1)+1), "1")
 
 	// pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
 	// pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
