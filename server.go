@@ -19,20 +19,27 @@ func main() {
 
 	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
 
-	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhy deter", "mdp", "aeze@gmail.com", "6314134235235", "")
-	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifi grognon", "mdp", "aeze@gmail.com", "6314134235235", "")
+	// lorem := "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime molliti...."
+
+	// PAS SUPPRIMER: DECOMMENTER POUR GENERER TABLES EXEMPLE //
+
+	// userId1, _ := pckg.Create(db, "user", pckg.User{}, "akhydeter", pckg.Encrypt("mdp"), "aeze@gmail.com", "6314134235235", "")
+	// userId2, _ := pckg.Create(db, "user", pckg.User{}, "fifigrognon", pckg.Encrypt("mdp"), "aeqze@gmail.com", "63141134235235", "")
 
 	// pckg.Create(db, "category", pckg.Category{}, "Santé", "pink")
 	// pckg.Create(db, "category", pckg.Category{}, "Nostalgie", "purple")
 
-	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, "1 1 1 1 1 1 1 1 1 1 1", 1, "Je suis 1", 1, nil, userId1, "44/44", 0)
-	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "15/13", 0)
+	// pqrentPostId, _ := pckg.Create(db, "post", pckg.Post{}, lorem, 1, "J'ai mal au dos", 1, nil, userId1, "12/12/2020", 0)
+	// postId2, _ := pckg.Create(db, "post", pckg.Post{}, "2 2 2 2 ", 0, "Je suis 2", 1, pqrentPostId, userId2, "04/04/2012", 0)
+
 	// pckg.Create(db, "post", pckg.Post{}, "3 3 3 3", 0, "Je suis 3", 1, postId2, userId1, "9312", 0)
 
-	// pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, "11 11 11 11", 1, "Je suis 11", 2, nil, userId1, "25/43", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "35/96", 0)
-	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "14/04", 0)
+	// pqrentPostId2, _ := pckg.Create(db, "post", pckg.Post{}, lorem, 1, "Probleme d'érection", 2, nil, userId1, "04/04/2002", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, pqrentPostId2, userId2, "05/04/2004", 0)
+	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "04/05/2002", 0)
 
+	// pckg.Create(db, "post", pckg.Post{}, lorem, 1, "Cherche masseuse thailandaise", 1, nil, userId1, "04/04/2002", 0)
+	// pckg.Create(db, "post", pckg.Post{}, lorem, 1, "Mon bangala me tire", 1, nil, userId1, "01/03/2003", 0)
 	logsign, err := template.ParseFiles("./pages/login-signin.html")
 	if err != nil {
 		fmt.Println(err)
