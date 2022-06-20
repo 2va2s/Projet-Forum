@@ -9,7 +9,6 @@ body {
     height: 60%;
     margin: 5% auto;
     position: relative;
-    /* background-color: #FFE8A4; */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -32,43 +31,13 @@ body {
     font-size: 28px;
 }
 
-/* .profilavatar {
-    width: 25%;
-    margin: auto 2%;
-    border-radius: 50%;
-    background-color: grey;
-    border: 1px solid black;
-    aspect-ratio: 1/1;
-}
-
-.vl {
-    border-right: 1px solid black;
-    height: 95%;
-    width: 1%;
-    margin: auto 0;
-}
-
-.profilinfo {
-    margin: auto 2%;
-    font-size: 150%;
-}
-
-.profilname {
-    margin-bottom: 25%;
-} */
-
 #profilposts {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 2%;
     width: 90%;
     height: 90%;
-    /* position: absolute; */
-    /* background-color: red; */
-    /* justify-content: space-between; */
-    /* margin: 37% 4%; */
     text-align: center;
-    /* min-height: 100vh; */
     padding-bottom: 2%;
 }
 
