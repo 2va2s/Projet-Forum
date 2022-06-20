@@ -49,11 +49,6 @@ func main() {
 	// pckg.Create(db, "post", pckg.Post{}, "22 22 22", 0, "Je suis 22", 1, parent22, userId2, "35/96", 0)
 	// pckg.Create(db, "post", pckg.Post{}, "33 33 33", 0, "Je suis 33", 1, pqrentPostId2, userId1, "14/04", 0)
 
-	logsign, err := template.ParseFiles("./pages/login-signin.html")
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	// fs := http.FileServer(http.Dir("static/"))
 	// http.Handle("/static/", http.StripPrefix("/static/", fs))
 	fileServer := http.FileServer(http.Dir("./static"))
@@ -78,10 +73,6 @@ func main() {
 	}
 
 	rr.HandleFunc("/", pckg.HandleHome)
-
-	rr.HandleFunc("/connexion-inscription", func(w http.ResponseWriter, r *http.Request) {
-		logsign.Execute(w, "")
-	})
 
 	rr.HandleFunc("/signin", func(w http.ResponseWriter, r *http.Request) {
 		pckg.HandleSignin(w, r, db)

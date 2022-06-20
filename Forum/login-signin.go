@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -87,7 +88,7 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		w.Write([]byte("Erreur: Mots de passes non identique"))
 		return
 	}
-	if len(params.Password) < 7 {
+	if len(params.Password) < 6 {
 		w.Write([]byte("Erreur: Le mot de passe doit contenir au moins 6 caractères"))
 		return
 	}
@@ -100,7 +101,7 @@ func HandleSignin(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 		return
 	}
 
-	_, err := Create(db, "user", User{}, params.Pseudo, Encrypt(params.Password), params.Mail, params.Number, "", "1")
+	_, err := Create(db, "user", User{}, params.Pseudo, Encrypt(params.Password), params.Mail, params.Number, strconv.Itoa(rand.Intn(9-1)+1), "1")
 	if err != nil {
 		fmt.Println("error on user creation " + err.Error())
 	}
@@ -150,7 +151,7 @@ func HandleLogin(db *sql.DB, w http.ResponseWriter, r *http.Request) {
 		}
 		session.Values["authenticated"] = string(res)
 		session.Save(r, w)
-		http.Redirect(w, r, "/", http.StatusFound)
+		// http.Redirect(w, r, "/", http.StatusFound)
 	}
 }
 

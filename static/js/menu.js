@@ -22,7 +22,16 @@ function onClickRegister() {
       Password: document.getElementById("signinPassword").value,
       Password2: document.getElementById("signinPassword2").value
     })
-  }).then(response => response.json())
+  }).then(response => response.text()).then(response => {
+    console.log(response)
+    if (response.includes("Erreur")) {
+      let poppup = document.getElementById("logerror")
+      poppup.innerText = response
+      poppup.style.display = "block"
+    } else {
+      location.reload()
+    }
+  })
 }
 
 function onClickLogin() {
@@ -36,10 +45,13 @@ function onClickLogin() {
       Password: document.getElementById("loginPassword").value
     })
   }).then(response => response.text()).then(response => {
-    if (response != "") {
+    console.log(response)
+    if (response.includes("Erreur")) {
       let poppup = document.getElementById("logerror")
       poppup.innerText = response
       poppup.style.display = "block"
+    } else {
+      location.reload()
     }
   })
 }
